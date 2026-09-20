@@ -4,7 +4,10 @@ A complete data model of the Lebanese state: bodies, positions, the people who h
 them, and the legal relationships between them, each cited to its source. Modelled on
 CivLab's US Gov Graph. Arabic first, English second.
 
-Code MIT, data CC BY. Working name; public name and domain to be decided before launch.
+Code MIT, data CC BY 4.0 (see `LICENSE`). Live at https://civ-leb.com. Contributions: see `CONTRIBUTING.md`.
+
+The design and data model follow CivLab's US Gov Graph (https://graph.civlab.org/us), with
+thanks to CivLab for showing what a complete map of a government can look like.
 
 ## Layout
 
