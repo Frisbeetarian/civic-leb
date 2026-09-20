@@ -1,0 +1,25 @@
+# Local services for civicleb. Production runs on Laravel Cloud (Postgres) and Cloudflare.
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: civicleb-postgres
+    environment:
+      POSTGRES_DB: civicleb
+      POSTGRES_USER: civicleb
+      POSTGRES_PASSWORD: civicleb
+    ports:
+      - "54329:5432"
+    volumes:
+      - civicleb-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U civicleb"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  redis:
+    image: redis:7-alpine
+    container_name: civicleb-redis
+    ports:
+      - "63799:6379"
+volumes:
+  civicleb-pg:

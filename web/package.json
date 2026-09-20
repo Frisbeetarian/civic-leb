@@ -1,0 +1,39 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "build:static": "STATIC_EXPORT=1 next build",
+    "deploy:static": "STATIC_EXPORT=1 next build && wrangler deploy",
+    "snapshot": "curl -s ${API_URL:-http://127.0.0.1:8000}/api/lb/graph -o data/lb-graph.json"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "d3-selection": "^3.0.0",
+    "d3-zoom": "^3.0.0",
+    "minisearch": "^7.2.0",
+    "next": "16.3.5",
+    "next-intl": "^4.14.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/d3": "^7.4.3",
+    "@types/d3-selection": "^3.0.12",
+    "@types/d3-zoom": "^3.0.8",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "^4.135.0"
+  },
+  "packageManager": "pnpm@10.16.0"
+}

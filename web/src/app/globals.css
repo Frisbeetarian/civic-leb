@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Warm stone palette in the CivLab manner; branch colours: terracotta, periwinkle, ochre, teal. */
+:root {
+  color-scheme: light;
+  --bg: #eceae4;
+  --card: #f9f8f7;
+  --card-2: #f1efea;
+  --hover: #e6e3dc;
+  --ink: #1c1917;
+  --ink-2: #57534e;
+  --ink-3: #7e776c;
+  --line: #dddbd5;
+  --brand: #2f6b4f;
+  --c-legislative: #dd4e35;
+  --c-executive: #6d6dcc;
+  --c-judicial: #ac7f14;
+  --c-independent: #2e8b7a;
+  --c-local: #7a6fb3;
+  --c-constituency: #f27836;
+  --node-fill: #ffffff;
+  --canvas: #eceae4;
+  --seam: #c9c4ba;
+  --ink-muted: #a3a3a3;
+  --territory: 0.07;
+  --edge-idle: 0;
+  --edge-all: 0.45;
+  --connected: 0.35;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #161310;
+  --card: #1f1b18;
+  --card-2: #262220;
+  --hover: #2e2925;
+  --ink: #ede9e2;
+  --ink-2: #cfc9c0;
+  --ink-3: #a29b90;
+  --line: #2e2925;
+  --brand: #6fbf95;
+  --c-legislative: #e4573d;
+  --c-executive: #8484dc;
+  --c-judicial: #c89c15;
+  --c-independent: #58b5a2;
+  --c-local: #a297d8;
+  --c-constituency: #f27836;
+  --node-fill: #272220;
+  --canvas: #161310;
+  --seam: #3d362e;
+  --ink-muted: #8a8378;
+  --territory: 0.13;
+  --edge-idle: 0.26;
+  --edge-all: 0.5;
+  --connected: 0.55;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-hover: var(--hover);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --font-sans: var(--font-inter), var(--font-plex-arabic), system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 16px; -webkit-font-smoothing: antialiased; }
+[dir="rtl"] body { font-family: var(--font-plex-arabic), var(--font-inter), system-ui, sans-serif; }
+
+.card { background: var(--card); border-radius: 16px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 10px; background: var(--card-2); }
+.mono-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.link { text-decoration: underline; text-underline-offset: 3px; color: var(--ink-2); }
+.link:hover { color: var(--ink); }
+
+.graph-svg text { font-family: inherit; pointer-events: none; user-select: none; }
+.sector-label { font-size: 12.5px; letter-spacing: 0.2em; font-weight: 600; }
+.ring-label { font-size: 11px; letter-spacing: 0.16em; font-weight: 600; fill: var(--ink-muted); }
+.edge-label { font-size: 11px; font-weight: 500; paint-order: stroke; stroke: var(--canvas); stroke-width: 3px; stroke-linejoin: round; }
+.graph-svg { color: var(--ink-3); }

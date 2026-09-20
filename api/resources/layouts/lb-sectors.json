@@ -1,0 +1,194 @@
+{
+  "id": "lb-sectors",
+  "mode": "sectors",
+  "description": "Radial layout for the Lebanese state. Electorate at the centre; four angular sectors; rings by node kind; pills for Parliament (128 seats) and the Council of Ministers; bands for oversight bodies and security services; confessional courts on the outer edge of the judicial sector.",
+  "centerNodeId": "lb-electorate",
+  "sectors": [
+    {
+      "id": "legislative",
+      "label": {
+        "en": "LEGISLATIVE",
+        "ar": "السلطة التشريعية"
+      },
+      "minAngleDeg": 95
+    },
+    {
+      "id": "executive",
+      "label": {
+        "en": "EXECUTIVE",
+        "ar": "السلطة التنفيذية"
+      },
+      "minAngleDeg": 130
+    },
+    {
+      "id": "judicial",
+      "label": {
+        "en": "JUDICIAL",
+        "ar": "السلطة القضائية"
+      },
+      "minAngleDeg": 60
+    },
+    {
+      "id": "independent",
+      "label": {
+        "en": "INDEPENDENT & REGULATORY",
+        "ar": "الهيئات المستقلة والرقابية"
+      },
+      "minAngleDeg": 70
+    }
+  ],
+  "sectorGapDeg": 4,
+  "rings": [
+    {
+      "bucket": "elected",
+      "spacing": 1.4,
+      "label": "elected",
+      "sizeMetric": "seats"
+    },
+    {
+      "bucket": "commission",
+      "spacing": 3.7,
+      "label": "appointed",
+      "sizeMetric": "children"
+    },
+    {
+      "bucket": "advisory",
+      "spacing": 3.7,
+      "label": "appointed",
+      "sizeMetric": "children"
+    },
+    {
+      "bucket": "department",
+      "spacing": 3.7,
+      "label": "appointed",
+      "sizeMetric": "children"
+    }
+  ],
+  "depthMode": true,
+  "pills": [
+    {
+      "id": "parliament",
+      "label": {
+        "en": "PARLIAMENT",
+        "ar": "مجلس النواب"
+      },
+      "sector": "legislative",
+      "bodyNodeId": "lb-parliament",
+      "memberNodeType": "seat",
+      "spanDeg": 66,
+      "thickness": 58,
+      "mobileThickness": 46,
+      "groupBy": "seat.majorDistrict",
+      "labelSide": "outside"
+    },
+    {
+      "id": "cabinet",
+      "label": {
+        "en": "COUNCIL OF MINISTERS",
+        "ar": "مجلس الوزراء"
+      },
+      "sector": "executive",
+      "bodyNodeId": "lb-council-of-ministers",
+      "memberNodeType": "dept_head",
+      "memberKinds": [
+        "minister",
+        "prime_minister",
+        "deputy_prime_minister"
+      ],
+      "spacing": 2.05,
+      "mobileSpacing": 1.75,
+      "thickness": 44,
+      "mobileThickness": 38,
+      "labelSide": "outside"
+    },
+    {
+      "id": "committees",
+      "label": {
+        "en": "PARLIAMENTARY COMMITTEES",
+        "ar": "اللجان النيابية"
+      },
+      "sector": "legislative",
+      "bodyNodeId": "lb-parliament",
+      "memberNodeType": "commission",
+      "spacing": 2.7,
+      "mobileSpacing": 2.5,
+      "thickness": 60,
+      "mobileThickness": 50,
+      "labelSide": "outside"
+    }
+  ],
+  "bands": [
+    {
+      "id": "security",
+      "label": {
+        "en": "SECURITY",
+        "ar": "الأجهزة الأمنية"
+      },
+      "sector": "executive",
+      "match": {
+        "subtype": "security_service"
+      },
+      "radius": 3.0,
+      "mobileRadius": 2.3,
+      "labelSide": "outside"
+    },
+    {
+      "id": "oversight",
+      "label": {
+        "en": "OVERSIGHT & CONTROL",
+        "ar": "الرقابة"
+      },
+      "sector": "independent",
+      "match": {
+        "subtype": "oversight"
+      },
+      "radius": 2.0,
+      "mobileRadius": 1.85,
+      "labelSide": "inside"
+    },
+    {
+      "id": "regulators",
+      "label": {
+        "en": "REGULATORS",
+        "ar": "الهيئات الناظمة"
+      },
+      "sector": "independent",
+      "match": {
+        "subtype": "regulator"
+      },
+      "radius": 2.6,
+      "mobileRadius": 2.4,
+      "labelSide": "outside"
+    },
+    {
+      "id": "confessional-courts",
+      "label": {
+        "en": "PERSONAL STATUS COURTS",
+        "ar": "المحاكم المذهبية والروحية"
+      },
+      "sector": "judicial",
+      "match": {
+        "subtype": "confessional_court"
+      },
+      "radius": 3.0,
+      "mobileRadius": 3.2,
+      "outerEdgeWhen": {
+        "stateFunded": false
+      },
+      "labelSide": "inside"
+    }
+  ],
+  "apexNodeIds": [
+    "lb-constitutional-council",
+    "lb-court-of-cassation"
+  ],
+  "boundaryNodeIds": {
+    "lb-court-of-audit": [
+      "judicial",
+      "independent"
+    ]
+  },
+  "sectorAliases": {
+    "local": "executive"
+  }
+}

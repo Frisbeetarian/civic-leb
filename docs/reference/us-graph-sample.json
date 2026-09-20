@@ -1,0 +1,803 @@
+{
+ "_note": "Compact excerpt of the real graph.civlab.org/us Next.js pageProps (Sept 17 2026). Arrays truncated; shapes are exact.",
+ "govConfig": {
+  "slug": "us",
+  "label": "US Gov",
+  "features": {
+   "budget": false,
+   "news": true,
+   "articles": true,
+   "articleSearch": false,
+   "meetings": false,
+   "changes": true,
+   "topics": false,
+   "overview": false,
+   "powerMap": true
+  },
+  "layoutId": "us-sectors"
+ },
+ "data": {
+  "nodes": {
+   "us-electorate": {
+    "type": "constituency",
+    "id": "us-electorate",
+    "name": "People of the United States",
+    "description": "The national electorate of the United States; elects the President and Vice President through the Electoral College.",
+    "people": {
+     "type": "people",
+     "people": []
+    },
+    "edges": [
+     "2fe1d0e9",
+     "8c16ea1c",
+     "93be0255",
+     "94ee2d85"
+    ],
+    "connectedNodes": [
+     "us-the-house-of-representatives",
+     "us-the-senate",
+     "us-president-of-the-united-states",
+     "us-vice-president-of-the-united-states",
+     "us-the-executive-office-of-the-president",
+     "us-office-of-the-vice-president"
+    ],
+    "employeeCount": {
+     "budget": null,
+     "actual": null
+    },
+    "departmentCode": null,
+    "headOf": null,
+    "head": null,
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://constitution.congress.gov/",
+    "officialUrl": null,
+    "aliases": [],
+    "seatsCount": 0,
+    "featuredPersonImageUrl": null,
+    "children": []
+   },
+   "us-congress": {
+    "type": "elected",
+    "id": "us-congress",
+    "name": "Congress",
+    "description": "The Congress of the United States is the bicameral national legislature of the United States, consisting of the Senate and the House of Representatives. It is vested with all federal legislative powers, including enacting statutes, levying taxes, appropriating funds, and overseeing the executive branch. It was created by Article I of the Constitution and first met on March 4, 1789.",
+    "people": {
+     "type": "count",
+     "count": 535
+    },
+    "edges": [
+     "ff7426ec",
+     "f903237e",
+     "42659bb0",
+     "63c8f71e"
+    ],
+    "connectedNodes": [
+     "us-director-of-the-congressional-budget-office",
+     "us-architect-of-the-capitol-architect-of-the-capitol",
+     "us-chief-of-the-united-states-capitol-police",
+     "us-director-of-accessibility-services",
+     "us-smithsonian-institution",
+     "us-united-states-commission-on-international-religious-freedom"
+    ],
+    "employeeCount": {
+     "actual": null,
+     "budget": null
+    },
+    "departmentCode": null,
+    "headOf": null,
+    "head": null,
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://constitution.congress.gov/constitution/article-1/",
+    "officialUrl": "https://www.congress.gov/",
+    "aliases": [
+     "U.S. Congress",
+     "United States Congress"
+    ],
+    "seatsCount": 535,
+    "featuredPersonImageUrl": "/gov_group_pictures/us-congress.jpg",
+    "subtype": "legislature",
+    "sector": "legislative",
+    "children": [
+     "us-the-house-of-representatives",
+     "us-the-senate",
+     "us-congressional-budget-office"
+    ]
+   },
+   "us-the-senate": {
+    "type": "elected",
+    "id": "us-the-senate",
+    "name": "United States Senate",
+    "description": "The Senate is the upper chamber of the United States Congress, established by Article I of the Constitution. It is composed of 100 members, two from each state, elected to staggered six-year terms. The Senate shares legislative power with the House of Representatives and additionally holds the sole power to give advice and consent to treaties and to presidential nominations and to try impeachments. The Vice President serves as its presiding officer.",
+    "people": {
+     "type": "count",
+     "count": 100
+    },
+    "edges": [
+     "35399512",
+     "53422181",
+     "62478912",
+     "66329079"
+    ],
+    "connectedNodes": [
+     "us-director-of-the-central-intelligence-agency",
+     "us-director-of-the-office-of-science",
+     "us-administrator-of-the-energy-information-administration",
+     "us-chairman-of-the-national-endowment-for-the-arts",
+     "us-commodity-futures-trading-commission",
+     "us-administrator-of-general-services"
+    ],
+    "employeeCount": {
+     "actual": null,
+     "budget": null
+    },
+    "departmentCode": null,
+    "headOf": null,
+    "head": "us-president-pro-tempore",
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://constitution.congress.gov/constitution/article-1/",
+    "officialUrl": "https://www.senate.gov",
+    "aliases": [
+     "U.S. Senate",
+     "The Senate",
+     "Senate",
+     "US Senate"
+    ],
+    "seatsCount": 100,
+    "featuredPersonImageUrl": "/gov_group_pictures/us-the-senate.jpg",
+    "subtype": "chamber",
+    "sector": "legislative",
+    "parent": "us-congress",
+    "level": 1,
+    "children": []
+   },
+   "us-president-of-the-united-states": {
+    "type": "elected",
+    "id": "us-president-of-the-united-states",
+    "name": "President of the United States",
+    "description": "The President of the United States is the head of state and head of government and holds the executive power of the federal government under Article II of the Constitution. Elected to a four-year term through the Electoral College, the President serves as commander in chief of the armed forces, executes federal law, makes treaties and nominations subject to Senate action, and may veto legislation passed by Congress.",
+    "people": {
+     "type": "people",
+     "people": [
+      {
+       "id": "us-donald-j-trump",
+       "name": "Donald J. Trump",
+       "positionId": "us-president-of-the-united-states",
+       "positionName": "President of the United States",
+       "type": "elected",
+       "startedAt": "2025-01-20",
+       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29_%28cropped%29%282%29.jpg/960px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29_%28cropped%29%282%29.jpg",
+       "party": "Republican"
+      }
+     ]
+    },
+    "edges": [
+     "19307096",
+     "33955568",
+     "68305393",
+     "91496487"
+    ],
+    "connectedNodes": [
+     "us-director-of-u-s-immigration-and-customs-enforcement",
+     "us-assistant-secretary-of-state-for-educational-and-cultural-affairs",
+     "us-federal-reserve-system",
+     "us-chief-of-the-national-guard-bureau",
+     "us-administrative-conference-of-the-united-states-chairman",
+     "us-administrator-of-general-services"
+    ],
+    "employeeCount": {
+     "actual": null,
+     "budget": null
+    },
+    "departmentCode": null,
+    "headOf": "us-the-executive-office-of-the-president",
+    "head": null,
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://constitution.congress.gov/constitution/article-2/",
+    "officialUrl": "https://www.whitehouse.gov",
+    "aliases": [
+     "POTUS",
+     "The President"
+    ],
+    "seatsCount": 0,
+    "featuredPersonImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29_%28cropped%29%282%29.jpg/960px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29_%28cropped%29%282%29.jpg",
+    "sector": "executive",
+    "children": []
+   },
+   "us-department-of-justice": {
+    "type": "department",
+    "id": "us-department-of-justice",
+    "name": "Department of Justice",
+    "description": "The Department of Justice is the executive department that enforces federal law, represents the United States in legal matters, and administers major components of the federal justice system. It houses the Federal Bureau of Investigation, the Drug Enforcement Administration, the U.S. Marshals Service, the Bureau of Prisons, and the U.S. Attorneys, and it litigates and prosecutes on behalf of the United States. Headed by the Attorney General, it was established by the Act of June 22, 1870 (16 Stat. 162; 28 U.S.C. 501).",
+    "people": {
+     "type": "people",
+     "people": [
+      {
+       "id": "us-todd-blanche",
+       "name": "Todd Blanche",
+       "positionId": "us-attorney-general",
+       "positionName": "Attorney General",
+       "type": "appointed",
+       "startedAt": "2026-08-08",
+       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/2025_Todd_Blanche_official_portrait_%28cropped%29.jpg/960px-2025_Todd_Blanche_official_portrait_%28cropped%29.jpg",
+       "party": null
+      }
+     ]
+    },
+    "edges": [
+     "24f6d703",
+     "5f6c89a4",
+     "8c16ea1c",
+     "c982c54d"
+    ],
+    "connectedNodes": [
+     "us-attorney-general",
+     "us-the-senate",
+     "us-electorate",
+     "us-president-of-the-united-states",
+     "us-bureau-of-alcohol-tobacco-firearms-and-explosives",
+     "us-bureau-of-prisons"
+    ],
+    "employeeCount": {
+     "actual": null,
+     "budget": null
+    },
+    "departmentCode": null,
+    "headOf": null,
+    "head": "us-attorney-general",
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title28-section501&num=0&edition=prelim",
+    "officialUrl": "https://www.justice.gov",
+    "aliases": [
+     "DOJ",
+     "Justice Department"
+    ],
+    "seatsCount": 0,
+    "featuredPersonImageUrl": "/gov_group_pictures/us-department-of-justice.jpg",
+    "subtype": "department",
+    "sector": "executive",
+    "children": [
+     "us-bureau-of-alcohol-tobacco-firearms-and-explosives",
+     "us-bureau-of-prisons",
+     "us-drug-enforcement-administration",
+     "us-executive-office-for-immigration-review",
+     "us-federal-bureau-of-investigation"
+    ]
+   },
+   "us-attorney-general": {
+    "type": "dept_head",
+    "id": "us-attorney-general",
+    "name": "Attorney General",
+    "description": "Attorney General, the institutional head of Department of Justice. Appointed by the President, with the advice and consent of the Senate, under An Act to Establish the Department of Justice of 1870 (16 Stat. 162; 28 U.S.C. 501); directs the agency's staff, budget, and statutory functions.",
+    "people": {
+     "type": "people",
+     "people": [
+      {
+       "id": "us-todd-blanche",
+       "name": "Todd Blanche",
+       "positionId": "us-attorney-general",
+       "positionName": "Attorney General",
+       "type": "appointed",
+       "startedAt": "2026-08-08",
+       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/2025_Todd_Blanche_official_portrait_%28cropped%29.jpg/960px-2025_Todd_Blanche_official_portrait_%28cropped%29.jpg",
+       "party": null
+      }
+     ]
+    },
+    "edges": [
+     "3fe8cb2a",
+     "05441029",
+     "e8e4e784",
+     "12c3fedb"
+    ],
+    "connectedNodes": [
+     "us-director-of-the-executive-office-for-immigration-review",
+     "us-director-of-interpol-washington",
+     "us-director-of-the-federal-bureau-of-prisons",
+     "us-director-of-the-office-of-community-oriented-policing-services",
+     "us-chief-executive-officer-of-federal-prison-industries",
+     "us-director-of-the-national-institute-of-corrections"
+    ],
+    "employeeCount": {
+     "budget": null,
+     "actual": null
+    },
+    "departmentCode": null,
+    "headOf": "us-department-of-justice",
+    "head": null,
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title28-section501&num=0&edition=prelim",
+    "officialUrl": "https://www.justice.gov",
+    "aliases": [],
+    "seatsCount": 1,
+    "featuredPersonImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/2025_Todd_Blanche_official_portrait_%28cropped%29.jpg/960px-2025_Todd_Blanche_official_portrait_%28cropped%29.jpg",
+    "sector": "executive",
+    "children": []
+   },
+   "us-federal-communications-commission": {
+    "type": "commission",
+    "id": "us-federal-communications-commission",
+    "name": "Federal Communications Commission",
+    "description": "The Federal Communications Commission is an independent U.S. government agency that regulates interstate and international communications by radio, television, wire, satellite, and cable. Established by the Communications Act of 1934, it is directed by five commissioners whom the President appoints with Senate consent to five-year terms, with one designated as Chair; it licenses spectrum, adopts communications rules, and enforces them in the public interest.",
+    "people": {
+     "type": "people",
+     "people": [
+      {
+       "id": "us-commissioner-of-the-federal-communications-commission-seat-1",
+       "name": "Commissioner of the Federal Communications Commission (Seat 1)",
+       "type": "appointed"
+      },
+      {
+       "id": "us-commissioner-of-the-federal-communications-commission-seat-2",
+       "name": "Commissioner of the Federal Communications Commission (Seat 2)",
+       "type": "appointed"
+      },
+      {
+       "id": "us-commissioner-of-the-federal-communications-commission-seat-3",
+       "name": "Commissioner of the Federal Communications Commission (Seat 3)",
+       "type": "appointed"
+      },
+      {
+       "id": "us-brendan-carr",
+       "name": "Brendan Carr",
+       "positionId": "us-commissioner-of-the-federal-communications-commission-seat-4",
+       "positionName": "Commissioner of the Federal Communications Commission (Seat 4)",
+       "type": "appointed",
+       "startedAt": "2017-08-11",
+       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Brendan_Carr_official_portrait.jpg/960px-Brendan_Carr_official_portrait.jpg",
+       "party": null
+      },
+      {
+       "id": "us-commissioner-of-the-federal-communications-commission-seat-5",
+       "name": "Commissioner of the Federal Communications Commission (Seat 5)",
+       "type": "appointed"
+      }
+     ]
+    },
+    "edges": [
+     "2ccf27ad",
+     "59ecd79e",
+     "93be0255",
+     "8c16ea1c"
+    ],
+    "connectedNodes": [
+     "us-president-of-the-united-states",
+     "us-the-senate",
+     "us-electorate",
+     "us-federal-communications-commission-chair"
+    ],
+    "employeeCount": {
+     "actual": null,
+     "budget": null
+    },
+    "departmentCode": null,
+    "headOf": null,
+    "head": "us-federal-communications-commission-chair",
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title47-section151&num=0&edition=prelim",
+    "officialUrl": "https://www.fcc.gov",
+    "aliases": [
+     "FCC"
+    ],
+    "seatsCount": 5,
+    "featuredPersonImageUrl": "/gov_group_pictures/us-federal-communications-commission.jpg",
+    "subtype": "regulatory_body",
+    "sector": "independent",
+    "children": []
+   },
+   "us-federal-bureau-of-investigation": {
+    "type": "department",
+    "id": "us-federal-bureau-of-investigation",
+    "name": "Federal Bureau of Investigation",
+    "description": "The Federal Bureau of Investigation is the principal federal law enforcement and domestic intelligence agency of the United States, operating as a component of the Department of Justice. It investigates violations of federal law across national security, criminal, and civil matters and provides forensic, technical, and investigative assistance to other law enforcement agencies. It traces to a force of special agents created within the Department of Justice in 1908.",
+    "people": {
+     "type": "people",
+     "people": [
+      {
+       "id": "us-kash-patel",
+       "name": "Kash Patel",
+       "positionId": "us-director-of-the-federal-bureau-of-investigation",
+       "positionName": "Director of the Federal Bureau of Investigation",
+       "type": "appointed",
+       "startedAt": "2025-02-21",
+       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Kash_Patel%2C_official_FBI_portrait.jpg/960px-Kash_Patel%2C_official_FBI_portrait.jpg",
+       "party": null
+      }
+     ]
+    },
+    "edges": [
+     "4da3f187",
+     "94ecb2df",
+     "8c16ea1c",
+     "7b1e7c28"
+    ],
+    "connectedNodes": [
+     "us-director-of-the-federal-bureau-of-investigation",
+     "us-the-senate",
+     "us-electorate",
+     "us-president-of-the-united-states",
+     "us-department-of-justice"
+    ],
+    "employeeCount": {
+     "actual": null,
+     "budget": null
+    },
+    "departmentCode": null,
+    "headOf": null,
+    "head": "us-director-of-the-federal-bureau-of-investigation",
+    "topicsWithRelevance": [],
+    "legalSourceUrl": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title28-section531&num=0&edition=prelim",
+    "officialUrl": "https://www.fbi.gov",
+    "aliases": [
+     "FBI"
+    ],
+    "seatsCount": 0,
+    "featuredPersonImageUrl": "/gov_group_pictures/us-federal-bureau-of-investigation.jpg",
+    "subtype": "department",
+    "sector": "executive",
+    "parent": "us-department-of-justice",
+    "level": 2,
+    "children": []
+   }
+  },
+  "edges": {
+   "19307096": {
+    "id": "19307096",
+    "type": "appoints",
+    "fromId": "us-president-of-the-united-states",
+    "toId": "us-director-of-u-s-immigration-and-customs-enforcement",
+    "metadata": {
+     "source": "complete-government scaffold"
+    },
+    "seatsAppointed": 1
+   },
+   "20425240": {
+    "id": "20425240",
+    "type": "appoints",
+    "fromId": "us-speaker-of-the-house",
+    "toId": "us-institute-of-american-indian-and-alaska-native-culture-and-arts-development",
+    "metadata": {
+     "cite": "20 U.S.C. 4412(a)(1)(B)(i)",
+     "note": "\"2 Members of the House of Representatives appointed by the Speaker of the House of Representatives in consultation with the Minority Leader of the House of Representatives\"",
+     "basis": "statute",
+     "source": "20260908_phase_d3_seats"
+    },
+    "seatsAppointed": 2
+   },
+   "21517565": {
+    "id": "21517565",
+    "type": "dept_head",
+    "fromId": "us-national-council-on-disability",
+    "toId": "us-chairman-of-the-national-council-on-disability",
+    "metadata": {},
+    "seatsAppointed": 0
+   },
+   "28036113": {
+    "id": "28036113",
+    "type": "dept_head",
+    "fromId": "us-environmental-protection-agency",
+    "toId": "us-administrator-of-the-environmental-protection-agency",
+    "metadata": {},
+    "seatsAppointed": 0
+   },
+   "33955568": {
+    "id": "33955568",
+    "type": "appoints",
+    "fromId": "us-president-of-the-united-states",
+    "toId": "us-assistant-secretary-of-state-for-educational-and-cultural-affairs",
+    "metadata": {
+     "source": "complete-government scaffold"
+    },
+    "seatsAppointed": 1
+   },
+   "35399512": {
+    "id": "35399512",
+    "type": "confirms",
+    "fromId": "us-the-senate",
+    "toId": "us-director-of-the-central-intelligence-agency",
+    "metadata": null,
+    "seatsAppointed": 1
+   }
+  },
+  "constituency": "us-electorate",
+  "elected": [
+   "us-congress",
+   "us-the-house-of-representatives",
+   "us-the-senate",
+   "us-president-of-the-united-states",
+   "us-vice-president-of-the-united-states"
+  ],
+  "commissions": [
+   "us-commodity-futures-trading-commission",
+   "us-consumer-financial-protection-bureau",
+   "us-consumer-product-safety-commission",
+   "us-environmental-protection-agency"
+  ],
+  "advisories": [
+   "us-administrative-conference-of-the-united-states",
+   "us-defense-nuclear-facilities-safety-board",
+   "us-united-states-commission-on-civil-rights"
+  ],
+  "departments": [
+   "us-united-states-international-development-finance-corporation",
+   "us-administrative-office-of-the-united-states-courts",
+   "us-american-printing-house-for-the-blind",
+   "us-architect-of-the-capitol",
+   "us-central-intelligence-agency"
+  ],
+  "deptHeads": [
+   "us-assistant-secretary-for-children-and-families",
+   "us-administrator-of-the-administration-for-community-living",
+   "us-administrative-conference-of-the-united-states-chairman",
+   "us-director-of-the-administrative-office-of-the-united-states-courts"
+  ],
+  "topics": {},
+  "budget": {
+   "groups": [],
+   "departments": {},
+   "totalSpendingBudget": null
+  },
+  "satellites": [
+   "us-provider-reimbursement-review-board",
+   "us-federal-energy-regulatory-commission",
+   "us-office-of-the-comptroller-of-the-currency",
+   "us-benefits-review-board",
+   "us-copyright-royalty-judges"
+  ],
+  "layout": "us-sectors",
+  "powerMap": {
+   "windowDays": 90,
+   "since": "2026-06-20",
+   "computedAt": "2026-09-17T17:40:08.230Z",
+   "articleCount": 964,
+   "sources": [
+    "NPR Politics",
+    "Government Executive",
+    "Federal News Network"
+   ],
+   "people": [
+    {
+     "id": "us-donald-j-trump",
+     "name": "Donald J. Trump",
+     "job": "President of the United States",
+     "positionId": "us-president-of-the-united-states",
+     "party": "Republican",
+     "nodeId": "us-president-of-the-united-states",
+     "bodyNodeId": "us-the-executive-office-of-the-president",
+     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29_%28cropped%29%282%29.jpg/960px-Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29_%28cropped%29%282%29.jpg",
+     "rank": 1,
+     "total": 219,
+     "recent": 31,
+     "weeks": [
+      0,
+      0,
+      0,
+      8,
+      26,
+      26,
+      27,
+      26,
+      26,
+      26,
+      23,
+      31
+     ],
+     "heat": 1.8199608610567517,
+     "latest": {
+      "at": "2026-09-17T12:34:18.88948+00:00",
+      "date": "2026-09-17",
+      "headline": "D.C. airspace is complicated. Experts say Trump's arch would add one more risk",
+      "source": "NPR Politics",
+      "url": "https://www.npr.org/2026/09/17/nx-s1-5950462/trump-arch-dca-planes-safety-concerns-faa"
+     }
+    },
+    {
+     "id": "us-john-thune",
+     "name": "John Thune",
+     "job": "Senator, South Dakota",
+     "positionId": "us-senator-south-dakota-class-3",
+     "party": "Republican",
+     "nodeId": null,
+     "bodyNodeId": "us-the-senate",
+     "imageUrl": "https://unitedstates.github.io/images/congress/225x275/T000250.jpg",
+     "rank": 2,
+     "total": 109,
+     "recent": 1,
+     "weeks": [
+      0,
+      0,
+      0,
+      17,
+      27,
+      15,
+      22,
+      22,
+      4,
+      1,
+      0,
+      1
+     ],
+     "heat": 0.11795543905635648,
+     "latest": {
+      "at": "2026-09-15T12:38:30.497046+00:00",
+      "date": "2026-09-15",
+      "headline": "This  bill could reshape crypto in America -- and it's sparking a major battle",
+      "source": "NPR Politics",
+      "url": "https://www.npr.org/2026/09/15/nx-s1-5968711/clarity-act-crypto-senate-vote"
+     }
+    }
+   ],
+   "links": [
+    {
+     "id": "c982c54d",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-todd-blanche",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-attorney-general"
+    },
+    {
+     "id": "f9d66d4c",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-frank-j-bisignano",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-commissioner-of-social-security"
+    },
+    {
+     "id": "239eea92",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-scott-kupor",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-director-of-the-office-of-personnel-management"
+    },
+    {
+     "id": "dd3d9996",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-pete-hegseth",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-secretary-of-defense"
+    },
+    {
+     "id": "80d524b2",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-robert-f-kennedy-jr",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-secretary-of-health-and-human-services"
+    },
+    {
+     "id": "6e398ad1",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-markwayne-mullin",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-secretary-of-homeland-security"
+    },
+    {
+     "id": "25bd2776",
+     "type": "appoints",
+     "fromPersonId": "us-donald-j-trump",
+     "toPersonId": "us-cameron-hamilton",
+     "fromNodeId": "us-president-of-the-united-states",
+     "toNodeId": "us-administrator-of-the-federal-emergency-management-agency"
+    }
+   ]
+  }
+ },
+ "news": [
+  {
+   "id": "1451d74f54b0cce4c1f9cd1934d7f33a",
+   "summary": "The <gov_entities='us-department-of-justice'>Justice Department</gov_entities> charged five suspected Russian intelligence operatives with plotting attacks, including a murder-for-hire of a dissident in the U.S.",
+   "url": "https://www.npr.org/2026/09/16/g-s1-143590/us-justice-department-russian-operatives-attacks",
+   "publication": "NPR Politics"
+  },
+  {
+   "id": "568b538e49098d5da3d7a10e76537cab",
+   "summary": "<gov_entities='us-the-house-of-representatives'>The House</gov_entities> passed a Russia sanctions bill 262-159, sending it to President Trump's desk to pressure Russia over its war in Ukraine.",
+   "url": "https://www.npr.org/2026/09/16/nx-s1-5971289/russia-sanctions-house-vote-lindsey-graham",
+   "publication": "NPR Politics"
+  }
+ ],
+ "changes": {
+  "generatedAt": "2026-09-17",
+  "stats": {
+   "vacantSeats": 6,
+   "actingOfficials": 86,
+   "lastChangeDate": "2026-09-16"
+  },
+  "items": [
+   {
+    "kind": "personnel",
+    "id": "tenure-start-1466",
+    "date": "2026-09-16",
+    "personName": "Robert Barron",
+    "positionId": "us-member-of-the-united-states-commission-on-international-religious-freedom-seat-2",
+    "positionName": "Member of the United States Commission on International Religious Freedom (Seat 2)",
+    "groupId": "us-united-states-commission-on-international-religious-freedom",
+    "entryMode": "appointed",
+    "departure": false,
+    "predecessorName": null,
+    "sourceUrl": "20260916_uscirf_399"
+   },
+   {
+    "kind": "personnel",
+    "id": "tenure-start-1467",
+    "date": "2026-09-16",
+    "personName": "Andrew Brunson",
+    "positionId": "us-member-of-the-united-states-commission-on-international-religious-freedom-seat-3",
+    "positionName": "Member of the United States Commission on International Religious Freedom (Seat 3)",
+    "groupId": "us-united-states-commission-on-international-religious-freedom",
+    "entryMode": "appointed",
+    "departure": false,
+    "predecessorName": null,
+    "sourceUrl": "20260916_uscirf_399"
+   },
+   {
+    "kind": "personnel",
+    "id": "tenure-start-1468",
+    "date": "2026-09-16",
+    "personName": "Joe Grogan",
+    "positionId": "us-member-of-the-united-states-commission-on-international-religious-freedom-seat-4",
+    "positionName": "Member of the United States Commission on International Religious Freedom (Seat 4)",
+    "groupId": "us-united-states-commission-on-international-religious-freedom",
+    "entryMode": "appointed",
+    "departure": false,
+    "predecessorName": null,
+    "sourceUrl": "20260916_uscirf_399"
+   }
+  ]
+ },
+ "electedPage": {
+  "members": [
+   {
+    "positionId": "us-representative-alaska-at-large",
+    "positionName": "United States Representative from Alaska (At Large)",
+    "state": "AK",
+    "district": 0,
+    "seatClass": null,
+    "holderName": "Nicholas J. Begich III",
+    "vacant": false,
+    "since": "2025-01-03",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Nick_Begich_III.jpg",
+    "party": "Republican"
+   },
+   {
+    "positionId": "us-representative-alabama-district-1",
+    "positionName": "United States Representative from Alabama, 1st District",
+    "state": "AL",
+    "district": 1,
+    "seatClass": null,
+    "holderName": "Barry Moore",
+    "vacant": false,
+    "since": "2025-01-03",
+    "imageUrl": "https://unitedstates.github.io/images/congress/450x550/M001212.jpg",
+    "party": "Republican"
+   }
+  ],
+  "articles": [
+   {
+    "id": "904166729511576800",
+    "url": "https://www.npr.org/2026/09/16/nx-s1-5969933/congress-ai-regulation",
+    "date": "2026-09-16",
+    "slug": "congress-ai-regulation",
+    "tags": "[]",
+    "title": "Congress is under pressure to act on AI — here's what that could look like",
+    "author": "Eric McDaniel",
+    "excerpt": "Lawmakers are expressing broader willingness to regulate AI development, but the path forward may not be a quick one.",
+    "updatedAt": "2026-09-16",
+    "categories": "['Politics']",
+    "cleanTitle": "Congress is under pressure to act on AI — here's what that could look like",
+    "created_at": "2026-09-17T12:34:18.88948+00:00",
+    "databaseId": "904166729511576800",
+    "titleImage": "{'image': {'alt': None, 'src': 'https://npr.brightspotcdn.com/dims3/default/strip/false/crop/8256x4644+0+430/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%"
+   }
+  ],
+  "selection": {
+   "type": "entity",
+   "entityId": "us-the-house-of-representatives"
+  },
+  "breadcrumb": "legislative"
+ }
+}
