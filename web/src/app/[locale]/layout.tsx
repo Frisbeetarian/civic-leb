@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title,
     description,
     alternates: { canonical: `/${locale}/`, languages: { ar: "/ar/", en: "/en/" } },
-    openGraph: { type: "website", siteName: "civicleb", title, description, url: `/${locale}/`, locale: locale === "ar" ? "ar_LB" : "en_US", images: [{ url: "/og.png", width: 1200, height: 630, alt: t("tagline") }] },
+    openGraph: { type: "website", siteName: "Civic Leb", title, description, url: `/${locale}/`, locale: locale === "ar" ? "ar_LB" : "en_US", images: [{ url: "/og.png", width: 1200, height: 630, alt: t("tagline") }] },
     twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   };
 }

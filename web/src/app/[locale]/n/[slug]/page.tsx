@@ -19,13 +19,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!detail) return {};
   const t = await getTranslations({ locale, namespace: "site" });
   const name = localized(detail.node.name, locale);
-  const title = `${name} · civicleb`;
+  const title = `${name} · Civic Leb`;
   const description = localized(detail.node.description, locale) || t("metaDescription");
   return {
     title,
     description,
     alternates: { canonical: `/${locale}/n/${slug}/`, languages: { ar: `/ar/n/${slug}/`, en: `/en/n/${slug}/` } },
-    openGraph: { type: "article", siteName: "civicleb", title, description, url: `/${locale}/n/${slug}/`, images: [{ url: "/og.png", width: 1200, height: 630, alt: name }] },
+    openGraph: { type: "article", siteName: "Civic Leb", title, description, url: `/${locale}/n/${slug}/`, images: [{ url: "/og.png", width: 1200, height: 630, alt: name }] },
     twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   };
 }

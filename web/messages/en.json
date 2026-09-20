@@ -1,9 +1,9 @@
 {
   "site": {
-    "name": "civicleb",
+    "name": "Civic Leb",
     "tagline": "The Lebanese state, mapped.",
     "govLabel": "Lebanon",
-    "about": "We cannot govern systems we do not understand. civicleb is a complete data model of the Lebanese state: bodies, positions, the people who hold them, and the legal relationships between them, each cited to its source.",
+    "about": "We cannot govern systems we do not understand. Civic Leb is a complete data model of the Lebanese state: bodies, positions, the people who hold them, and the legal relationships between them, each cited to its source.",
     "builtBy": "An open project. Code MIT, data CC BY.",
     "metaDescription": "A map of the Lebanese state: every institution and office, who holds it, and the law that links them. Who appoints whom, who oversees whom, which posts are allocated by confession."
   },
