@@ -26,11 +26,8 @@
 <meta name="twitter:description" content="Every institution and office of the Lebanese state, who holds it, and the law that links them.">
 <meta name="twitter:image" content="https://civ-leb.com/og.png">
 <script>
-  // Browsers go to their language; crawlers (no JS) read the tags above.
-  try {
-    var lang = (navigator.language || "ar").toLowerCase();
-    window.location.replace(lang.indexOf("ar") === 0 ? "/ar/" : "/en/");
-  } catch (e) { window.location.replace("/ar/"); }
+  // Arabic is the default landing (decisions.md Q4); crawlers (no JS) read the tags above.
+  window.location.replace("/ar/");
 </script>
 <style>body{margin:0;background:#161310;color:#ede9e2;font-family:system-ui,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center}a{color:#6fbf95}</style>
 </head>
