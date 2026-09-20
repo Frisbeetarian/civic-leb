@@ -19,7 +19,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="mt-4 pt-4 border-t border-line flex items-center gap-4 text-sm text-ink-3">
           <span>{t("site.builtBy")}</span>
           <span className="flex-1" />
-          <a className="link" href="https://github.com/civicleb/civicleb" target="_blank" rel="noreferrer">GitHub</a>
+          <a className="link" href="https://github.com/Frisbeetarian/civic-leb" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </section>
     </>

@@ -7,7 +7,7 @@
  * Rows whose dates are approximate carry a note saying so.
  */
 
-$R = 'https://github.com/civicleb/civicleb/blob/main/docs/research/lebanon-public-institutions.md';
+$R = 'https://github.com/Frisbeetarian/civic-leb/blob/main/docs/research/lebanon-public-institutions.md';
 $CONST_EN = 'https://lp.gov.lb/backoffice/uploads/files/Lebanese%20%20Constitution-%20En.pdf';
 $CABINET = 'https://www.pcm.gov.lb/arabic/subpg.aspx?pageid=13587';
 
