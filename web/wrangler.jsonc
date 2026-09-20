@@ -2,6 +2,11 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "civicleb",
   "compatibility_date": "2026-09-01",
+  // civ-leb.com is a zone in this account; custom domains create the DNS records automatically
+  "routes": [
+    { "pattern": "civ-leb.com", "custom_domain": true },
+    { "pattern": "www.civ-leb.com", "custom_domain": true }
+  ],
   // Static preview: the Next.js static export (pnpm build:static) served as Workers static assets.
   "assets": {
     "directory": "./out",

@@ -161,3 +161,16 @@ position (graph node) and a rapporteur position (not a node) each, with tenures 
 `oversees` edges to the ministries in each remit. Joint committees and ad hoc subcommittees are
 deliberately excluded (transient, no standing jurisdiction). Graph now 71 bodies, 75 positions,
 75 persons, 78 tenures, 96 edges.
+
+## Static preview deployment (2026-09-20)
+
+The site has a static data mode: with no `API_URL`, `web/src/lib/graph.ts` reads the bundled
+snapshot `web/data/lb-graph.json` (refresh with `pnpm snapshot` while the API runs) and derives
+node pages from it. `pnpm build:static` (STATIC_EXPORT=1) exports every route for both
+locales into `out/`; `pnpm deploy:static` builds and deploys it as Cloudflare Workers static
+assets (`web/wrangler.jsonc`, worker `civicleb`, custom domains civ-leb.com and
+www.civ-leb.com; `/` redirects to `/ar/` via public/index.html and `_redirects`). The locale
+middleware was removed so the same code builds in both modes; Arabic is the default landing.
+Updating the public site until Laravel Cloud exists means: publish in Filament locally, run
+`pnpm snapshot`, then `pnpm deploy:static`. Code repo: git@github.com:Frisbeetarian/civic-leb.git
+(push pending collaborator access for the SSH key's GitHub account).
