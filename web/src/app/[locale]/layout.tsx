@@ -16,10 +16,21 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+const SITE = "https://civ-leb.com";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "site" });
-  return { title: `${t("name")} · ${t("govLabel")}`, description: t("tagline") };
+  const title = `${t("name")} · ${t("govLabel")}`;
+  const description = t("metaDescription");
+  return {
+    metadataBase: new URL(SITE),
+    title,
+    description,
+    alternates: { canonical: `/${locale}/`, languages: { ar: "/ar/", en: "/en/" } },
+    openGraph: { type: "website", siteName: "civicleb", title, description, url: `/${locale}/`, locale: locale === "ar" ? "ar_LB" : "en_US", images: [{ url: "/og.png", width: 1200, height: 630, alt: t("tagline") }] },
+    twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  };
 }
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
