@@ -1,4 +1,4 @@
-# civicleb
+# Civic Lebanon
 
 A complete data model of the Lebanese state: bodies, positions, the people who hold
 them, and the legal relationships between them, each cited to its source. Modelled on
