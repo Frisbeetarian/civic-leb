@@ -20,7 +20,9 @@
     "showAll": "إظهار الكل",
     "hidden": "{count} مخفية",
     "relationship": "العلاقة",
-    "hierarchy": "البنية"
+    "hierarchy": "البنية",
+    "tapHint": "اضغط على عقدة للمعاينة، واضغط مجدداً لفتحها.",
+    "tapToOpen": "اضغط للفتح"
   },
   "sectors": {
     "legislative": "السلطة التشريعية",

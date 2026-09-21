@@ -55,6 +55,9 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [showAllEdges, setShowAllEdges] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [legendOpen, setLegendOpen] = useState(false);
+  const previewNode = preview ? snapshot.nodes[preview] : null;
   const toggleKind = (kind: string) => setHidden((h) => { const n = new Set(h); if (n.has(kind)) n.delete(kind); else n.add(kind); return n; });
   const sectorLabel = useMemo(() => (node?.sector ? t(`sectors.${node.sector}`) : null), [node, t]);
   // CivLab's prev/next arrows step through nodes of the selected node's type; with nothing selected they are history buttons
@@ -75,6 +78,9 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
         <Link href="/" className={`shrink-0 ${node ? "text-ink-3" : "font-semibold"}`}>{t("site.govLabel")}</Link>
         {sectorLabel && <><span className="text-ink-3">/</span><span className="truncate">{sectorLabel}</span></>}
       </div>
+      <button onClick={() => setLegendOpen((o) => !o)} className="card w-12 h-12 shrink-0 flex items-center justify-center hover:bg-hover lg:hidden" aria-label={t("nav.legend")} aria-expanded={legendOpen}>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="4.5" cy="4.5" r="2.5" /><rect x="11" y="2" width="5" height="5" rx="1.2" /><path d="M4.5 11l2.5 4.5h-5z" /><rect x="11" y="11" width="5" height="5" rx="1.2" transform="rotate(45 13.5 13.5)" /></svg>
+      </button>
       <button onClick={() => setSearchOpen(true)} className="card w-12 h-12 shrink-0 flex items-center justify-center hover:bg-hover" aria-label={t("nav.search")}>
         <svg width="18" height="18" viewBox="0 0 17 17" fill="none"><path d="M9.875 0.875C6.43 0.875 3.625 3.68 3.625 7.125c0 1.497.525 2.869 1.406 3.945L.05 16.05l.9.9 4.98-4.98a6.22 6.22 0 0 0 3.945 1.406c3.445 0 6.25-2.805 6.25-6.25S13.32.875 9.875.875Zm0 1.25c2.769 0 5 2.231 5 5s-2.231 5-5 5-5-2.231-5-5 2.231-5 5-5Z" fill="currentColor" /></svg>
       </button>
@@ -82,7 +88,7 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
   );
 
   const canvas = (
-    <div className="relative h-[min(54vh,450px)] min-h-[350px] lg:h-screen lg:min-h-0 lg:max-h-none w-full overflow-hidden" style={{ background: "var(--canvas)" }}>
+    <div className="relative h-[min(46vh,420px)] min-h-[320px] lg:h-screen lg:min-h-0 lg:max-h-none w-full overflow-hidden" style={{ background: "var(--canvas)" }}>
       {/* desktop chrome over the canvas */}
       <div className="absolute top-4 end-4 z-10 hidden lg:flex gap-2">
         <button onClick={switchLocale} className="card h-10 px-3 flex items-center text-sm hover:bg-hover">{t("nav.language")}</button>
@@ -94,17 +100,30 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       </div>
       {/* mobile: header card floats over the top of the band */}
       <div className="absolute top-3 inset-x-3 z-10 lg:hidden">{headerCard}</div>
-      <GraphView snapshot={snapshot} selected={selected} hidden={hidden} showAllEdges={showAllEdges} onSelect={select} onHoverNode={prefetch} mobile={mobile} />
+      <GraphView snapshot={snapshot} selected={selected} hidden={hidden} showAllEdges={showAllEdges} onSelect={select} onHoverNode={prefetch} onPreview={setPreview} mobile={mobile} />
+      {/* mobile legend panel, anchored under the header card */}
+      {legendOpen && (
+        <div className="absolute top-[68px] inset-x-3 z-20 lg:hidden" onClick={(e) => e.stopPropagation()}>
+          <Legend hidden={hidden} onToggle={toggleKind} onReset={() => setHidden(new Set())} showAllEdges={showAllEdges} onToggleEdges={() => setShowAllEdges((v) => !v)} forceOpen onClose={() => setLegendOpen(false)} />
+        </div>
+      )}
       <div className="absolute bottom-4 start-4 z-10 hidden lg:block">
         <Legend hidden={hidden} onToggle={toggleKind} onReset={() => setHidden(new Set())} showAllEdges={showAllEdges} onToggleEdges={() => setShowAllEdges((v) => !v)} />
       </div>
-      {node && (
-        <div className="absolute bottom-3 lg:bottom-5 inset-x-0 flex justify-center pointer-events-none z-10">
-          <span className="px-3 py-1 rounded-md text-sm font-semibold max-w-[80vw] truncate" style={{ color: node.sector ? `var(--c-${node.sector})` : "var(--brand)", background: "color-mix(in srgb, var(--card) 85%, transparent)" }}>
-            {locale === "ar" ? node.name.ar : node.name.en}
-          </span>
-        </div>
-      )}
+      {(previewNode ?? node) && (() => {
+        const n = previewNode ?? node!;
+        const holder = n.people.find((p) => p.name);
+        const isPreview = !!previewNode;
+        return (
+          <div className={`absolute bottom-3 lg:bottom-5 inset-x-0 flex justify-center z-10 ${isPreview ? "" : "pointer-events-none"}`}>
+            <button onClick={() => isPreview && select(n.id)} className={`px-3 py-1.5 rounded-lg text-sm font-semibold max-w-[86vw] text-start ${isPreview ? "shadow-lg" : ""}`} style={{ color: n.sector ? `var(--c-${n.sector})` : "var(--brand)", background: "color-mix(in srgb, var(--card) 92%, transparent)" }}>
+              <span className="block truncate">{locale === "ar" ? n.name.ar : n.name.en}</span>
+              {isPreview && holder?.name && <span className="block text-xs font-normal text-ink-2 truncate">{locale === "ar" ? holder.name.ar : holder.name.en}</span>}
+              {isPreview && <span className="block text-[11px] font-normal text-ink-3">{t("nav.tapToOpen")}</span>}
+            </button>
+          </div>
+        );
+      })()}
       <div className="absolute bottom-4 end-4 z-10 card hidden lg:flex text-sm overflow-hidden">
         <span className="px-4 py-2 font-medium">{t("nav.graph")}</span>
         <span className="px-4 py-2 text-ink-3 bg-card-2">{t("nav.powerMap")}</span>
@@ -117,9 +136,8 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       <div className="min-h-full w-full max-w-[100vw] overflow-x-hidden lg:overflow-visible lg:h-screen lg:grid lg:grid-cols-[560px_minmax(0,1fr)]">
         {/* mobile order: canvas, toolbar, cards. desktop: column, canvas. */}
         <div className="lg:hidden">{canvas}</div>
-        <div className="lg:hidden flex items-center gap-2 px-3 pt-3 min-w-0 overflow-x-auto">
-          <Legend hidden={hidden} onToggle={toggleKind} onReset={() => setHidden(new Set())} showAllEdges={showAllEdges} onToggleEdges={() => setShowAllEdges((v) => !v)} />
-          <div className="card flex text-sm overflow-hidden h-9 items-stretch whitespace-nowrap"><span className="px-3 flex items-center font-medium">{t("nav.graph")}</span><span className="px-3 flex items-center text-ink-3 bg-card-2">{t("nav.powerMap")}</span></div>
+        <div className="lg:hidden flex items-center gap-2 px-3 pt-3 min-w-0">
+          <span className="text-xs text-ink-3">{t("nav.tapHint")}</span>
           <div className="flex-1" />
           <button onClick={switchLocale} className="card h-9 px-3 flex items-center text-sm hover:bg-hover whitespace-nowrap">{t("nav.language")}</button>
           <div className="scale-90 origin-end shrink-0"><ThemeToggle /></div>

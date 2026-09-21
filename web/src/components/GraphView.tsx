@@ -11,13 +11,21 @@ const sectorVar = (s: string | null | undefined) => (s ? `var(--c-${s})` : "var(
 const TAU = Math.PI * 2;
 const TWEEN = "750ms cubic-bezier(.4,0,.2,1)";
 
-export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, onHoverNode, mobile = false }: { snapshot: GraphSnapshot; selected: string | null; hidden: Set<string>; showAllEdges: boolean; onSelect: (id: string | null) => void; onHoverNode?: (id: string | null) => void; mobile?: boolean }) {
+export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, onHoverNode, onPreview, mobile = false }: { snapshot: GraphSnapshot; selected: string | null; hidden: Set<string>; showAllEdges: boolean; onSelect: (id: string | null) => void; onHoverNode?: (id: string | null) => void; onPreview?: (id: string | null) => void; mobile?: boolean }) {
   const locale = useLocale();
   const isRtl = locale === "ar";
   const t = useTranslations();
   const ref = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [hover, setHover] = useState<string | null>(null);
+  const [previewId, setPreviewId] = useState<string | null>(null);
+  // on touch, the first tap previews a node (its edges light up and a chip names it); the second opens it
+  const tapNode = (id: string) => {
+    if (!mobile) { onSelect(id); return; }
+    if (previewId === id || selected === id) { setPreviewId(null); onPreview?.(null); onSelect(id); return; }
+    setPreviewId(id); setHover(id); onPreview?.(id); onHoverNode?.(id);
+  };
+  const clearPreview = () => { setPreviewId(null); setHover(null); onPreview?.(null); };
   const [tip, setTip] = useState<{ kind: "node" | "edge" | "fan"; id: string; x: number; y: number } | null>(null);
 
   useEffect(() => {
@@ -100,7 +108,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
       {/* rotating layer: an HTML element with one compositor-driven transform, so the turn never repaints.
           Glyphs tilt with the wheel, as CivLab's do. */}
       <div className="absolute inset-0" style={{ transform: `rotate(${rotation}rad)`, transformOrigin: `${cx}px ${cy}px`, transition: `transform ${TWEEN}`, willChange: "transform" }}>
-        <svg className="graph-svg w-full h-full" onClick={() => onSelect(null)}>
+        <svg className="graph-svg w-full h-full" onClick={() => { if (mobile && previewId) clearPreview(); else onSelect(null); }}>
           <g transform={`translate(${cx},${cy})`}>
             {base.sectors.map((s) => (
               <path key={s.id} d={wedge(innerR, outerR, s.start, s.end)} fill={sectorVar(s.id)} style={{ opacity: "var(--territory)" }} />
@@ -119,9 +127,9 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
               const shown = headShown(n);
               return (
                 <g key={n.id} style={{ transform: `translate(${p.x}px, ${p.y}px) scale(${grow})`, opacity: shown ? nodeAlpha(n.id) : 0, pointerEvents: shown ? "auto" : "none", cursor: "pointer", transition: "transform 250ms, opacity 250ms" }}
-                  onClick={(ev) => { ev.stopPropagation(); onSelect(n.id); }}
-                  onMouseEnter={() => { const q = placed[n.id]; setHover(n.id); setTip({ kind: "node", id: n.id, x: cx + q.x, y: cy + q.y - q.r * grow - 2 }); onHoverNode?.(n.id); }}
-                  onMouseLeave={() => { setHover(null); setTip(null); }}>
+                  onClick={(ev) => { ev.stopPropagation(); tapNode(n.id); }}
+                  onMouseEnter={() => { if (mobile) return; const q = placed[n.id]; setHover(n.id); setTip({ kind: "node", id: n.id, x: cx + q.x, y: cy + q.y - q.r * grow - 2 }); onHoverNode?.(n.id); }}
+                  onMouseLeave={() => { if (mobile) return; setHover(null); setTip(null); }}>
                   <Glyph kind={glyphKind(n)} r={p.r} color={color} dashed={dashed} selected={isSel} />
                 </g>
               );
@@ -146,13 +154,13 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           <g style={{ opacity: turning ? 0 : 1, transition: "opacity 200ms" }}>
             {sectors.map((s) => (
               <g key={s.id}>
-                <path id={`sector-arc-${s.id}`} d={arcPath(outerR + (mobile ? 10 : 14), s.start, s.end)} fill="none" />
+                <path id={`sector-arc-${s.id}`} d={arcPath(mobile ? outerR - 16 : outerR + 14, s.start, s.end)} fill="none" />
                 <text className={mobile ? "sector-label sector-label-sm" : "sector-label"} style={{ fill: sectorVar(s.id) }}>
                   <textPath href={`#sector-arc-${s.id}`} startOffset="50%" textAnchor="middle">{isRtl ? s.label.ar : s.label.en}</textPath>
                 </text>
               </g>
             ))}
-            {[...pills, ...bands].map((rg) => {
+            {!mobile && [...pills, ...bands].map((rg) => {
               const text = isRtl ? rg.label.ar : rg.label.en;
               const lr = labelRadius(rg.radius, rg.labelSide, rg.thickness);
               const f = fitRuler(lr, rg.start, rg.end, text);
@@ -195,7 +203,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
 
           {/* centre seal */}
           {center && placed[center.id] && (
-            <g style={{ cursor: "pointer", pointerEvents: "auto" }} onClick={(ev) => { ev.stopPropagation(); onSelect(center.id); }} onMouseEnter={() => setHover(center.id)} onMouseLeave={() => setHover(null)}>
+            <g style={{ cursor: "pointer", pointerEvents: "auto" }} onClick={(ev) => { ev.stopPropagation(); tapNode(center.id); }} onMouseEnter={() => { if (!mobile) setHover(center.id); }} onMouseLeave={() => { if (!mobile) setHover(null); }}>
               <path d={seal(0.66 * unit, 16)} fill="var(--c-constituency)" fillOpacity={0.55} stroke="var(--c-constituency)" strokeWidth={selected === center.id ? 2 : 1} />
               <text textAnchor="middle" style={{ fill: "var(--c-constituency)", fontSize: 12.5, fontWeight: 700 }}>
                 {wrap(localized(center.name, locale), 16).map((line, i, arr) => <tspan key={i} x={0} y={(i - (arr.length - 1) / 2) * 13 + 4}>{line}</tspan>)}
@@ -204,7 +212,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           )}
         </g>
       </svg>
-      {tip && <Tooltip tip={tip} snapshot={snapshot} locale={locale} t={t} rtl={isRtl} width={size.width} />}
+      {tip && !mobile && <Tooltip tip={tip} snapshot={snapshot} locale={locale} t={t} rtl={isRtl} width={size.width} />}
     </div>
   );
 }

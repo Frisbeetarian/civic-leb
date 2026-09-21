@@ -6,19 +6,21 @@ import { Glyph } from "./Glyph";
 
 const kinds = ["elected", "department", "dept_head", "commission", "advisory", "court", "confessional_court", "security_service", "state_company", "regulator", "oversight"] as const;
 
-export function Legend({ hidden, onToggle, onReset, showAllEdges, onToggleEdges }: { hidden: Set<string>; onToggle: (kind: string) => void; onReset: () => void; showAllEdges: boolean; onToggleEdges: () => void }) {
+export function Legend({ hidden, onToggle, onReset, showAllEdges, onToggleEdges, forceOpen = false, onClose }: { hidden: Set<string>; onToggle: (kind: string) => void; onReset: () => void; showAllEdges: boolean; onToggleEdges: () => void; forceOpen?: boolean; onClose?: () => void }) {
   const t = useTranslations();
-  const [open, setOpen] = useState(false);
+  const [openState, setOpen] = useState(false);
+  const open = forceOpen || openState;
   const label = (k: string) => (t.has(`types.${k}`) ? t(`types.${k}`) : t.has(`subtypes.${k}`) ? t(`subtypes.${k}`) : k);
   return (
     <div className="relative">
-      <button onClick={() => setOpen((o) => !o)} className="card h-9 ps-3 pe-2.5 flex items-center gap-2 text-sm hover:bg-hover" aria-expanded={open}>
+      {!forceOpen && <button onClick={() => setOpen((o) => !o)} className="card h-9 ps-3 pe-2.5 flex items-center gap-2 text-sm hover:bg-hover" aria-expanded={open}>
         <span>{t("nav.legend")}</span>
         {!open && hidden.size > 0 && <span className="text-ink-3 text-xs">{t("nav.hidden", { count: hidden.size })}</span>}
         <svg width="14" height="8" viewBox="0 0 18 10" style={{ transform: open ? "rotate(180deg)" : undefined, transition: "transform 140ms" }}><path d="M1.64.74.74 1.64 8.55 9.45 9 9.88l.45-.43 7.81-7.81-.9-.9L9 8.1 1.64.74Z" fill="currentColor" /></svg>
-      </button>
+      </button>}
       {open && (
-        <div className="absolute bottom-11 start-0 card w-64 p-2 shadow-xl text-xs space-y-3 max-h-[70vh] overflow-y-auto">
+        <div className={`card p-2 shadow-xl text-xs space-y-3 overflow-y-auto ${forceOpen ? "w-full max-h-[60vh]" : "absolute bottom-11 start-0 w-64 max-h-[70vh]"}`}>
+          {forceOpen && <div className="flex items-center justify-between px-2 pt-1"><span className="font-medium text-sm">{t("nav.legend")}</span><button onClick={onClose} className="text-ink-3 px-1" aria-label="close">✕</button></div>}
           <section>
             <div className="mono-label px-2 py-1">{t("nav.entities")}</div>
             {kinds.map((k) => (

@@ -188,3 +188,15 @@ fixes scale at 1 so pinch-zoom does not fight the wheel. Verified at 390x844 wit
 emulation (Playwright): document width equals the viewport, no horizontal overflow. Plain
 headless Chrome without emulation ignores the viewport meta and lays out at 500px, so use
 the emulated capture for mobile checks.
+
+## Mobile refinements (2026-09-21)
+
+Wheel fitted to 1.25x the screen width with its centre 1.55 units above the band's bottom, so
+the upper two-thirds fill a 46vh band (320 to 420px) and the selected node lands at the bottom
+edge; glyph scale 0.9. Ring labels hidden on phones (capsules still outline the groups); sector
+labels ride the rim just inside the band. Touch: first tap previews (edges light up, chip at the
+band's bottom names the node and its holder, "Tap to open"), second tap or tapping the chip opens
+the page; tapping the canvas clears the preview; no hover tooltips on touch. Legend is an icon
+button in the header row opening a full-width panel under the header; the mobile toolbar carries
+the tap hint, language and theme only (no Graph / Power map switch until the power map exists).
+Stat tiles wrap 2+1 below 640px.
