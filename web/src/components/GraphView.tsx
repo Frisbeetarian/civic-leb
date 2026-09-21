@@ -11,7 +11,7 @@ const sectorVar = (s: string | null | undefined) => (s ? `var(--c-${s})` : "var(
 const TAU = Math.PI * 2;
 const TWEEN = "750ms cubic-bezier(.4,0,.2,1)";
 
-export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, onHoverNode, onPreview, mobile = false }: { snapshot: GraphSnapshot; selected: string | null; hidden: Set<string>; showAllEdges: boolean; onSelect: (id: string | null) => void; onHoverNode?: (id: string | null) => void; onPreview?: (id: string | null) => void; mobile?: boolean }) {
+export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, onHoverNode, onPreview, onPreviewEdge, mobile = false }: { snapshot: GraphSnapshot; selected: string | null; hidden: Set<string>; showAllEdges: boolean; onSelect: (id: string | null) => void; onHoverNode?: (id: string | null) => void; onPreview?: (id: string | null) => void; onPreviewEdge?: (id: string | null) => void; mobile?: boolean }) {
   const locale = useLocale();
   const isRtl = locale === "ar";
   const t = useTranslations();
@@ -23,9 +23,13 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   const tapNode = (id: string) => {
     if (!mobile) { onSelect(id); return; }
     if (previewId === id || selected === id) { setPreviewId(null); onPreview?.(null); onSelect(id); return; }
+    setPreviewEdgeId(null); onPreviewEdge?.(null);
     setPreviewId(id); setHover(id); onPreview?.(id); onHoverNode?.(id);
   };
-  const clearPreview = () => { setPreviewId(null); setHover(null); onPreview?.(null); };
+  const [previewEdgeId, setPreviewEdgeId] = useState<string | null>(null);
+  const clearPreview = () => { setPreviewId(null); setPreviewEdgeId(null); setHover(null); onPreview?.(null); onPreviewEdge?.(null); };
+  // on touch, tapping an edge highlights it and shows its relationship in the chip
+  const tapEdge = (id: string) => { setPreviewId(null); onPreview?.(null); setPreviewEdgeId(id); onPreviewEdge?.(id); };
   const [tip, setTip] = useState<{ kind: "node" | "edge" | "fan"; id: string; x: number; y: number } | null>(null);
 
   useEffect(() => {
@@ -86,7 +90,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   const cx = size.width / 2, cy = mobile ? Math.max(1.15 * unit, size.height - 3.95 * unit - 8) : size.height / 2;
   // "is headed by" is shown by the badge attached to the body, so its edge is not drawn on the canvas
   const edges = Object.values(snapshot.edges).filter((e) => e.type !== "dept_head" && placed[e.fromId] && placed[e.toId] && visible(snapshot.nodes[e.fromId]) && visible(snapshot.nodes[e.toId]));
-  const hoveredEdge = tip?.kind === "edge" ? tip.id : null;
+  const hoveredEdge = mobile ? previewEdgeId : tip?.kind === "edge" ? tip.id : null;
   const hoveredEdgeObj = hoveredEdge ? snapshot.edges[hoveredEdge] : null;
   const nodeAlpha = (id: string) => {
     if (hoveredEdgeObj) return hoveredEdgeObj.fromId === id || hoveredEdgeObj.toId === id ? 1 : selected ? "var(--connected)" : 0.55;
@@ -114,7 +118,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
       {/* the rotating SVG is a square covering the wheel's full diameter, centred on the wheel, so its
           own edges never clip the territories; the band's overflow does the cropping with fixed edges */}
       <div className="absolute" style={{ left: cx - side / 2, top: cy - side / 2, width: side, height: side, transform: `rotate(${rotation}rad)`, transformOrigin: "50% 50%", transition: `transform ${TWEEN}`, willChange: "transform" }}>
-        <svg className="graph-svg" width={side} height={side} viewBox={`${-side / 2} ${-side / 2} ${side} ${side}`} style={{ overflow: "visible" }} onClick={() => { if (mobile && previewId) clearPreview(); else onSelect(null); }}>
+        <svg className="graph-svg" width={side} height={side} viewBox={`${-side / 2} ${-side / 2} ${side} ${side}`} style={{ overflow: "visible" }} onClick={() => { if (mobile && (previewId || previewEdgeId)) clearPreview(); else onSelect(null); }}>
           <g>
             {base.sectors.map((s) => (
               <path key={s.id} d={wedge(innerR, outerR, s.start, s.end)} fill={sectorVar(s.id)} style={{ opacity: "var(--territory)" }} />
@@ -205,8 +209,8 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
             const verb = t.has(`edges.${e.type}`) ? t(`edges.${e.type}`) : e.type;
             const label = isHovered ? (e.seatsAppointed > 1 ? `${verb} · ${e.seatsAppointed}` : verb) : null;
             const alpha = turning ? 0 : edgeAlpha(e);
-            return <EdgePath key={e.id} edge={e} from={placed[e.fromId]} to={placed[e.toId]} opacity={alpha} highlighted={(!!selected && touches) || isHovered} hovered={isHovered} arrows={touches || showAllEdges || isHovered} label={label} rtl={isRtl} hoverable={hoverable && !turning}
-              onHover={(ev) => { if (!ev) return setTip(null); const q = point(ev); setTip({ kind: "edge", id: e.id, x: q.x, y: q.y - 10 }); }} />;
+            return <EdgePath key={e.id} edge={e} from={placed[e.fromId]} to={placed[e.toId]} opacity={alpha} highlighted={(!!selected && touches) || isHovered} hovered={isHovered} arrows={touches || showAllEdges || isHovered} label={label} rtl={isRtl} hoverable={hoverable && !turning} touch={mobile}
+              onHover={(ev) => { if (mobile) return; if (!ev) return setTip(null); const q = point(ev); setTip({ kind: "edge", id: e.id, x: q.x, y: q.y - 10 }); }} onTap={() => tapEdge(e.id)} />;
           })}
 
           {/* centre seal */}
@@ -278,7 +282,7 @@ function Tooltip({ tip, snapshot, locale, t, rtl, width }: { tip: { kind: "node"
   );
 }
 
-function EdgePath({ edge, from, to, opacity, highlighted, hovered = false, arrows, label, rtl, hoverable = true, onHover }: { edge: GraphEdge; from: Placed; to: Placed; opacity: number | string; highlighted: boolean; hovered?: boolean; arrows: boolean; label: string | null; rtl: boolean; hoverable?: boolean; onHover: (ev: React.MouseEvent | null) => void }) {
+function EdgePath({ edge, from, to, opacity, highlighted, hovered = false, arrows, label, rtl, hoverable = true, touch = false, onHover, onTap }: { edge: GraphEdge; from: Placed; to: Placed; opacity: number | string; highlighted: boolean; hovered?: boolean; arrows: boolean; label: string | null; rtl: boolean; hoverable?: boolean; touch?: boolean; onHover: (ev: React.MouseEvent | null) => void; onTap?: () => void }) {
   const s = edgeStyle[edge.type] ?? { arrow: "none" as const };
   const color = familyColor[edgeFamily[edge.type] ?? "appointment"];
   const dx = to.x - from.x, dy = to.y - from.y;
@@ -294,7 +298,7 @@ function EdgePath({ edge, from, to, opacity, highlighted, hovered = false, arrow
     <g style={{ opacity, transition: "opacity 150ms" }}>
       {hovered && <path d={d} fill="none" stroke={color} strokeWidth={9} strokeOpacity={0.22} strokeLinecap="round" />}
       <path d={d} fill="none" stroke={highlighted ? color : "var(--ink-3)"} strokeWidth={hovered ? 2.4 : highlighted ? 1.6 : 1} strokeDasharray={s.dash} markerEnd={arrows && s.arrow !== "none" ? `url(#arrow-${s.arrow})` : undefined} style={highlighted ? { color } : undefined} />
-      {hoverable && <path d={d} fill="none" stroke="transparent" strokeWidth={12} style={{ pointerEvents: "stroke" }} onMouseEnter={(ev) => onHover(ev)} onMouseLeave={() => onHover(null)} />}
+      {hoverable && <path d={d} fill="none" stroke="transparent" strokeWidth={touch ? 26 : 12} style={{ pointerEvents: "stroke" }} onMouseEnter={(ev) => onHover(ev)} onMouseLeave={() => onHover(null)} onClick={(ev) => { if (!touch) return; ev.stopPropagation(); onTap?.(); }} />}
       {label && (
         <g transform={`translate(${lx},${ly})`} style={{ pointerEvents: "none" }}>
           <rect x={-(label.length * 3.6 + 10)} y={-11} width={label.length * 7.2 + 20} height={22} rx={6} fill="var(--card)" stroke={color} strokeOpacity={0.6} />

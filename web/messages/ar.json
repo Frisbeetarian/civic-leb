@@ -22,7 +22,8 @@
     "relationship": "العلاقة",
     "hierarchy": "البنية",
     "tapHint": "اضغط على عقدة للمعاينة، واضغط مجدداً لفتحها.",
-    "tapToOpen": "اضغط للفتح"
+    "tapToOpen": "اضغط للفتح",
+    "seeInConnections": "اعرضها في قائمة العلاقات أدناه"
   },
   "sectors": {
     "legislative": "السلطة التشريعية",

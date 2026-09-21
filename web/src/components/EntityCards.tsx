@@ -72,7 +72,7 @@ export async function EntityCards({ detail }: { detail: NodeDetail }) {
             if (!byId[other]) return null;
             const verb = t.has(`edges.${e.type}`) ? t(`edges.${e.type}`) : e.type;
             return (
-              <li key={e.id} className="py-2.5 text-[16px] flex flex-wrap items-baseline gap-x-1.5">
+              <li key={e.id} id={`edge-${e.id}`} className="py-2.5 text-[16px] flex flex-wrap items-baseline gap-x-1.5 rounded-md transition-colors">
                 {outgoing ? <><span className="text-ink-3">{verb}</span><Link className="font-medium hover:underline" href={`/n/${other}`}>{name(other)}</Link></> : <><Link className="font-medium hover:underline" href={`/n/${other}`}>{name(other)}</Link><span className="text-ink-3">{verb}</span></>}
                 {e.seatsAppointed > 1 && <span className="text-ink-3 text-sm">· {t("panel.seats", { count: e.seatsAppointed })}</span>}
                 {typeof e.metadata?.cite === "string" && <span className="text-ink-3 text-sm">· {e.metadata.cite as string}</span>}

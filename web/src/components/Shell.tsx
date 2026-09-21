@@ -9,6 +9,7 @@ import { Legend } from "./Legend";
 import { SearchModal } from "./SearchModal";
 import { ThemeToggle } from "./ThemeToggle";
 import { Logomark } from "./Logomark";
+import { edgeFamily, familyColor } from "@/lib/palette";
 
 const GraphContext = createContext<GraphSnapshot | null>(null);
 export const useGraph = () => {
@@ -58,6 +59,9 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
   const [preview, setPreview] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
   const previewNode = preview ? snapshot.nodes[preview] : null;
+  const [previewEdge, setPreviewEdge] = useState<string | null>(null);
+  const previewEdgeObj = previewEdge ? snapshot.edges[previewEdge] : null;
+  const jumpToEdge = (id: string) => { const el = document.getElementById(`edge-${id}`); el?.scrollIntoView({ behavior: "smooth", block: "center" }); el?.classList.add("flash"); setTimeout(() => el?.classList.remove("flash"), 1600); };
   const toggleKind = (kind: string) => setHidden((h) => { const n = new Set(h); if (n.has(kind)) n.delete(kind); else n.add(kind); return n; });
   const sectorLabel = useMemo(() => (node?.sector ? t(`sectors.${node.sector}`) : null), [node, t]);
   // CivLab's prev/next arrows step through nodes of the selected node's type; with nothing selected they are history buttons
@@ -100,7 +104,7 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       </div>
       {/* mobile: header card floats over the top of the band */}
       <div className="absolute top-3 inset-x-3 z-10 lg:hidden">{headerCard}</div>
-      <GraphView snapshot={snapshot} selected={selected} hidden={hidden} showAllEdges={showAllEdges} onSelect={select} onHoverNode={prefetch} onPreview={setPreview} mobile={mobile} />
+      <GraphView snapshot={snapshot} selected={selected} hidden={hidden} showAllEdges={showAllEdges} onSelect={select} onHoverNode={prefetch} onPreview={setPreview} onPreviewEdge={setPreviewEdge} mobile={mobile} />
       {/* mobile legend panel, anchored under the header card */}
       {legendOpen && (
         <div className="absolute top-[68px] inset-x-3 z-20 lg:hidden" onClick={(e) => e.stopPropagation()}>
@@ -110,7 +114,28 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       <div className="absolute bottom-4 start-4 z-10 hidden lg:block">
         <Legend hidden={hidden} onToggle={toggleKind} onReset={() => setHidden(new Set())} showAllEdges={showAllEdges} onToggleEdges={() => setShowAllEdges((v) => !v)} />
       </div>
-      {(previewNode ?? node) && (() => {
+      {previewEdgeObj && (() => {
+        const e = previewEdgeObj;
+        const from = snapshot.nodes[e.fromId], to = snapshot.nodes[e.toId];
+        const verb = t.has(`edges.${e.type}`) ? t(`edges.${e.type}`) : e.type;
+        const help = t.has(`edgeHelp.${e.type}`) ? t(`edgeHelp.${e.type}`) : null;
+        const cite = typeof e.metadata?.cite === "string" ? (e.metadata.cite as string) : null;
+        const fam = edgeFamily[e.type] ?? "appointment";
+        const color = familyColor[fam];
+        const nm = (n: typeof from) => (n ? (locale === "ar" ? n.name.ar : n.name.en) : "");
+        return (
+          <div className="absolute bottom-3 inset-x-3 z-10 lg:hidden">
+            <div className="rounded-xl shadow-lg p-3 text-sm border-s-2" style={{ background: "color-mix(in srgb, var(--card) 94%, transparent)", borderColor: color }}>
+              <div className="mono-label mb-1" style={{ color }}>{t(`edgeFamilies.${fam}`)}</div>
+              <div className="text-[14px]"><span className="font-semibold">{nm(from)}</span> <span style={{ color }}>{verb}</span> <span className="font-semibold">{nm(to)}</span>{e.seatsAppointed > 1 && <span className="text-ink-3"> · {t("panel.seats", { count: e.seatsAppointed })}</span>}</div>
+              {help && <div className="text-xs text-ink-2 mt-1 leading-snug">{help}</div>}
+              {cite && <div className="text-xs text-ink-3 mt-1">{cite}</div>}
+              {node && (e.fromId === node.id || e.toId === node.id) && <button onClick={() => jumpToEdge(e.id)} className="mt-2 text-xs underline underline-offset-2 text-ink-2">{t("nav.seeInConnections")}</button>}
+            </div>
+          </div>
+        );
+      })()}
+      {!previewEdgeObj && (previewNode ?? node) && (() => {
         const n = previewNode ?? node!;
         const holder = n.people.find((p) => p.name);
         const isPreview = !!previewNode;

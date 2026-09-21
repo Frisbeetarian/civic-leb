@@ -22,7 +22,8 @@
     "relationship": "Relationship",
     "hierarchy": "Structure",
     "tapHint": "Tap a node to preview, tap again to open.",
-    "tapToOpen": "Tap to open"
+    "tapToOpen": "Tap to open",
+    "seeInConnections": "See in connections below"
   },
   "sectors": {
     "legislative": "Legislative",

@@ -219,3 +219,10 @@ Clipping fix (2026-09-21): the rotating layer is a square SVG the size of the wh
 centred on the wheel with `overflow: visible`, so its own edges never cut the territories; the
 band's overflow crops with fixed edges. Before this, on phones the SVG was the band's size and its
 rotated rectangle clipped the wedges into straight-edged shapes.
+
+Edge taps on phones (2026-09-21): edges carry a 26px touch stroke on phones (12px hover stroke on
+desktop). Tapping an edge highlights it with its verb badge and shows a relationship chip at the
+band's bottom (family, "A verb B", seats, plain-language explanation, citation) with a "See in
+connections below" action that scrolls to and flashes that row in the entity page's list (rows
+carry `id="edge-{id}"`). Tapping a node clears an edge preview and vice versa; tapping the canvas
+clears both. The desktop keeps hover tooltips.
