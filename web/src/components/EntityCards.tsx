@@ -4,7 +4,7 @@ import { localized } from "@/lib/types";
 import { Link } from "@/i18n/navigation";
 import { ReadMore } from "./ReadMore";
 
-export async function EntityCards({ detail }: { detail: NodeDetail }) {
+export async function EntityCards({ detail, updatedAt }: { detail: NodeDetail; updatedAt?: string }) {
   const t = await getTranslations();
   const locale = await getLocale();
   const { node, edges, connected } = detail;
@@ -44,6 +44,7 @@ export async function EntityCards({ detail }: { detail: NodeDetail }) {
           </div>
         )}
         {node.seatsCount ? <div className="mt-4 text-[16px] text-ink-2">{t("panel.seats", { count: node.seatsCount })}</div> : null}
+        {updatedAt && <div className="mt-4 pt-3 border-t border-line text-xs text-ink-3">{t("panel.updated", { date: new Intl.DateTimeFormat(locale === "ar" ? "ar-LB" : "en-GB", { year: "numeric", month: "long", day: "numeric" }).format(new Date(updatedAt)) })} · Muhammad Sulayman Haydar · CC BY 4.0</div>}
       </section>
 
       {node.parent && byId[node.parent] && (
