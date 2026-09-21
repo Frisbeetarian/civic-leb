@@ -214,3 +214,8 @@ has an invisible 28px hit circle. The rotation is recomputed when the layout mod
 hydration (rotation key includes mobile/desktop). Inner-ring nodes rotated to 6 o'clock sit
 mid-band with their children arcs below, as in CivLab. SVG node groups carry `data-id` for
 probing. Verified with device emulation at 390x760 in both languages; desktop unchanged.
+
+Clipping fix (2026-09-21): the rotating layer is a square SVG the size of the wheel's diameter,
+centred on the wheel with `overflow: visible`, so its own edges never cut the territories; the
+band's overflow crops with fixed edges. Before this, on phones the SVG was the band's size and its
+rotated rectangle clipped the wedges into straight-edged shapes.

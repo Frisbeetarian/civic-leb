@@ -103,6 +103,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   const center = snapshot.nodes[snapshot.layout.centerNodeId];
   const innerR = 1.05 * unit;   // inner disc edge (CivLab: electedRadius - 30)
   const outerR = 3.95 * unit;   // territory outer edge
+  const side = Math.ceil(2 * (outerR + 40)); // rotating layer: a square that contains the whole wheel
   const point = (ev: React.MouseEvent) => { const r = ref.current!.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top }; };
 
   const turning = selected !== null && settled !== selected;
@@ -110,9 +111,11 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
     <div ref={ref} className="absolute inset-0 overflow-hidden">
       {/* rotating layer: an HTML element with one compositor-driven transform, so the turn never repaints.
           Glyphs tilt with the wheel, as CivLab's do. */}
-      <div className="absolute inset-0" style={{ transform: `rotate(${rotation}rad)`, transformOrigin: `${cx}px ${cy}px`, transition: `transform ${TWEEN}`, willChange: "transform" }}>
-        <svg className="graph-svg w-full h-full" onClick={() => { if (mobile && previewId) clearPreview(); else onSelect(null); }}>
-          <g transform={`translate(${cx},${cy})`}>
+      {/* the rotating SVG is a square covering the wheel's full diameter, centred on the wheel, so its
+          own edges never clip the territories; the band's overflow does the cropping with fixed edges */}
+      <div className="absolute" style={{ left: cx - side / 2, top: cy - side / 2, width: side, height: side, transform: `rotate(${rotation}rad)`, transformOrigin: "50% 50%", transition: `transform ${TWEEN}`, willChange: "transform" }}>
+        <svg className="graph-svg" width={side} height={side} viewBox={`${-side / 2} ${-side / 2} ${side} ${side}`} style={{ overflow: "visible" }} onClick={() => { if (mobile && previewId) clearPreview(); else onSelect(null); }}>
+          <g>
             {base.sectors.map((s) => (
               <path key={s.id} d={wedge(innerR, outerR, s.start, s.end)} fill={sectorVar(s.id)} style={{ opacity: "var(--territory)" }} />
             ))}
