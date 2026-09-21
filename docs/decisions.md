@@ -200,3 +200,17 @@ the page; tapping the canvas clears the preview; no hover tooltips on touch. Leg
 button in the header row opening a full-width panel under the header; the mobile toolbar carries
 the tap hint, language and theme only (no Graph / Power map switch until the power map exists).
 Stat tiles wrap 2+1 below 640px.
+
+## Mobile density mode (2026-09-21, replaces the earlier phone framing)
+
+Structural alternatives (sector drill-down lists, neighbourhood diagram) were mocked
+(`docs/reference/mobile-mocks/`) and rejected: the user wants CivLab's phone view, which keeps
+the wheel and changes only density. Implemented: on phones the wheel is 1.5x the screen width
+with its centre near the top of a 50vh band (the top sectors are cropped by the header, the
+executive fills the band); glyphs at 0.5x with 1px strokes; badges hidden (top offices keep
+their own slots); capsules replaced by faint dotted rulers; ring labels hidden; short sector
+names on the outer rim at 9.5px; the seal at 0.5 units; selected glyph grows 1.7x; every node
+has an invisible 28px hit circle. The rotation is recomputed when the layout mode changes after
+hydration (rotation key includes mobile/desktop). Inner-ring nodes rotated to 6 o'clock sit
+mid-band with their children arcs below, as in CivLab. SVG node groups carry `data-id` for
+probing. Verified with device emulation at 390x760 in both languages; desktop unchanged.
