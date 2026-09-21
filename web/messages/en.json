@@ -200,5 +200,11 @@
     "regulates": "The first body licenses, regulates and sanctions the second.",
     "disciplines": "The first body may discipline the members of the second.",
     "refers_to": "The first body refers cases to the second."
+  },
+  "sectorsShort": {
+    "legislative": "LEGISLATIVE",
+    "executive": "EXECUTIVE",
+    "judicial": "JUDICIAL",
+    "independent": "INDEPENDENT"
   }
 }

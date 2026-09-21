@@ -154,9 +154,9 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           <g style={{ opacity: turning ? 0 : 1, transition: "opacity 200ms" }}>
             {sectors.map((s) => (
               <g key={s.id}>
-                <path id={`sector-arc-${s.id}`} d={arcPath(mobile ? outerR - 16 : outerR + 14, s.start, s.end)} fill="none" />
+                <path id={`sector-arc-${s.id}`} d={arcPath(mobile ? outerR - 18 : outerR + 14, s.start, s.end)} fill="none" />
                 <text className={mobile ? "sector-label sector-label-sm" : "sector-label"} style={{ fill: sectorVar(s.id) }}>
-                  <textPath href={`#sector-arc-${s.id}`} startOffset="50%" textAnchor="middle">{isRtl ? s.label.ar : s.label.en}</textPath>
+                  <textPath href={`#sector-arc-${s.id}`} startOffset="50%" textAnchor="middle">{mobile && t.has(`sectorsShort.${s.id}`) ? t(`sectorsShort.${s.id}`) : isRtl ? s.label.ar : s.label.en}</textPath>
                 </text>
               </g>
             ))}
