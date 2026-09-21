@@ -88,7 +88,7 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
   );
 
   const canvas = (
-    <div className="relative h-[min(52vh,480px)] min-h-[360px] lg:h-screen lg:min-h-0 lg:max-h-none w-full overflow-hidden" style={{ background: "var(--canvas)" }}>
+    <div className="relative h-[min(50vh,460px)] min-h-[340px] lg:h-screen lg:min-h-0 lg:max-h-none w-full overflow-hidden" style={{ background: "var(--canvas)" }}>
       {/* desktop chrome over the canvas */}
       <div className="absolute top-4 end-4 z-10 hidden lg:flex gap-2">
         <button onClick={switchLocale} className="card h-10 px-3 flex items-center text-sm hover:bg-hover">{t("nav.language")}</button>

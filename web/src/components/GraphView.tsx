@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { GraphSnapshot, GraphNode, GraphEdge } from "@/lib/types";
 import { localized } from "@/lib/types";
-import { computeLayout, type Placed } from "@/lib/layout";
+import { computeLayout, isTopOffice, type Placed } from "@/lib/layout";
 import { edgeStyle, edgeFamily, familyColor } from "@/lib/palette";
 import { Glyph, glyphKind } from "./Glyph";
 
@@ -41,9 +41,10 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   // rotation continuous across selections so the tween always takes the shortest way round.
   const [rotation, setRotation] = useState(0);
   const [rotatedFor, setRotatedFor] = useState<string | null>(null);
-  if (selected !== rotatedFor && size.width && size.height) {
+  const rotKey = `${selected ?? ""}|${mobile ? "m" : "d"}`;
+  if (rotKey !== rotatedFor && size.width && size.height) {
     // derive the next rotation from the previous one so the tween takes the shortest way round
-    setRotatedFor(selected);
+    setRotatedFor(rotKey);
     if (selected) {
       // rotation is a pure angular offset, so measure the target on the focused (widened, compressed) geometry at rotation 0
       const p = computeLayout(snapshot, size.width, size.height, { mobile }).placed[selected];
@@ -67,7 +68,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   }, [selected, layout]);
   const visible = (n: GraphNode) => !hidden.has(glyphKind(n)) && !(n.type === "dept_head" && hidden.has("dept_head"));
   // heads are hidden at rest and revealed for the focused family (or when the user shows all edges)
-  const headShown = (n: GraphNode) => n.type !== "dept_head" || !hidden.has("dept_head");
+  const headShown = (n: GraphNode) => n.type !== "dept_head" || (!hidden.has("dept_head") && (!mobile || isTopOffice(n)));
 
   const focusId = selected ?? hover;
   const neighbours = useMemo(() => {
@@ -80,7 +81,9 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   const { placed, sectors, pills, bands, unit } = layout;
   // mobile: the wheel's centre sits low in the band so its upper part fills the view; the selected node,
   // rotated to 6 o'clock, lands just above the band's bottom edge (CivLab's clipHorizontal framing)
-  const cx = size.width / 2, cy = mobile ? Math.min(size.height / 2, size.height - 3.3 * unit) + 0 : size.height / 2;
+  // mobile: the centre sits near the top of the band so the wheel's lower half (executive at the bottom)
+  // fills it; the top sectors are cropped by the header, as in CivLab's phone view
+  const cx = size.width / 2, cy = mobile ? Math.max(1.15 * unit, size.height - 3.95 * unit - 8) : size.height / 2;
   // "is headed by" is shown by the badge attached to the body, so its edge is not drawn on the canvas
   const edges = Object.values(snapshot.edges).filter((e) => e.type !== "dept_head" && placed[e.fromId] && placed[e.toId] && visible(snapshot.nodes[e.fromId]) && visible(snapshot.nodes[e.toId]));
   const hoveredEdge = tip?.kind === "edge" ? tip.id : null;
@@ -113,9 +116,10 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
             {base.sectors.map((s) => (
               <path key={s.id} d={wedge(innerR, outerR, s.start, s.end)} fill={sectorVar(s.id)} style={{ opacity: "var(--territory)" }} />
             ))}
-            {[...base.pills, ...base.bands].map((g) => (
-              <path key={g.id} d={arcBand(g.radius, g.start, g.end, g.thickness)} fill="var(--node-fill)" fillOpacity={0.35} stroke={sectorVar(g.sector)} strokeOpacity={0.55} />
-            ))}
+            {[...base.pills, ...base.bands].map((g) => mobile
+              ? <path key={g.id} d={arcPath(g.radius, g.start, g.end)} fill="none" stroke="var(--seam)" strokeDasharray="2 4" />
+              : <path key={g.id} d={arcBand(g.radius, g.start, g.end, g.thickness)} fill="var(--node-fill)" fillOpacity={0.35} stroke={sectorVar(g.sector)} strokeOpacity={0.55} />
+            )}
             {Object.values(snapshot.nodes).filter((n) => n.id !== center?.id && visible(n)).sort((a, b) => Number(a.type === "dept_head") - Number(b.type === "dept_head")).map((n) => {
               const p = base.placed[n.id];
               if (!p) return null;
@@ -123,13 +127,14 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
               const isSel = selected === n.id;
               const dashed = n.status === "never_constituted" || n.status === "dormant" || n.status === "expired_continuing" || n.status === "dissolved";
               // growth waits for the turn to finish so the rotation stays a pure compositor animation
-              const grow = isSel && !turning ? (n.type === "commission" || n.type === "advisory" ? 1.5 : 1.3) : 1;
+              const grow = isSel && !turning ? (mobile ? 1.7 : n.type === "commission" || n.type === "advisory" ? 1.5 : 1.3) : 1;
               const shown = headShown(n);
               return (
-                <g key={n.id} style={{ transform: `translate(${p.x}px, ${p.y}px) scale(${grow})`, opacity: shown ? nodeAlpha(n.id) : 0, pointerEvents: shown ? "auto" : "none", cursor: "pointer", transition: "transform 250ms, opacity 250ms" }}
+                <g key={n.id} data-id={n.id} style={{ transform: `translate(${p.x}px, ${p.y}px) scale(${grow})`, opacity: shown ? nodeAlpha(n.id) : 0, pointerEvents: shown ? "auto" : "none", cursor: "pointer", transition: "transform 250ms, opacity 250ms" }}
                   onClick={(ev) => { ev.stopPropagation(); tapNode(n.id); }}
                   onMouseEnter={() => { if (mobile) return; const q = placed[n.id]; setHover(n.id); setTip({ kind: "node", id: n.id, x: cx + q.x, y: cy + q.y - q.r * grow - 2 }); onHoverNode?.(n.id); }}
                   onMouseLeave={() => { if (mobile) return; setHover(null); setTip(null); }}>
+                  {mobile && <circle r={14} fill="transparent" />}
                   <Glyph kind={glyphKind(n)} r={p.r} color={color} dashed={dashed} selected={isSel} />
                 </g>
               );
@@ -154,7 +159,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           <g style={{ opacity: turning ? 0 : 1, transition: "opacity 200ms" }}>
             {sectors.map((s) => (
               <g key={s.id}>
-                <path id={`sector-arc-${s.id}`} d={arcPath(mobile ? outerR - 18 : outerR + 14, s.start, s.end)} fill="none" />
+                <path id={`sector-arc-${s.id}`} d={arcPath(outerR + (mobile ? 10 : 14), s.start, s.end)} fill="none" />
                 <text className={mobile ? "sector-label sector-label-sm" : "sector-label"} style={{ fill: sectorVar(s.id) }}>
                   <textPath href={`#sector-arc-${s.id}`} startOffset="50%" textAnchor="middle">{mobile && t.has(`sectorsShort.${s.id}`) ? t(`sectorsShort.${s.id}`) : isRtl ? s.label.ar : s.label.en}</textPath>
                 </text>
@@ -204,9 +209,9 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           {/* centre seal */}
           {center && placed[center.id] && (
             <g style={{ cursor: "pointer", pointerEvents: "auto" }} onClick={(ev) => { ev.stopPropagation(); tapNode(center.id); }} onMouseEnter={() => { if (!mobile) setHover(center.id); }} onMouseLeave={() => { if (!mobile) setHover(null); }}>
-              <path d={seal(0.66 * unit, 16)} fill="var(--c-constituency)" fillOpacity={0.55} stroke="var(--c-constituency)" strokeWidth={selected === center.id ? 2 : 1} />
-              <text textAnchor="middle" style={{ fill: "var(--c-constituency)", fontSize: 12.5, fontWeight: 700 }}>
-                {wrap(localized(center.name, locale), 16).map((line, i, arr) => <tspan key={i} x={0} y={(i - (arr.length - 1) / 2) * 13 + 4}>{line}</tspan>)}
+              <path d={seal((mobile ? 0.5 : 0.66) * unit, 16)} fill="var(--c-constituency)" fillOpacity={0.55} stroke="var(--c-constituency)" strokeWidth={selected === center.id ? 2 : 1} />
+              <text textAnchor="middle" style={{ fill: "var(--c-constituency)", fontSize: mobile ? 10 : 12.5, fontWeight: 700 }}>
+                {wrap(localized(center.name, locale), 16).map((line, i, arr) => <tspan key={i} x={0} y={(i - (arr.length - 1) / 2) * (mobile ? 11 : 13) + 4}>{line}</tspan>)}
               </text>
             </g>
           )}

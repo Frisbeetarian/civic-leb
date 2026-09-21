@@ -80,7 +80,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); 
 
 .graph-svg text { font-family: inherit; pointer-events: none; user-select: none; }
 .sector-label { font-size: 12.5px; letter-spacing: 0.2em; font-weight: 600; }
-.sector-label-sm { font-size: 10px; letter-spacing: 0.16em; }
+.sector-label-sm { font-size: 9.5px; letter-spacing: 0.18em; }
 .ring-label { font-size: 11px; letter-spacing: 0.16em; font-weight: 600; fill: var(--ink-muted); }
 .edge-label { font-size: 11px; font-weight: 500; paint-order: stroke; stroke: var(--canvas); stroke-width: 3px; stroke-linejoin: round; }
 .graph-svg { color: var(--ink-3); }

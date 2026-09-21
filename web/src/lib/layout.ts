@@ -77,8 +77,10 @@ export function computeLayout(snapshot: GraphSnapshot, width: number, height: nu
   const nodes = snapshot.nodes;
   // desktop: fit the whole wheel; mobile: fit the wheel to the width (it overflows the band's bottom by design)
   // mobile: the wheel is about 1.25x the screen width and cropped by the band (CivLab clipHorizontal)
-  const unit = opts.mobile ? (width * 1.25) / 8.4 : Math.min(width, height) / 9.0;
-  glyphScale = opts.mobile ? 0.9 : 1;
+  // mobile density mode (CivLab's phone view): the wheel is 1.5x the screen width and cropped by the
+  // band, glyphs are drawn at half size with 1px strokes, no badges, no capsules
+  const unit = opts.mobile ? (width * 1.5) / 8.4 : Math.min(width, height) / 9.0;
+  glyphScale = opts.mobile ? 0.5 : 1;
   STAGGER = Math.round(STAGGER_BASE * glyphScale);
   const placed: Record<string, Placed> = {};
   const alias = (s: Sector | null): Sector | null => (s && L.sectorAliases?.[s]) || s;
