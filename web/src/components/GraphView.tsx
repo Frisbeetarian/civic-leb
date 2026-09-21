@@ -66,6 +66,10 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   const base = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height, { mobile }) : null), [snapshot, size, mobile]);
   // once the tween has run, edges may attach; until then they would point at stale positions
   const [settled, setSettled] = useState<string | null>(null);
+  const drag = useRef<{ startAngle: number; startRot: number; lastAngle: number; lastT: number; vel: number; moved: boolean; id: number } | null>(null);
+  const [dragging, setDragging] = useState(false);
+  const glideRef = useRef<number | null>(null);
+  const suppressClick = useRef(false);
   useEffect(() => {
     const id = window.setTimeout(() => setSettled(selected ?? "none"), 760);
     return () => window.clearTimeout(id);
@@ -110,14 +114,58 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
   const side = Math.ceil(2 * (outerR + 40)); // rotating layer: a square that contains the whole wheel
   const point = (ev: React.MouseEvent) => { const r = ref.current!.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top }; };
 
-  const turning = selected !== null && settled !== selected;
+  // mobile: one-finger drag on the band rotates the wheel around its centre (taps still select);
+  // a short momentum glide follows the release. No CSS transition while dragging.
+  const angleAt = (clientX: number, clientY: number) => {
+    const r = ref.current!.getBoundingClientRect();
+    return Math.atan2(clientY - r.top - cy, clientX - r.left - cx);
+  };
+  const onPointerDown = (ev: React.PointerEvent) => {
+    if (!mobile || ev.pointerType === "mouse") return;
+    if (glideRef.current) { cancelAnimationFrame(glideRef.current); glideRef.current = null; }
+    const a = angleAt(ev.clientX, ev.clientY);
+    drag.current = { startAngle: a, startRot: rotation, lastAngle: a, lastT: performance.now(), vel: 0, moved: false, id: ev.pointerId };
+  };
+  const onPointerMove = (ev: React.PointerEvent) => {
+    const d = drag.current;
+    if (!d || ev.pointerId !== d.id) return;
+    const a = angleAt(ev.clientX, ev.clientY);
+    let delta = a - d.startAngle;
+    while (delta > Math.PI) delta -= TAU;
+    while (delta < -Math.PI) delta += TAU;
+    if (!d.moved && Math.abs(delta) * Math.max(80, Math.hypot(ev.clientX - (ref.current!.getBoundingClientRect().left + cx), ev.clientY - (ref.current!.getBoundingClientRect().top + cy))) < 8) return;
+    if (!d.moved) { d.moved = true; setDragging(true); (ev.currentTarget as HTMLElement).setPointerCapture?.(ev.pointerId); }
+    const now = performance.now();
+    let step = a - d.lastAngle; while (step > Math.PI) step -= TAU; while (step < -Math.PI) step += TAU;
+    d.vel = 0.7 * d.vel + 0.3 * (step / Math.max(1, now - d.lastT));
+    d.lastAngle = a; d.lastT = now;
+    setRotation(d.startRot + delta);
+  };
+  const onPointerUp = () => {
+    const d = drag.current;
+    drag.current = null;
+    if (!d || !d.moved) return;
+    setDragging(false);
+    suppressClick.current = true;
+    setTimeout(() => { suppressClick.current = false; }, 300);
+    // momentum: decay the angular velocity (rad/ms) until it is negligible
+    let v = d.vel * 16, rot = rotation;
+    const glide = () => {
+      v *= 0.92; rot += v; setRotation(rot);
+      if (Math.abs(v) > 0.0008) glideRef.current = requestAnimationFrame(glide); else glideRef.current = null;
+    };
+    if (Math.abs(v) > 0.002) glideRef.current = requestAnimationFrame(glide);
+  };
+  const turning = (selected !== null && settled !== selected) || dragging;
   return (
-    <div ref={ref} className="absolute inset-0 overflow-hidden">
+    <div ref={ref} className="absolute inset-0 overflow-hidden" style={mobile ? { touchAction: "pan-y" } : undefined}
+      onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp}
+      onClickCapture={(ev) => { if (suppressClick.current) { ev.stopPropagation(); ev.preventDefault(); suppressClick.current = false; } }}>
       {/* rotating layer: an HTML element with one compositor-driven transform, so the turn never repaints.
           Glyphs tilt with the wheel, as CivLab's do. */}
       {/* the rotating SVG is a square covering the wheel's full diameter, centred on the wheel, so its
           own edges never clip the territories; the band's overflow does the cropping with fixed edges */}
-      <div className="absolute" style={{ left: cx - side / 2, top: cy - side / 2, width: side, height: side, transform: `rotate(${rotation}rad)`, transformOrigin: "50% 50%", transition: `transform ${TWEEN}`, willChange: "transform" }}>
+      <div className="absolute" style={{ left: cx - side / 2, top: cy - side / 2, width: side, height: side, transform: `rotate(${rotation}rad)`, transformOrigin: "50% 50%", transition: dragging ? "none" : `transform ${TWEEN}`, willChange: "transform" }}>
         <svg className="graph-svg" width={side} height={side} viewBox={`${-side / 2} ${-side / 2} ${side} ${side}`} style={{ overflow: "visible" }} onClick={() => { if (mobile && (previewId || previewEdgeId)) clearPreview(); else onSelect(null); }}>
           <g>
             {base.sectors.map((s) => (

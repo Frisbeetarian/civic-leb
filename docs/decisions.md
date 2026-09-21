@@ -226,3 +226,11 @@ band's bottom (family, "A verb B", seats, plain-language explanation, citation) 
 connections below" action that scrolls to and flashes that row in the entity page's list (rows
 carry `id="edge-{id}"`). Tapping a node clears an edge preview and vice versa; tapping the canvas
 clears both. The desktop keeps hover tooltips.
+
+Drag-to-rotate on phones (2026-09-21): a one-finger drag on the band turns the wheel by the angle
+swept around its centre (pointer events, touch only; mouse unaffected), with no CSS transition
+while dragging and a momentum glide on release (velocity decays 8% per frame). A movement under
+about 8px is a tap; after a drag the synthetic click is suppressed so nothing gets selected or
+cleared. The band sets `touch-action: pan-y`, so vertical swipes still scroll the page while
+mostly-horizontal or arcing drags rotate. Edges and labels hide while dragging (the `turning`
+flag) and reattach on release. The next selection tweens from wherever the wheel was left.
