@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import type { NodeDetail, Localized } from "@/lib/types";
 import { localized } from "@/lib/types";
 import { Link } from "@/i18n/navigation";
+import { ReadMore } from "./ReadMore";
 
 export async function EntityCards({ detail }: { detail: NodeDetail }) {
   const t = await getTranslations();
@@ -23,7 +24,7 @@ export async function EntityCards({ detail }: { detail: NodeDetail }) {
         {node.status && node.status !== "active" && (
           <div className="mt-3 text-sm"><span className="font-medium" style={{ color }}>{t.has(`status.${node.status}`) ? t(`status.${node.status}`) : node.status}</span>{node.statusNote && <span className="text-ink-2"> — {node.statusNote}</span>}</div>
         )}
-        {localized(node.description, locale) && <p className="mt-4 text-[16px] leading-relaxed text-ink-2">{localized(node.description, locale)}</p>}
+        {localized(node.description, locale) && <ReadMore text={localized(node.description, locale)} label={t("panel.readMore")} />}
         <div className="mt-4 flex flex-wrap gap-4 text-[16px]">
           {node.legalSource?.url && <a className="link" href={node.legalSource.url} target="_blank" rel="noreferrer">{t("panel.legalSource")}{!node.legalSource.inForce && <span className="text-ink-3"> ({t("panel.notInForce")})</span>}</a>}
           {node.officialUrl && <a className="link" href={node.officialUrl} target="_blank" rel="noreferrer">{t("panel.officialSite")}</a>}

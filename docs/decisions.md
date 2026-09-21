@@ -174,3 +174,17 @@ middleware was removed so the same code builds in both modes; Arabic is the defa
 Updating the public site until Laravel Cloud exists means: publish in Filament locally, run
 `pnpm snapshot`, then `pnpm deploy:static`. Code repo: git@github.com:Frisbeetarian/civic-leb.git
 (push pending collaborator access for the SSH key's GitHub account).
+
+## Mobile layout (2026-09-20)
+
+Below 1024px the shell reorders to CivLab's phone structure: the graph band first
+(54vh, 350 to 450px) with the header card floating over it, a toolbar row (Legend, Graph /
+Power map, language, theme) under the band, then the cards in one column. The graph runs in
+a mobile mode: the wheel is fitted to the width (unit = width / 10.4), glyphs and stagger
+scale to 0.82, sector labels 10px, and the wheel's centre sits so the whole wheel is in view
+with the selected node (rotated to 6 o'clock) just above the band's bottom edge, its name chip
+below it. Descriptions clamp to four lines with "Read more" on phones. The viewport meta
+fixes scale at 1 so pinch-zoom does not fight the wheel. Verified at 390x844 with real device
+emulation (Playwright): document width equals the viewport, no horizontal overflow. Plain
+headless Chrome without emulation ignores the viewport meta and lays out at 500px, so use
+the emulated capture for mobile checks.

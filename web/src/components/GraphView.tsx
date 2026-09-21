@@ -11,7 +11,7 @@ const sectorVar = (s: string | null | undefined) => (s ? `var(--c-${s})` : "var(
 const TAU = Math.PI * 2;
 const TWEEN = "750ms cubic-bezier(.4,0,.2,1)";
 
-export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, onHoverNode }: { snapshot: GraphSnapshot; selected: string | null; hidden: Set<string>; showAllEdges: boolean; onSelect: (id: string | null) => void; onHoverNode?: (id: string | null) => void }) {
+export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, onHoverNode, mobile = false }: { snapshot: GraphSnapshot; selected: string | null; hidden: Set<string>; showAllEdges: boolean; onSelect: (id: string | null) => void; onHoverNode?: (id: string | null) => void; mobile?: boolean }) {
   const locale = useLocale();
   const isRtl = locale === "ar";
   const t = useTranslations();
@@ -38,7 +38,7 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
     setRotatedFor(selected);
     if (selected) {
       // rotation is a pure angular offset, so measure the target on the focused (widened, compressed) geometry at rotation 0
-      const p = computeLayout(snapshot, size.width, size.height).placed[selected];
+      const p = computeLayout(snapshot, size.width, size.height, { mobile }).placed[selected];
       if (p && p.radius > 0) {
         const target = Math.PI / 2 - p.angle;
         let delta = ((target - rotation) % TAU + TAU) % TAU;
@@ -47,10 +47,10 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
       }
     }
   }
-  const layout = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height, { rotation, focusId: selected }) : null), [snapshot, size, selected, rotation]);
+  const layout = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height, { rotation, focusId: selected, mobile }) : null), [snapshot, size, selected, rotation, mobile]);
   // Territories, pills and rulers are drawn unrotated and spun as a group with a CSS rotate transition:
   // a true rotation, so the wedges keep their shape while they turn.
-  const base = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height) : null), [snapshot, size]);
+  const base = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height, { mobile }) : null), [snapshot, size, mobile]);
   // once the tween has run, edges may attach; until then they would point at stale positions
   const [settled, setSettled] = useState<string | null>(null);
   useEffect(() => {
@@ -70,7 +70,9 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
 
   if (!layout || !base) return <div ref={ref} className="absolute inset-0" />;
   const { placed, sectors, pills, bands, unit } = layout;
-  const cx = size.width / 2, cy = size.height / 2;
+  // mobile: the wheel's centre sits low in the band so its upper part fills the view; the selected node,
+  // rotated to 6 o'clock, lands just above the band's bottom edge (CivLab's clipHorizontal framing)
+  const cx = size.width / 2, cy = mobile ? Math.min(size.height / 2, size.height - 3.3 * unit) + 0 : size.height / 2;
   // "is headed by" is shown by the badge attached to the body, so its edge is not drawn on the canvas
   const edges = Object.values(snapshot.edges).filter((e) => e.type !== "dept_head" && placed[e.fromId] && placed[e.toId] && visible(snapshot.nodes[e.fromId]) && visible(snapshot.nodes[e.toId]));
   const hoveredEdge = tip?.kind === "edge" ? tip.id : null;
@@ -144,8 +146,8 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           <g style={{ opacity: turning ? 0 : 1, transition: "opacity 200ms" }}>
             {sectors.map((s) => (
               <g key={s.id}>
-                <path id={`sector-arc-${s.id}`} d={arcPath(outerR + 14, s.start, s.end)} fill="none" />
-                <text className="sector-label" style={{ fill: sectorVar(s.id) }}>
+                <path id={`sector-arc-${s.id}`} d={arcPath(outerR + (mobile ? 10 : 14), s.start, s.end)} fill="none" />
+                <text className={mobile ? "sector-label sector-label-sm" : "sector-label"} style={{ fill: sectorVar(s.id) }}>
                   <textPath href={`#sector-arc-${s.id}`} startOffset="50%" textAnchor="middle">{isRtl ? s.label.ar : s.label.en}</textPath>
                 </text>
               </g>

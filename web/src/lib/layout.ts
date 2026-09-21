@@ -31,17 +31,20 @@ const deg = (d: number) => (d * Math.PI) / 180;
 // CivLab scale: elected 17 (President override), chambers 14, departments 12..18 by children, commissions 12, advisory 11, heads 8
 const radiusByType: Record<string, number> = { constituency: 16, elected: 17, department: 14, commission: 14, advisory: 13, dept_head: 7, seat: 4 };
 const BADGE_R = 6; // heads are drawn as a small badge attached to their body's glyph (CivLab)
+let glyphScale = 1;
 function nodeRadius(n: GraphNode): number {
+  let r: number;
   if (n.type === "department") {
     const kids = Math.min(n.children?.length ?? 0, 8);
-    return 14 + (kids / 8) * 6;
-  }
-  if (isTopOffice(n)) return 15;
-  return radiusByType[n.type] ?? 10;
+    r = 14 + (kids / 8) * 6;
+  } else if (isTopOffice(n)) r = 15;
+  else r = radiusByType[n.type] ?? 10;
+  return r * glyphScale;
 }
 // Selection only rotates the wheel and resizes the glyph: no sector widening, no neighbour
 // compression, no stagger change, so nothing reshuffles when a node is chosen.
-const STAGGER = 15;              // CivLab rowOffset: alternate radial offset in dense groups
+const STAGGER_BASE = 15;         // CivLab rowOffset: alternate radial offset in dense groups
+let STAGGER = STAGGER_BASE;
 /** Highest-authority offices: drawn on the elected ring, always visible (CivLab's President/VP circles). */
 export const TOP_OFFICE_KINDS = new Set(["president", "prime_minister", "speaker"]);
 export const isTopOffice = (n: GraphNode) => n.type === "dept_head" && TOP_OFFICE_KINDS.has(n.kind ?? "");
@@ -59,6 +62,8 @@ function matches(node: GraphNode, match: Record<string, unknown>): boolean {
  * children sit deeper at their parent's angle; head positions sit just outside their body.
  */
 export interface LayoutOptions {
+  /** phone mode: the wheel is scaled to the width and only its upper part is in view (CivLab clipHorizontal) */
+  mobile?: boolean;
   /** radians added to every angle (CivLab: π/2 − angle(selected) so the focus sits at 6 o'clock) */
   rotation?: number;
   /** the selected node (kept for future use; positions do not depend on it) */
@@ -70,7 +75,10 @@ export function computeLayout(snapshot: GraphSnapshot, width: number, height: nu
   const rotation = opts.rotation ?? 0;
   void opts.focusId;
   const nodes = snapshot.nodes;
-  const unit = Math.min(width, height) / 9.0;
+  // desktop: fit the whole wheel; mobile: fit the wheel to the width (it overflows the band's bottom by design)
+  const unit = opts.mobile ? width / 10.4 : Math.min(width, height) / 9.0;
+  glyphScale = opts.mobile ? 0.82 : 1;
+  STAGGER = Math.round(STAGGER_BASE * glyphScale);
   const placed: Record<string, Placed> = {};
   const alias = (s: Sector | null): Sector | null => (s && L.sectorAliases?.[s]) || s;
 

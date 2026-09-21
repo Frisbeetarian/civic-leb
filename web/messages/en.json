@@ -137,7 +137,8 @@
     "notInForce": "no longer in force",
     "statusNote": "Status",
     "parentVerb": "is part of",
-    "hierarchyHelp": "An administrative attachment, not a legal relationship: the body sits inside the other's organisation chart."
+    "hierarchyHelp": "An administrative attachment, not a legal relationship: the body sits inside the other's organisation chart.",
+    "readMore": "Read more"
   },
   "overview": {
     "title": "Overview",

@@ -43,7 +43,7 @@ export function LatestChanges() {
         </div>
       </div>
       <p className="mt-2 text-[16px] text-ink-2">{t("changes.intro")}</p>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-3 gap-2 min-w-0">
         <Stat label={t("changes.vacant")} value={snapshot.counts.vacantSeats} note={t("changes.vacantNote")} />
         <Stat label={t("changes.acting")} value={snapshot.counts.actingOfficials} note={t("changes.actingNote")} />
         <Stat label={t("changes.last")} value={lastAgo === null ? "—" : `${lastAgo}d`} note={last ? t("changes.lastNote", { date: fmt(last.date) }) : ""} />
@@ -68,9 +68,9 @@ export function LatestChanges() {
 
 function Stat({ label, value, note }: { label: string; value: number | string; note: string }) {
   return (
-    <div className="rounded-xl bg-card-2 p-3">
-      <div className="mono-label">{label}</div>
-      <div className="text-2xl font-semibold tabular-nums mt-1">{value}</div>
+    <div className="rounded-xl bg-card-2 p-2.5 sm:p-3 min-w-0">
+      <div className="mono-label truncate">{label}</div>
+      <div className="text-xl sm:text-2xl font-semibold tabular-nums mt-1">{value}</div>
       <div className="text-[10px] font-mono text-ink-3 mt-0.5 truncate">{note}</div>
     </div>
   );

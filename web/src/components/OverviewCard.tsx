@@ -11,7 +11,7 @@ export async function OverviewCard({ counts, nodeCount }: { counts: GraphSnapsho
     <section className="card p-6">
       <h2 className="text-[20px] font-semibold">{t("overview.title")}</h2>
       <p className="mt-1 text-[16px] text-ink-2">{t("overview.subtitle")}</p>
-      <div className="mt-5 grid grid-cols-2 gap-6 text-[16px]">
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-6 text-[16px]">
         <div>
           <h3 className="font-semibold mb-2">{t("overview.byType")}</h3>
           <ul className="divide-y divide-line">
