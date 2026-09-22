@@ -266,6 +266,14 @@ and bloc, and "Seat in Parliament"; Parliament's page has a "Seats by district" 
 grouped by major district, minor district and confession per card) and its structural edges to
 seats are not listed under "Who is connected". Seats are a legend kind.
 
+Phones: seat glyphs sit about 5px apart, far below a usable tap target, so the seat block carries
+one transparent hit area instead of per-seat circles; a tap on it resolves to the nearest seat
+centre (measured in the wheel's frame, so it holds mid-drag) and then follows the usual
+first-tap-previews, second-tap-opens flow. The turned geometry for the static layer is a rotation
+of the base layout (`rotateLayout`) rather than a recomputation on every drag frame; a side effect
+is that edges to head badges now meet the badge where it is drawn, since the badge offset turns
+with the wheel.
+
 Known gaps: parties and blocs are English strings from the 2022 roster (no Arabic names, no
 dated bloc memberships yet); portraits absent; the roster's secondary source (Wikipedia) should be
 replaced by the Interior Ministry's results PDF when the elections.gov.lb SPA is scraped.

@@ -64,16 +64,24 @@ function matches(node: GraphNode, match: Record<string, unknown>): boolean {
 export interface LayoutOptions {
   /** phone mode: the wheel is scaled to the width and only its upper part is in view (CivLab clipHorizontal) */
   mobile?: boolean;
-  /** radians added to every angle (CivLab: π/2 − angle(selected) so the focus sits at 6 o'clock) */
-  rotation?: number;
-  /** the selected node (kept for future use; positions do not depend on it) */
-  focusId?: string | null;
+}
+
+/**
+ * The layout turned by `rotation` radians (CivLab: π/2 − angle(selected) so the focus sits at 6 o'clock).
+ * Positions only ever depend on angles, so this is exact and costs one pass over the nodes, which is what
+ * the wheel needs on every drag frame instead of a full computeLayout.
+ */
+export function rotateLayout(layout: LayoutResult, rotation: number): LayoutResult {
+  if (rotation === 0) return layout;
+  const c = Math.cos(rotation), s = Math.sin(rotation);
+  const placed: Record<string, Placed> = {};
+  for (const p of Object.values(layout.placed)) placed[p.id] = { ...p, x: p.x * c - p.y * s, y: p.x * s + p.y * c, angle: p.angle + rotation };
+  const turn = <T extends { start: number; end: number }>(a: T): T => ({ ...a, start: a.start + rotation, end: a.end + rotation });
+  return { placed, unit: layout.unit, sectors: layout.sectors.map(turn), pills: layout.pills.map(turn), bands: layout.bands.map(turn) };
 }
 
 export function computeLayout(snapshot: GraphSnapshot, width: number, height: number, opts: LayoutOptions = {}): LayoutResult {
   const L: LayoutDescriptor = snapshot.layout;
-  const rotation = opts.rotation ?? 0;
-  void opts.focusId;
   const nodes = snapshot.nodes;
   // desktop: fit the whole wheel; mobile: fit the wheel to the width (it overflows the band's bottom by design)
   // mobile: the wheel is about 1.25x the screen width and cropped by the band (CivLab clipHorizontal)
@@ -90,7 +98,7 @@ export function computeLayout(snapshot: GraphSnapshot, width: number, height: nu
   const weights = L.sectors.map((s) => s.minAngleDeg);
   const totalMin = weights.reduce((a, w) => a + w, 0);
   const available = TAU - gap * L.sectors.length;
-  let cursor = -Math.PI / 2 + gap / 2 + rotation;
+  let cursor = -Math.PI / 2 + gap / 2;
   const sectors: SectorArc[] = L.sectors.map((s, i) => {
     const span = (weights[i] / totalMin) * available;
     const arc = { id: s.id, start: cursor, end: cursor + span, label: s.label };

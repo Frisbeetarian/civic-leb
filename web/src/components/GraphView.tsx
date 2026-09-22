@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { GraphSnapshot, GraphNode, GraphEdge } from "@/lib/types";
 import { localized } from "@/lib/types";
-import { computeLayout, isTopOffice, type Placed } from "@/lib/layout";
+import { computeLayout, rotateLayout, isTopOffice, type Placed } from "@/lib/layout";
 import { edgeStyle, edgeFamily, familyColor } from "@/lib/palette";
 import { Glyph, glyphKind } from "./Glyph";
 
@@ -60,10 +60,23 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
       }
     }
   }
-  const layout = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height, { rotation, focusId: selected, mobile }) : null), [snapshot, size, selected, rotation, mobile]);
   // Territories, pills and rulers are drawn unrotated and spun as a group with a CSS rotate transition:
   // a true rotation, so the wedges keep their shape while they turn.
   const base = useMemo(() => (size.width && size.height ? computeLayout(snapshot, size.width, size.height, { mobile }) : null), [snapshot, size, mobile]);
+  // the static layer (edges, labels, fan) draws on the turned geometry: a rotation of `base`, cheap enough
+  // to follow every drag frame
+  const layout = useMemo(() => (base ? rotateLayout(base, rotation) : null), [base, rotation]);
+  // phones: seat glyphs sit a few pixels apart, so the seat block gets one hit area that resolves a tap
+  // to the nearest seat centre instead of per-seat circles that would overlap
+  const seatHits = useMemo(() => {
+    if (!base) return [];
+    return snapshot.layout.pills.filter((p) => p.memberNodeType === "seat").flatMap((p) => {
+      const pill = base.pills.find((x) => x.id === p.id);
+      if (!pill) return [];
+      const seats = Object.values(snapshot.nodes).filter((n) => n.type === "seat" && n.headOf === p.bodyNodeId).map((n) => base.placed[n.id]).filter(Boolean);
+      return seats.length ? [{ pill, seats }] : [];
+    });
+  }, [base, snapshot]);
   // once the tween has run, edges may attach; until then they would point at stale positions
   const [settled, setSettled] = useState<string | null>(null);
   const drag = useRef<{ startAngle: number; startRot: number; lastAngle: number; lastT: number; vel: number; moved: boolean; id: number } | null>(null);
@@ -189,11 +202,25 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
                   onClick={(ev) => { ev.stopPropagation(); tapNode(n.id); }}
                   onMouseEnter={() => { if (mobile) return; const q = placed[n.id]; setHover(n.id); setTip({ kind: "node", id: n.id, x: cx + q.x, y: cy + q.y - q.r * grow - 2 }); onHoverNode?.(n.id); }}
                   onMouseLeave={() => { if (mobile) return; setHover(null); setTip(null); }}>
-                  {mobile && <circle r={n.type === "seat" ? Math.max(p.r + 1, 4) : 14} fill="transparent" />}
+                  {mobile && n.type !== "seat" && <circle r={14} fill="transparent" />}
                   <Glyph kind={glyphKind(n)} r={p.r} color={color} dashed={dashed} selected={isSel} />
                 </g>
               );
             })}
+            {mobile && !hidden.has("seat") && seatHits.map(({ pill, seats }) => (
+              <path key={`seat-hit-${pill.id}`} d={arcBand(pill.radius, pill.start, pill.end, pill.thickness + 8)} fill="transparent" style={{ cursor: "pointer" }}
+                onClick={(ev) => {
+                  ev.stopPropagation();
+                  // the tap in the wheel's own frame: relative to the centre, turned back by the current rotation
+                  const r = ref.current!.getBoundingClientRect();
+                  const px = ev.clientX - r.left - cx, py = ev.clientY - r.top - cy;
+                  const c = Math.cos(rotation), s = Math.sin(rotation);
+                  const x = px * c + py * s, y = -px * s + py * c;
+                  let best: Placed | null = null, bestD = Infinity;
+                  for (const q of seats) { const d = (q.x - x) ** 2 + (q.y - y) ** 2; if (d < bestD) { bestD = d; best = q; } }
+                  if (best) tapNode(best.id);
+                }} />
+            ))}
           </g>
         </svg>
       </div>
@@ -244,7 +271,8 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
             return links.map(([a, b]) => placed[a] && placed[b] && (
               <g key={`fan-${a}-${b}`} style={{ opacity: turning ? 0 : tip?.kind === "fan" && tip.id === `${a}|${b}` ? 1 : 0.7, transition: "opacity 200ms" }}>
                 <line x1={placed[a].x} y1={placed[a].y} x2={placed[b].x} y2={placed[b].y} stroke={sectorVar(body.sector)} strokeWidth={tip?.kind === "fan" && tip.id === `${a}|${b}` ? 2 : 1} strokeDasharray="2 3" />
-                <line x1={placed[a].x} y1={placed[a].y} x2={placed[b].x} y2={placed[b].y} stroke="transparent" strokeWidth={12} style={{ pointerEvents: turning ? "none" : "stroke" }}
+                {/* hover target for the desktop tooltip only: on phones it would sit over the seats and swallow taps */}
+                <line x1={placed[a].x} y1={placed[a].y} x2={placed[b].x} y2={placed[b].y} stroke="transparent" strokeWidth={12} style={{ pointerEvents: turning || mobile ? "none" : "stroke" }}
                   onMouseEnter={(ev) => { const q = point(ev); setTip({ kind: "fan", id: `${a}|${b}`, x: q.x, y: q.y - 10 }); }} onMouseLeave={() => setTip(null)} />
               </g>
             ));

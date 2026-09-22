@@ -136,7 +136,7 @@
     "openPage": "افتح الصفحة",
     "backToGraph": "العودة إلى الخريطة",
     "aliases": "يُعرف أيضاً بـ",
-    "seats": "{count, plural, one {مقعد واحد} two {مقعدان} few {# مقاعد} many {# مقعداً} other {# مقعد}}",
+    "seats": "{count, plural, zero {لا مقاعد} one {مقعد واحد} two {مقعدان} few {# مقاعد} many {# مقعداً} other {# مقعد}}",
     "notInForce": "لم يعد نافذاً",
     "statusNote": "الوضع",
     "parentVerb": "جزء من",
