@@ -234,3 +234,46 @@ about 8px is a tap; after a drag the synthetic click is suppressed so nothing ge
 cleared. The band sets `touch-action: pan-y`, so vertical swipes still scroll the page while
 mostly-horizontal or arcing drags rotate. Edges and labels hide while dragging (the `turning`
 flag) and reattach on release. The next selection tweens from wherever the wheel was left.
+
+## Parliament seats (2026-09-22)
+
+The 128 seats of Law 44/2017 Annex 1 are position nodes (`kind: seat`) on Parliament, keyed
+`lb-seat-{minor}-{confession}-{ordinal}`; the ordinal ranks seats of one confession in a minor
+district by the holder's 2022 preferential votes, so slugs stay stable across re-seeds. Data:
+`api/database/seeders/data/seats/roster-2022.json` (128 members with district, confession, list,
+votes, 2022 bloc and party, Arabic and English names, variants) built from the English and Arabic
+Wikipedia member lists, reconciled seat by seat against the Annex 1 table in research Part 01 §5.2
+(one correction: Fadi Karam holds a Koura Greek Orthodox seat, not Maronite as listed). Seeded by
+`seats.php`: 128 seat positions (confession basis `constitution`, appointing authority the
+electorate, Law 44/2017), 97 new persons (33 seat holders already existed as committee chairs,
+rapporteurs, Speaker, Deputy Speaker and keep their slugs), tenures from the 17 May 2022
+proclamation. History encoded: the Constitutional Council recount of 24 November 2022 (Rami Finge
+→ Faisal Karami, Firas Salloum → Haidar Nasser, `end_reason: annulment`) and the West Bekaa Greek
+Orthodox vacancy since Ghassan Skaff's death on 13 December 2025 (`vacant`, reason `death`). The
+six Article 112 expatriate seats exist as `never_constituted` positions, not graph nodes, so the
+API can represent the 134-seat contingency without drawing it. District names live in
+`api/config/districts.php` and are attached to seat nodes by the exporter (`seat.majorName`,
+`seat.minorName`); the node endpoint and the static `nodeDetailFrom` carry `seat` and `confession`
+on connected entries so the chamber's page can group holders by district.
+
+Graph: seats fill the PARLIAMENT pill (radius 2.1, phone 1.8) in concentric rows, CivLab's
+congress pill: ordered by district (`groupOrder` in the descriptor, north to south then Bekaa),
+column-major so each district is a contiguous run, with the fewest rows that fit the sector
+(five on a desktop canvas). Seat glyphs are 6px (3px on phones); a selected seat grows 2x and a
+dotted line ties it to Parliament instead of the body fan. The committees pill moved out to 2.95
+(phone 2.6) to clear the seat rows. Pages: a seat shows district, confession, holder with party
+and bloc, and "Seat in Parliament"; Parliament's page has a "Seats by district" card (holders
+grouped by major district, minor district and confession per card) and its structural edges to
+seats are not listed under "Who is connected". Seats are a legend kind.
+
+Phones: seat glyphs sit about 5px apart, far below a usable tap target, so the seat block carries
+one transparent hit area instead of per-seat circles; a tap on it resolves to the nearest seat
+centre (measured in the wheel's frame, so it holds mid-drag) and then follows the usual
+first-tap-previews, second-tap-opens flow. The turned geometry for the static layer is a rotation
+of the base layout (`rotateLayout`) rather than a recomputation on every drag frame; a side effect
+is that edges to head badges now meet the badge where it is drawn, since the badge offset turns
+with the wheel.
+
+Known gaps: parties and blocs are English strings from the 2022 roster (no Arabic names, no
+dated bloc memberships yet); portraits absent; the roster's secondary source (Wikipedia) should be
+replaced by the Interior Ministry's results PDF when the elections.gov.lb SPA is scraped.

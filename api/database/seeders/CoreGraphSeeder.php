@@ -22,7 +22,12 @@ class CoreGraphSeeder extends Seeder
 {
     public function run(): void
     {
-        // core.php first, then every other data file merged in (committees, later seats and blocs)
+        $this->apply($this->load(), filter_var(env('CIVICLEB_SEED_PUBLISH', false), FILTER_VALIDATE_BOOL));
+    }
+
+    /** The merged seed dataset: core.php first, then every other data file (committees, seats, later blocs). */
+    public function load(): array
+    {
         $data = require database_path('seeders/data/core.php');
         foreach (glob(database_path('seeders/data/*.php')) as $file) {
             if (basename($file) === 'core.php') {
@@ -33,7 +38,13 @@ class CoreGraphSeeder extends Seeder
                 $data[$key] = array_merge($data[$key] ?? [], $rows);
             }
         }
-        $publish = filter_var(env('CIVICLEB_SEED_PUBLISH', false), FILTER_VALIDATE_BOOL);
+
+        return $data;
+    }
+
+    /** Upserts one dataset (the shape of load()) as drafts, or as published rows when $publish is set. */
+    public function apply(array $data, bool $publish): void
+    {
         $review = $publish
             ? ['review_state' => ReviewState::Published, 'reviewed_at' => now(), 'published_at' => now()]
             : ['review_state' => ReviewState::Draft];
@@ -112,6 +123,11 @@ class CoreGraphSeeder extends Seeder
             foreach ($data['tenures'] as $row) {
                 $sources = $row['sources'] ?? [];
                 $position = $positions[$row['position']];
+                // a seat holder may be defined in another data file (core.php, committees.php); a slug missing
+                // from all of them must fail here, not silently seed a person-less tenure
+                if ($row['person'] && ! isset($persons[$row['person']])) {
+                    throw new \RuntimeException("Unknown person slug in tenures for {$row['position']}: {$row['person']}");
+                }
                 $person = $row['person'] ? $persons[$row['person']] : null;
                 $instrument = $row['instrument'] ?? null;
                 unset($row['sources'], $row['position'], $row['person'], $row['instrument']);

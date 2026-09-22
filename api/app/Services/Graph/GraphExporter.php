@@ -152,6 +152,8 @@ class GraphExporter
                     'majorDistrict' => $position->seat_major_district,
                     'minorDistrict' => $position->seat_minor_district,
                     'ordinal' => $position->seat_ordinal,
+                    'majorName' => config('districts.major.'.$position->seat_major_district),
+                    'minorName' => config('districts.minor.'.$position->seat_minor_district),
                 ] : null,
                 'termYears' => $position->term_years,
                 'status' => $position->status->value,

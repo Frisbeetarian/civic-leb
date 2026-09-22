@@ -59,7 +59,7 @@ export default async function NodePage({ params }: { params: Promise<{ locale: s
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <EntityCards detail={detail} updatedAt={snapshot.generatedAt} />
+      <EntityCards detail={detail} updatedAt={snapshot.generatedAt} districtOrder={snapshot.layout.pills.find((p) => p.memberNodeType === "seat")?.groupOrder} />
     </>
   );
 }

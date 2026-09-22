@@ -40,6 +40,7 @@ class GraphController extends Controller
             'edges' => array_values($edges),
             'connected' => array_values(array_map(fn ($n) => [
                 'id' => $n['id'], 'type' => $n['type'], 'subtype' => $n['subtype'] ?? null, 'sector' => $n['sector'], 'name' => $n['name'],
+                'seat' => $n['seat'] ?? null, 'confession' => $n['confession'] ?? null,
             ], $neighbours)),
         ]));
     }

@@ -30,7 +30,7 @@ export function nodeDetailFrom(snapshot: GraphSnapshot, slug: string): NodeDetai
     ...[node.parent, node.head, node.headOf].filter((x): x is string => !!x),
   ]);
   const edges = node.edges.map((id) => snapshot.edges[id]).filter(Boolean);
-  const connected = [...ids].map((id) => snapshot.nodes[id]).filter(Boolean).map((n) => ({ id: n.id, type: n.type, subtype: n.subtype ?? null, sector: n.sector, name: n.name }));
+  const connected = [...ids].map((id) => snapshot.nodes[id]).filter(Boolean).map((n) => ({ id: n.id, type: n.type, subtype: n.subtype ?? null, sector: n.sector, name: n.name, seat: n.seat ?? null, confession: n.confession ?? null }));
   return { node, edges, connected };
 }
 

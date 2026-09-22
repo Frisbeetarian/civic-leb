@@ -29,7 +29,7 @@ const TAU = Math.PI * 2;
 const deg = (d: number) => (d * Math.PI) / 180;
 
 // CivLab scale: elected 17 (President override), chambers 14, departments 12..18 by children, commissions 12, advisory 11, heads 8
-const radiusByType: Record<string, number> = { constituency: 16, elected: 17, department: 14, commission: 14, advisory: 13, dept_head: 7, seat: 4 };
+const radiusByType: Record<string, number> = { constituency: 16, elected: 17, department: 14, commission: 14, advisory: 13, dept_head: 7, seat: 3 };
 const BADGE_R = 6; // heads are drawn as a small badge attached to their body's glyph (CivLab)
 let glyphScale = 1;
 function nodeRadius(n: GraphNode): number {
@@ -64,16 +64,24 @@ function matches(node: GraphNode, match: Record<string, unknown>): boolean {
 export interface LayoutOptions {
   /** phone mode: the wheel is scaled to the width and only its upper part is in view (CivLab clipHorizontal) */
   mobile?: boolean;
-  /** radians added to every angle (CivLab: π/2 − angle(selected) so the focus sits at 6 o'clock) */
-  rotation?: number;
-  /** the selected node (kept for future use; positions do not depend on it) */
-  focusId?: string | null;
+}
+
+/**
+ * The layout turned by `rotation` radians (CivLab: π/2 − angle(selected) so the focus sits at 6 o'clock).
+ * Positions only ever depend on angles, so this is exact and costs one pass over the nodes, which is what
+ * the wheel needs on every drag frame instead of a full computeLayout.
+ */
+export function rotateLayout(layout: LayoutResult, rotation: number): LayoutResult {
+  if (rotation === 0) return layout;
+  const c = Math.cos(rotation), s = Math.sin(rotation);
+  const placed: Record<string, Placed> = {};
+  for (const p of Object.values(layout.placed)) placed[p.id] = { ...p, x: p.x * c - p.y * s, y: p.x * s + p.y * c, angle: p.angle + rotation };
+  const turn = <T extends { start: number; end: number }>(a: T): T => ({ ...a, start: a.start + rotation, end: a.end + rotation });
+  return { placed, unit: layout.unit, sectors: layout.sectors.map(turn), pills: layout.pills.map(turn), bands: layout.bands.map(turn) };
 }
 
 export function computeLayout(snapshot: GraphSnapshot, width: number, height: number, opts: LayoutOptions = {}): LayoutResult {
   const L: LayoutDescriptor = snapshot.layout;
-  const rotation = opts.rotation ?? 0;
-  void opts.focusId;
   const nodes = snapshot.nodes;
   // desktop: fit the whole wheel; mobile: fit the wheel to the width (it overflows the band's bottom by design)
   // mobile: the wheel is about 1.25x the screen width and cropped by the band (CivLab clipHorizontal)
@@ -90,7 +98,7 @@ export function computeLayout(snapshot: GraphSnapshot, width: number, height: nu
   const weights = L.sectors.map((s) => s.minAngleDeg);
   const totalMin = weights.reduce((a, w) => a + w, 0);
   const available = TAU - gap * L.sectors.length;
-  let cursor = -Math.PI / 2 + gap / 2 + rotation;
+  let cursor = -Math.PI / 2 + gap / 2;
   const sectors: SectorArc[] = L.sectors.map((s, i) => {
     const span = (weights[i] / totalMin) * available;
     const arc = { id: s.id, start: cursor, end: cursor + span, label: s.label };
@@ -232,9 +240,42 @@ export function computeLayout(snapshot: GraphSnapshot, width: number, height: nu
     placed[n.id] = { id: n.id, x: Math.cos(angle) * radius, y: Math.sin(angle) * radius, r: nodeRadius(n), angle, radius, sector: arc.id };
   }
 
+  // --- seats fill their pill in concentric rows (CivLab's congress pill): ordered by district so each
+  // district is a contiguous run, filled column by column (radially) along the arc, with as few rows
+  // as let the block fit the sector. The rows are centred on the pill's radius.
+  for (const p of L.pills) {
+    if (p.memberNodeType !== "seat") continue;
+    const seats = Object.values(nodes).filter((n) => n.type === "seat" && n.headOf === p.bodyNodeId);
+    if (seats.length === 0) continue;
+    const arc = arcOf(alias(p.sector));
+    const radius = ((opts.mobile ? p.mobileSpacing : undefined) ?? p.spacing ?? 2.1) * unit;
+    const order = p.groupOrder ?? [];
+    const rank = (n: GraphNode) => { const i = order.indexOf(n.seat?.majorDistrict ?? ""); return i === -1 ? order.length : i; };
+    seats.sort((a, b) => rank(a) - rank(b) || (a.seat?.majorDistrict ?? "").localeCompare(b.seat?.majorDistrict ?? "") || (a.seat?.minorDistrict ?? "").localeCompare(b.seat?.minorDistrict ?? "") || (a.confession ?? "").localeCompare(b.confession ?? "") || (a.seat?.ordinal ?? 0) - (b.seat?.ordinal ?? 0));
+    const r = nodeRadius(seats[0]);
+    const pitch = 2 * r + Math.max(2, Math.round(3 * glyphScale));
+    const pad = deg(4), inset = deg(3);
+    const a0 = arc.start + pad + inset, a1 = arc.end - pad - inset;
+    const arcLen = (a1 - a0) * radius;
+    const rows = Math.max(1, Math.ceil((seats.length * pitch) / arcLen));
+    const cols = Math.ceil(seats.length / rows);
+    const widthPx = cols * pitch;
+    const mid = (a0 + a1) / 2;
+    const first = mid - widthPx / (2 * radius);
+    seats.forEach((s, idx) => {
+      const c = Math.floor(idx / rows), rI = idx % rows;
+      const inCol = Math.min(rows, seats.length - c * rows);
+      const angle = first + (c + 0.5) * (pitch / radius);
+      const rr = radius + (rI - (inCol - 1) / 2) * pitch;
+      placed[s.id] = { id: s.id, x: Math.cos(angle) * rr, y: Math.sin(angle) * rr, r, angle, radius: rr, sector: arc.id };
+    });
+    const padRad = (r + 14) / radius;
+    pillsOut.push({ id: p.id, sector: arc.id, label: p.label, radius, start: first - padRad, end: first + widthPx / radius + padRad, thickness: Math.max(p.thickness, (rows - 1) * pitch + 2 * r + 2 * 14), labelSide: p.labelSide ?? "inside" });
+  }
+
   // --- heads are badges attached to their body's glyph (top-left corner, stacked along the top edge),
   // in the same frame as the body so they turn with it. Highest-authority offices have their own slots.
-  const heads = Object.values(nodes).filter((n) => (n.type === "dept_head" && !isTopOffice(n)) || n.type === "seat");
+  const heads = Object.values(nodes).filter((n) => n.type === "dept_head" && !isTopOffice(n));
   const headsByBody = new Map<string, GraphNode[]>();
   for (const h of heads) if (h.headOf) (headsByBody.get(h.headOf) ?? headsByBody.set(h.headOf, []).get(h.headOf)!).push(h);
   for (const [bodyId, list] of headsByBody) {
