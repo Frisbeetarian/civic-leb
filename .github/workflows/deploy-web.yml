@@ -1,0 +1,45 @@
+# Deploys the public site to Cloudflare on every push to main that touches web/.
+# Same steps as `pnpm deploy:static` locally: static export from the bundled snapshot, then wrangler.
+# Needs two repository secrets: CLOUDFLARE_API_TOKEN (a token with "Edit Cloudflare Workers")
+# and CLOUDFLARE_ACCOUNT_ID.
+name: Deploy web
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "web/**"
+      - ".github/workflows/deploy-web.yml"
+  workflow_dispatch:
+
+# one deploy at a time; a second push waits for the first rather than racing it
+concurrency:
+  group: deploy-web
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4 # version comes from packageManager in web/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - name: Lint and type-check
+        run: pnpm lint && pnpm exec tsc --noEmit
+      - name: Build the static export
+        run: pnpm build:static
+      - name: Deploy to Cloudflare
+        run: pnpm exec wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
