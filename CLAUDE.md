@@ -41,7 +41,7 @@ pnpm dev                                    # http://localhost:3000/ar and /en, 
 pnpm lint && pnpm exec tsc --noEmit && pnpm build   # the full check; there are no frontend unit tests
 pnpm snapshot                               # refresh public/lb-graph.json from the running API
 pnpm build:static                           # STATIC_EXPORT=1: fully static site into out/ from the bundled snapshot
-pnpm deploy:static                          # build:static + wrangler deploy to civ-leb.com
+pnpm deploy:static                          # build:static + wrangler deploy to civ-leb.com (by hand; pushes to main deploy via .github/workflows/deploy-web.yml)
 ```
 
 `web/AGENTS.md` (included via `web/CLAUDE.md`) is written by `next dev` and points at the Next.js docs

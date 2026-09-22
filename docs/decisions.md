@@ -172,8 +172,11 @@ assets (`web/wrangler.jsonc`, worker `civicleb`, custom domains civ-leb.com and
 www.civ-leb.com; `/` redirects to `/ar/` via public/index.html and `_redirects`). The locale
 middleware was removed so the same code builds in both modes; Arabic is the default landing.
 Updating the public site until Laravel Cloud exists means: publish in Filament locally, run
-`pnpm snapshot`, then `pnpm deploy:static`. Code repo: git@github.com:Frisbeetarian/civic-leb.git
-(push pending collaborator access for the SSH key's GitHub account).
+`pnpm snapshot`, commit the refreshed `web/public/lb-graph.json` and push to main. Since
+2026-09-23 `.github/workflows/deploy-web.yml` runs the same lint, type-check, static build and
+`wrangler deploy` on every push to main that touches `web/` (secrets `CLOUDFLARE_API_TOKEN`,
+`CLOUDFLARE_ACCOUNT_ID`); `pnpm deploy:static` remains for deploying by hand. Code repo:
+git@github.com:Frisbeetarian/civic-leb.git.
 
 ## Mobile layout (2026-09-20)
 
