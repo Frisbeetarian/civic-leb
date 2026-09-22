@@ -18,6 +18,7 @@ export function LatestChanges() {
 
   const events = useMemo(() => {
     const out: { date: string; nodeId: string; positionName: string; person: string | null; status: string }[] = [];
+    if (!snapshot) return out; // still fetching: the card renders with empty stats and fills in when it lands
     for (const n of Object.values(snapshot.nodes)) {
       for (const p of n.people) {
         if (!p.startedAt) continue;
@@ -44,8 +45,8 @@ export function LatestChanges() {
       </div>
       <p className="mt-2 text-[16px] text-ink-2">{t("changes.intro")}</p>
       <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2 min-w-0 [&>*:last-child]:col-span-2 sm:[&>*:last-child]:col-span-1">
-        <Stat label={t("changes.vacant")} value={snapshot.counts.vacantSeats} note={t("changes.vacantNote")} />
-        <Stat label={t("changes.acting")} value={snapshot.counts.actingOfficials} note={t("changes.actingNote")} />
+        <Stat label={t("changes.vacant")} value={snapshot?.counts.vacantSeats ?? "—"} note={t("changes.vacantNote")} />
+        <Stat label={t("changes.acting")} value={snapshot?.counts.actingOfficials ?? "—"} note={t("changes.actingNote")} />
         <Stat label={t("changes.last")} value={lastAgo === null ? "—" : `${lastAgo}d`} note={last ? t("changes.lastNote", { date: fmt(last.date) }) : ""} />
       </div>
       <div className="mt-5 flex items-center justify-between"><span className="mono-label">{t("changes.timeline")}</span><span className="text-xs text-ink-3">{t("changes.inWindow", { count: inWindow.length })}</span></div>

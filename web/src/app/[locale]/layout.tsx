@@ -5,7 +5,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { routing, isRtl } from "@/i18n/routing";
-import { fetchGraph } from "@/lib/graph";
+import { fetchGraph, snapshotUrl } from "@/lib/graph";
 import { Shell } from "@/components/Shell";
 import "../globals.css";
 
@@ -65,7 +65,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <NextIntlClientProvider messages={messages}>
           <Suspense fallback={null}>
-            <Shell snapshot={snapshot}>{children}</Shell>
+            {/* the browser fetches the snapshot itself: passing it as a prop would embed the whole graph in every page */}
+            <Shell snapshotUrl={snapshotUrl(snapshot)}>{children}</Shell>
           </Suspense>
         </NextIntlClientProvider>
       </body>

@@ -4,14 +4,23 @@ import type { GraphSnapshot, NodeDetail } from "./types";
 /**
  * Data access with two modes:
  *  - live: API_URL is set and the Laravel API serves the published snapshot (cached 60s);
- *  - static: no API_URL, the snapshot bundled at data/lb-graph.json is used, so the site can be
+ *  - static: no API_URL, the snapshot bundled at public/lb-graph.json is used, so the site can be
  *    exported and hosted with no backend (decisions.md: static preview on Cloudflare).
+ * Pages read the snapshot on the server only; the browser fetches it once from snapshotUrl() and
+ * keeps it for the session, so no page embeds the whole graph.
  */
-const API = process.env.API_URL;
+// the static export always uses the bundled file, even when .env.local points dev at a local API:
+// otherwise the browser would be sent to that dev URL from the deployed site
+const API = process.env.STATIC_EXPORT === "1" ? undefined : process.env.API_URL;
 
 async function bundled(): Promise<GraphSnapshot> {
-  const mod = await import("../../data/lb-graph.json");
+  const mod = await import("../../public/lb-graph.json");
   return mod.default as unknown as GraphSnapshot;
+}
+
+/** Where the browser fetches the same snapshot; the version query defeats a stale cached copy after a deploy. */
+export function snapshotUrl(snapshot: GraphSnapshot): string {
+  return API ? `${API}/api/lb/graph` : `/lb-graph.json?v=${encodeURIComponent(snapshot.generatedAt)}`;
 }
 
 export async function fetchGraph(): Promise<GraphSnapshot> {
