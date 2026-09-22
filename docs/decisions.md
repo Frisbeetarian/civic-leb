@@ -165,7 +165,7 @@ deliberately excluded (transient, no standing jurisdiction). Graph now 71 bodies
 ## Static preview deployment (2026-09-20)
 
 The site has a static data mode: with no `API_URL`, `web/src/lib/graph.ts` reads the bundled
-snapshot `web/data/lb-graph.json` (refresh with `pnpm snapshot` while the API runs) and derives
+snapshot `web/public/lb-graph.json` (refresh with `pnpm snapshot` while the API runs) and derives
 node pages from it. `pnpm build:static` (STATIC_EXPORT=1) exports every route for both
 locales into `out/`; `pnpm deploy:static` builds and deploys it as Cloudflare Workers static
 assets (`web/wrangler.jsonc`, worker `civicleb`, custom domains civ-leb.com and
@@ -277,3 +277,18 @@ with the wheel.
 Known gaps: parties and blocs are English strings from the 2022 roster (no Arabic names, no
 dated bloc memberships yet); portraits absent; the roster's secondary source (Wikipedia) should be
 replaced by the Interior Ministry's results PDF when the elections.gov.lb SPA is scraped.
+
+## Snapshot as an asset (2026-09-23)
+
+The locale layout used to pass the whole snapshot to `Shell` (a client component), so Next
+serialised the graph into every page's HTML and RSC payload: with 128 seats that was about 1 MB
+per page and a 1.6 GB static export of 518 pages, and half an hour per `wrangler deploy`. Pages now
+use the snapshot on the server only (metadata, node detail, static params); the browser fetches it
+once from `snapshotUrl()` (`/lb-graph.json?v=<generatedAt>` in static mode, `${API_URL}/api/lb/graph`
+in live mode) inside `Shell`, which the layout keeps mounted across navigations, so one fetch per
+session. `useGraph()` returns null until it lands; the changes card renders with empty stats until
+then and the canvas shows a retry prompt if the fetch fails. The bundled file moved to
+`web/public/lb-graph.json` so the same file feeds the build and the browser. `STATIC_EXPORT=1`
+now ignores `API_URL` altogether (a dev `.env.local` used to leak `http://127.0.0.1:8000` into the
+deployed site's fetch URL). Live mode will need CORS on the API for the site's origin before the
+cutover to Laravel Cloud.

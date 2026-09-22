@@ -12,11 +12,24 @@ import { Logomark } from "./Logomark";
 import { edgeFamily, familyColor } from "@/lib/palette";
 
 const GraphContext = createContext<GraphSnapshot | null>(null);
-export const useGraph = () => {
-  const g = useContext(GraphContext);
-  if (!g) throw new Error("useGraph outside Shell");
-  return g;
-};
+/** The snapshot once the browser has fetched it; null while loading (or if the fetch failed). */
+export const useGraph = () => useContext(GraphContext);
+
+/** Fetches the snapshot once per session; the layout keeps Shell mounted across pages so it never refetches on navigation. */
+function useSnapshot(url: string): { snapshot: GraphSnapshot | null; failed: boolean; retry: () => void } {
+  const [snapshot, setSnapshot] = useState<GraphSnapshot | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  useEffect(() => {
+    const ctrl = new AbortController();
+    fetch(url, { signal: ctrl.signal })
+      .then((r) => { if (!r.ok) throw new Error(`Graph ${r.status}`); return r.json() as Promise<GraphSnapshot>; })
+      .then(setSnapshot)
+      .catch((e: unknown) => { if ((e as { name?: string })?.name !== "AbortError") { console.error(e); setFailed(true); } });
+    return () => ctrl.abort();
+  }, [url, attempt]);
+  return { snapshot, failed, retry: () => { setFailed(false); setAttempt((a) => a + 1); } };
+}
 
 /** Selected node id from the URL (/{locale}/n/{slug}); the graph stays mounted across pages like CivLab. */
 export function useSelectedSlug(): string | null {
@@ -37,17 +50,18 @@ function useIsMobile(): boolean {
   return mobile;
 }
 
-export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; children: React.ReactNode }) {
+export function Shell({ snapshotUrl, children }: { snapshotUrl: string; children: React.ReactNode }) {
   const t = useTranslations();
   const locale = useLocale();
   const router = useRouter();
   const urlSelected = useSelectedSlug();
   const mobile = useIsMobile();
+  const { snapshot, failed, retry } = useSnapshot(snapshotUrl);
   // Optimistic selection: the wheel starts turning on click, before the entity page's server round trip
   // lands; once the URL catches up the optimistic value is dropped.
   const [optimistic, setOptimistic] = useState<{ id: string | null; forUrl: string | null } | null>(null);
   const selected = optimistic && optimistic.forUrl === urlSelected ? optimistic.id : urlSelected;
-  const node = selected ? snapshot.nodes[selected] : null;
+  const node = selected && snapshot ? snapshot.nodes[selected] ?? null : null;
   const select = (id: string | null) => {
     setOptimistic({ id, forUrl: urlSelected });
     router.push(id ? `/n/${id}` : "/");
@@ -58,15 +72,15 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
   const [searchOpen, setSearchOpen] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(false);
-  const previewNode = preview ? snapshot.nodes[preview] : null;
+  const previewNode = preview && snapshot ? snapshot.nodes[preview] ?? null : null;
   const [previewEdge, setPreviewEdge] = useState<string | null>(null);
-  const previewEdgeObj = previewEdge ? snapshot.edges[previewEdge] : null;
+  const previewEdgeObj = previewEdge && snapshot ? snapshot.edges[previewEdge] ?? null : null;
   const jumpToEdge = (id: string) => { const el = document.getElementById(`edge-${id}`); el?.scrollIntoView({ behavior: "smooth", block: "center" }); el?.classList.add("flash"); setTimeout(() => el?.classList.remove("flash"), 1600); };
   const toggleKind = (kind: string) => setHidden((h) => { const n = new Set(h); if (n.has(kind)) n.delete(kind); else n.add(kind); return n; });
   const sectorLabel = useMemo(() => (node?.sector ? t(`sectors.${node.sector}`) : null), [node, t]);
   // CivLab's prev/next arrows step through nodes of the selected node's type; with nothing selected they are history buttons
   const step = (dir: 1 | -1) => {
-    if (!node) { if (dir === 1) router.forward(); else router.back(); return; }
+    if (!node || !snapshot) { if (dir === 1) router.forward(); else router.back(); return; }
     const same = Object.values(snapshot.nodes).filter((n) => n.type === node.type).sort((a, b) => (a.sector ?? "").localeCompare(b.sector ?? "") || (a.name.en ?? "").localeCompare(b.name.en ?? ""));
     const i = same.findIndex((n) => n.id === node.id);
     const next = same[(i + dir + same.length) % same.length];
@@ -85,7 +99,7 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       <button onClick={() => setLegendOpen((o) => !o)} className="card w-12 h-12 shrink-0 flex items-center justify-center hover:bg-hover lg:hidden" aria-label={t("nav.legend")} aria-expanded={legendOpen}>
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="4.5" cy="4.5" r="2.5" /><rect x="11" y="2" width="5" height="5" rx="1.2" /><path d="M4.5 11l2.5 4.5h-5z" /><rect x="11" y="11" width="5" height="5" rx="1.2" transform="rotate(45 13.5 13.5)" /></svg>
       </button>
-      <button onClick={() => setSearchOpen(true)} className="card w-12 h-12 shrink-0 flex items-center justify-center hover:bg-hover" aria-label={t("nav.search")}>
+      <button onClick={() => setSearchOpen(true)} disabled={!snapshot} className="card w-12 h-12 shrink-0 flex items-center justify-center hover:bg-hover disabled:opacity-50" aria-label={t("nav.search")}>
         <svg width="18" height="18" viewBox="0 0 17 17" fill="none"><path d="M9.875 0.875C6.43 0.875 3.625 3.68 3.625 7.125c0 1.497.525 2.869 1.406 3.945L.05 16.05l.9.9 4.98-4.98a6.22 6.22 0 0 0 3.945 1.406c3.445 0 6.25-2.805 6.25-6.25S13.32.875 9.875.875Zm0 1.25c2.769 0 5 2.231 5 5s-2.231 5-5 5-5-2.231-5-5 2.231-5 5-5Z" fill="currentColor" /></svg>
       </button>
     </div>
@@ -104,7 +118,13 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       </div>
       {/* mobile: header card floats over the top of the band */}
       <div className="absolute top-3 inset-x-3 z-10 lg:hidden">{headerCard}</div>
-      <GraphView snapshot={snapshot} selected={selected} hidden={hidden} showAllEdges={showAllEdges} onSelect={select} onHoverNode={prefetch} onPreview={setPreview} onPreviewEdge={setPreviewEdge} mobile={mobile} />
+      {snapshot
+        ? <GraphView snapshot={snapshot} selected={selected} hidden={hidden} showAllEdges={showAllEdges} onSelect={select} onHoverNode={prefetch} onPreview={setPreview} onPreviewEdge={setPreviewEdge} mobile={mobile} />
+        : failed && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="card px-4 py-3 text-sm flex items-center gap-3"><span className="text-ink-2">{t("nav.graphFailed")}</span><button onClick={retry} className="font-semibold hover:underline">{t("nav.retry")}</button></div>
+          </div>
+        )}
       {/* mobile legend panel, anchored under the header card */}
       {legendOpen && (
         <div className="absolute top-[68px] inset-x-3 z-20 lg:hidden" onClick={(e) => e.stopPropagation()}>
@@ -114,7 +134,7 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
       <div className="absolute bottom-4 start-4 z-10 hidden lg:block">
         <Legend hidden={hidden} onToggle={toggleKind} onReset={() => setHidden(new Set())} showAllEdges={showAllEdges} onToggleEdges={() => setShowAllEdges((v) => !v)} />
       </div>
-      {previewEdgeObj && (() => {
+      {previewEdgeObj && snapshot && (() => {
         const e = previewEdgeObj;
         const from = snapshot.nodes[e.fromId], to = snapshot.nodes[e.toId];
         const verb = t.has(`edges.${e.type}`) ? t(`edges.${e.type}`) : e.type;
@@ -173,7 +193,7 @@ export function Shell({ snapshot, children }: { snapshot: GraphSnapshot; childre
         </div>
         <div className="hidden lg:block">{canvas}</div>
       </div>
-      {searchOpen && <SearchModal snapshot={snapshot} onClose={() => setSearchOpen(false)} onSelect={(id) => { setSearchOpen(false); select(id); }} />}
+      {searchOpen && snapshot && <SearchModal snapshot={snapshot} onClose={() => setSearchOpen(false)} onSelect={(id) => { setSearchOpen(false); select(id); }} />}
     </GraphContext.Provider>
   );
 }

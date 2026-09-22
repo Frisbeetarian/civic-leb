@@ -39,7 +39,7 @@ Web (`cd web`, pnpm):
 ```sh
 pnpm dev                                    # http://localhost:3000/ar and /en, needs API_URL in .env.local
 pnpm lint && pnpm exec tsc --noEmit && pnpm build   # the full check; there are no frontend unit tests
-pnpm snapshot                               # refresh data/lb-graph.json from the running API
+pnpm snapshot                               # refresh public/lb-graph.json from the running API
 pnpm build:static                           # STATIC_EXPORT=1: fully static site into out/ from the bundled snapshot
 pnpm deploy:static                          # build:static + wrangler deploy to civ-leb.com
 ```
@@ -65,8 +65,11 @@ routine work in this repo.
 3. `GraphController` serves the snapshot, a per-node view derived from it, and the layout descriptor,
    all with long CDN cache headers.
 4. `web/src/lib/graph.ts` reads the same shape in two modes: live (`API_URL` set, revalidate 60s) or
-   bundled (`web/data/lb-graph.json`, used by the static export). `nodeDetailFrom` mirrors the API's
+   bundled (`web/public/lb-graph.json`, used by the static export). `nodeDetailFrom` mirrors the API's
    per-node response so both modes render identically. Keep the two in sync when the node shape changes.
+   Pages use the snapshot on the server only; the browser fetches it once from `snapshotUrl()` inside
+   `Shell`. Never pass the whole snapshot as a prop to a client component: Next would serialise it into
+   every page's HTML and RSC payload (a megabyte per page, gigabytes of static export).
 
 ### Seed data is the curated dataset
 

@@ -22,6 +22,8 @@
     "relationship": "Relationship",
     "hierarchy": "Structure",
     "tapHint": "Drag the wheel to turn it. Tap a node to preview, tap again to open.",
+    "graphFailed": "The graph could not be loaded.",
+    "retry": "Try again",
     "tapToOpen": "Tap to open",
     "seeInConnections": "See in connections below"
   },
