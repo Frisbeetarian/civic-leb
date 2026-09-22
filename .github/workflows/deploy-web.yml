@@ -27,7 +27,9 @@ jobs:
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4 # version comes from packageManager in web/package.json
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: web/package.json # the action reads packageManager from the repo root otherwise
       - uses: actions/setup-node@v4
         with:
           node-version: 22
