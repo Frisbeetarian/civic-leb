@@ -136,13 +136,16 @@
     "openPage": "افتح الصفحة",
     "backToGraph": "العودة إلى الخريطة",
     "aliases": "يُعرف أيضاً بـ",
-    "seats": "{count} مقعداً",
+    "seats": "{count, plural, one {مقعد واحد} two {مقعدان} few {# مقاعد} many {# مقعداً} other {# مقعد}}",
     "notInForce": "لم يعد نافذاً",
     "statusNote": "الوضع",
     "parentVerb": "جزء من",
     "hierarchyHelp": "ارتباط إداري لا علاقة قانونية: الجهة تقع ضمن الهيكلية التنظيمية للأخرى.",
     "readMore": "اقرأ المزيد",
-    "updated": "آخر تحديث للبيانات {date}"
+    "updated": "آخر تحديث للبيانات {date}",
+    "district": "الدائرة",
+    "seatIn": "مقعد في",
+    "seatsCard": "المقاعد بحسب الدائرة"
   },
   "overview": {
     "title": "نظرة عامة",

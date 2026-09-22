@@ -1,0 +1,2626 @@
+{
+ "election": {
+  "date": "2022-05-15",
+  "proclaimed": "2022-05-17",
+  "source": "https://en.wikipedia.org/wiki/List_of_members_of_the_2022%E2%80%932026_Lebanese_Parliament"
+ },
+ "districts": {
+  "major": {
+   "beirut-1": {
+    "ar": "بيروت الأولى",
+    "en": "Beirut I",
+    "fr": "Beyrouth I"
+   },
+   "beirut-2": {
+    "ar": "بيروت الثانية",
+    "en": "Beirut II",
+    "fr": "Beyrouth II"
+   },
+   "south-1": {
+    "ar": "الجنوب الأولى",
+    "en": "South I",
+    "fr": "Sud I"
+   },
+   "south-2": {
+    "ar": "الجنوب الثانية",
+    "en": "South II",
+    "fr": "Sud II"
+   },
+   "south-3": {
+    "ar": "الجنوب الثالثة",
+    "en": "South III",
+    "fr": "Sud III"
+   },
+   "bekaa-1": {
+    "ar": "البقاع الأولى",
+    "en": "Bekaa I",
+    "fr": "Békaa I"
+   },
+   "bekaa-2": {
+    "ar": "البقاع الثانية",
+    "en": "Bekaa II",
+    "fr": "Békaa II"
+   },
+   "bekaa-3": {
+    "ar": "البقاع الثالثة",
+    "en": "Bekaa III",
+    "fr": "Békaa III"
+   },
+   "north-1": {
+    "ar": "الشمال الأولى",
+    "en": "North I",
+    "fr": "Nord I"
+   },
+   "north-2": {
+    "ar": "الشمال الثانية",
+    "en": "North II",
+    "fr": "Nord II"
+   },
+   "north-3": {
+    "ar": "الشمال الثالثة",
+    "en": "North III",
+    "fr": "Nord III"
+   },
+   "mount-lebanon-1": {
+    "ar": "جبل لبنان الأولى",
+    "en": "Mount Lebanon I",
+    "fr": "Mont-Liban I"
+   },
+   "mount-lebanon-2": {
+    "ar": "جبل لبنان الثانية",
+    "en": "Mount Lebanon II",
+    "fr": "Mont-Liban II"
+   },
+   "mount-lebanon-3": {
+    "ar": "جبل لبنان الثالثة",
+    "en": "Mount Lebanon III",
+    "fr": "Mont-Liban III"
+   },
+   "mount-lebanon-4": {
+    "ar": "جبل لبنان الرابعة",
+    "en": "Mount Lebanon IV",
+    "fr": "Mont-Liban IV"
+   }
+  },
+  "minor": {
+   "beirut-1": {
+    "ar": "بيروت الأولى",
+    "en": "Beirut I",
+    "fr": "Beyrouth I"
+   },
+   "beirut-2": {
+    "ar": "بيروت الثانية",
+    "en": "Beirut II",
+    "fr": "Beyrouth II"
+   },
+   "saida": {
+    "ar": "صيدا",
+    "en": "Saida",
+    "fr": "Saïda"
+   },
+   "jezzine": {
+    "ar": "جزين",
+    "en": "Jezzine",
+    "fr": "Jezzine"
+   },
+   "tyre": {
+    "ar": "صور",
+    "en": "Tyre",
+    "fr": "Tyr"
+   },
+   "zahrani": {
+    "ar": "الزهراني",
+    "en": "Zahrani",
+    "fr": "Zahrani"
+   },
+   "bint-jbeil": {
+    "ar": "بنت جبيل",
+    "en": "Bint Jbeil",
+    "fr": "Bint Jbeil"
+   },
+   "nabatieh": {
+    "ar": "النبطية",
+    "en": "Nabatieh",
+    "fr": "Nabatiyeh"
+   },
+   "marjeyoun-hasbaya": {
+    "ar": "مرجعيون – حاصبيا",
+    "en": "Marjeyoun–Hasbaya",
+    "fr": "Marjeyoun–Hasbaya"
+   },
+   "zahle": {
+    "ar": "زحلة",
+    "en": "Zahle",
+    "fr": "Zahlé"
+   },
+   "west-bekaa-rashaya": {
+    "ar": "البقاع الغربي – راشيا",
+    "en": "West Bekaa–Rashaya",
+    "fr": "Békaa-Ouest–Rachaya"
+   },
+   "baalbek-hermel": {
+    "ar": "بعلبك – الهرمل",
+    "en": "Baalbek–Hermel",
+    "fr": "Baalbek–Hermel"
+   },
+   "akkar": {
+    "ar": "عكار",
+    "en": "Akkar",
+    "fr": "Akkar"
+   },
+   "tripoli": {
+    "ar": "طرابلس",
+    "en": "Tripoli",
+    "fr": "Tripoli"
+   },
+   "minieh": {
+    "ar": "المنية",
+    "en": "Minieh",
+    "fr": "Minié"
+   },
+   "denniyeh": {
+    "ar": "الضنية",
+    "en": "Denniyeh",
+    "fr": "Denniyé"
+   },
+   "zgharta": {
+    "ar": "زغرتا",
+    "en": "Zgharta",
+    "fr": "Zghorta"
+   },
+   "bcharre": {
+    "ar": "بشري",
+    "en": "Bcharre",
+    "fr": "Bcharré"
+   },
+   "koura": {
+    "ar": "الكورة",
+    "en": "Koura",
+    "fr": "Koura"
+   },
+   "batroun": {
+    "ar": "البترون",
+    "en": "Batroun",
+    "fr": "Batroun"
+   },
+   "jbeil": {
+    "ar": "جبيل",
+    "en": "Jbeil",
+    "fr": "Jbeil"
+   },
+   "keserwan": {
+    "ar": "كسروان",
+    "en": "Keserwan",
+    "fr": "Kesrouan"
+   },
+   "metn": {
+    "ar": "المتن",
+    "en": "Metn",
+    "fr": "Metn"
+   },
+   "baabda": {
+    "ar": "بعبدا",
+    "en": "Baabda",
+    "fr": "Baabda"
+   },
+   "chouf": {
+    "ar": "الشوف",
+    "en": "Chouf",
+    "fr": "Chouf"
+   },
+   "aley": {
+    "ar": "عاليه",
+    "en": "Aley",
+    "fr": "Aley"
+   }
+  }
+ },
+ "minorToMajor": {
+  "beirut-1": "beirut-1",
+  "beirut-2": "beirut-2",
+  "akkar": "north-1",
+  "minieh": "north-2",
+  "denniyeh": "north-2",
+  "tripoli": "north-2",
+  "zgharta": "north-3",
+  "koura": "north-3",
+  "bcharre": "north-3",
+  "batroun": "north-3",
+  "jbeil": "mount-lebanon-1",
+  "keserwan": "mount-lebanon-1",
+  "metn": "mount-lebanon-2",
+  "baabda": "mount-lebanon-3",
+  "aley": "mount-lebanon-4",
+  "chouf": "mount-lebanon-4",
+  "saida": "south-1",
+  "jezzine": "south-1",
+  "zahrani": "south-2",
+  "tyre": "south-2",
+  "nabatieh": "south-3",
+  "marjeyoun-hasbaya": "south-3",
+  "bint-jbeil": "south-3",
+  "zahle": "bekaa-1",
+  "west-bekaa-rashaya": "bekaa-2",
+  "baalbek-hermel": "bekaa-3"
+ },
+ "members": [
+  {
+   "person": "lb-cynthia-zarazir",
+   "name_en": "Cynthia Zarazir",
+   "name_ar": "سينثيا زرازير",
+   "name_variants": [
+    "سينثيا فادي الزرازير"
+   ],
+   "wikidata_qid": "Q114456033",
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "minorities",
+   "votes": 486,
+   "list": "For my nation",
+   "bloc": "Change Bloc",
+   "party": "ReLebanon",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ghassan-hasbani",
+   "name_en": "Ghassan Hasbani",
+   "name_ar": "غسان حاصباني",
+   "name_variants": [
+    "Ghassan Chafic Hasbani",
+    "غسان شفيق حاصباني"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "greek_orthodox",
+   "votes": 7080,
+   "list": "Beirut we are yours",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-hagop-terzian",
+   "name_en": "Hagop Terzian",
+   "name_ar": "هاكوب ترزيان",
+   "name_variants": [
+    "Hagop Terezian",
+    "هاكوب تريزيان"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "armenian_orthodox",
+   "votes": 2667,
+   "list": "We were and we remain for Beirut",
+   "bloc": "Armenian Bloc of Representatives",
+   "party": "Tashnag",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-jean-talouzian",
+   "name_en": "Jean Talouzian",
+   "name_ar": "جان تالوزيان",
+   "name_variants": [
+    "Jean Arshak Talozian",
+    "جان أرشاك تالوزيان"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "armenian_catholic",
+   "votes": 4043,
+   "list": "Sovereign Lebanon",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-jihad-pakradouni",
+   "name_en": "Jihad Pakradouni",
+   "name_ar": "جهاد بقرادوني",
+   "name_variants": [
+    "Jihad Karim Pakradouni",
+    "جهاد كريم بقرادوني"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "armenian_orthodox",
+   "votes": 2186,
+   "list": "Beirut we are yours",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-nadim-gemayel",
+   "name_en": "Nadim Gemayel",
+   "name_ar": "نديم الجميل",
+   "name_variants": [
+    "Nadim Bachir Gemayel",
+    "نديم بشير الجميل"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "maronite",
+   "votes": 4425,
+   "list": "Sovereign Lebanon",
+   "bloc": "Kataeb Representatives",
+   "party": "Kataeb",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-nicolas-sehnaoui",
+   "name_en": "Nicolas Sehnaoui",
+   "name_ar": "نقولا صحناوي",
+   "name_variants": [
+    "Nicolas Maurice Sehnaoui",
+    "نقولا موريس صحناوي"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "greek_catholic",
+   "votes": 4781,
+   "list": "We were and we remain for Beirut",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-paula-yacoubian",
+   "name_en": "Paula Yacoubian",
+   "name_ar": "بولا يعقوبيان",
+   "name_variants": [
+    "Paula Sirakan Yacobian",
+    "باولا سيراكان يعقوبيان"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-1",
+   "minor": "beirut-1",
+   "confession": "armenian_orthodox",
+   "votes": 3524,
+   "list": "For my nation",
+   "bloc": "Change Bloc",
+   "party": "Tahalof Watani",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-adnan-traboulsi",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "sunni",
+   "votes": 8463,
+   "list": "For Beirut",
+   "bloc": "National Consensus",
+   "party": "Al-Ahbash",
+   "ordinal": 3,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-amin-sherri",
+   "name_en": "Amin Sherri",
+   "name_ar": "أمين شري",
+   "name_variants": [
+    "Amin Mohammad Sherri",
+    "أمين محمد شري",
+    "أمين شيري"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "shia",
+   "votes": 26363,
+   "list": "Beirut's Unity",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-edgard-traboulsi",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "evangelical",
+   "votes": 2053,
+   "list": "Beirut's Unity",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-faisal-sayegh",
+   "name_en": "Faisal Sayegh",
+   "name_ar": "فيصل الصايغ",
+   "name_variants": [
+    "Faisal Afif Al Sayegh",
+    "Faisal Al Sayegh",
+    "فيصل عفيف الصايغ"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "druze",
+   "votes": 2565,
+   "list": "Beirut Confronts",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-fouad-makhzoumi",
+   "name_en": "Fouad Makhzoumi",
+   "name_ar": "فؤاد مخزومي",
+   "name_variants": [
+    "Fouad Moustapha Makhzoumi",
+    "فؤاد مصطفى مخزومي"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "sunni",
+   "votes": 10021,
+   "list": "Beirut Needs a Heart",
+   "bloc": "Renewal Bloc",
+   "party": "National Dialogue Party",
+   "ordinal": 2,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-ibrahim-mneimneh",
+   "name_en": "Ibrahim Mneimneh",
+   "name_ar": "إبراهيم منيمنة",
+   "name_variants": [
+    "ابراهيم منيمنة"
+   ],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "sunni",
+   "votes": 13281,
+   "list": "Beirut for Change",
+   "bloc": "Change Bloc",
+   "party": "Beirut Tuqawem",
+   "ordinal": 1,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-imad-hout",
+   "name_en": "Imad Hout",
+   "name_ar": "عماد الحوت",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "sunni",
+   "votes": 7362,
+   "list": "This is Beirut",
+   "bloc": "New Lebanon",
+   "party": "Islamic Group",
+   "ordinal": 4,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-melhem-khalaf",
+   "name_en": "Melhem Khalaf",
+   "name_ar": "ملحم خلف",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "greek_orthodox",
+   "votes": 7141,
+   "list": "Beirut for Change",
+   "bloc": "Change Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-mohammad-khawaja",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "shia",
+   "votes": 5789,
+   "list": "Beirut's Unity",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-nabil-badr",
+   "name_en": "Nabil Badr",
+   "name_ar": "نبيل بدر",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "sunni",
+   "votes": 5631,
+   "list": "This is Beirut",
+   "bloc": "New Lebanon",
+   "party": "Independent",
+   "ordinal": 5,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-waddah-sadek",
+   "name_en": "Waddah Sadek",
+   "name_ar": "وضاح صادق",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "beirut-2",
+   "minor": "beirut-2",
+   "confession": "sunni",
+   "votes": 3760,
+   "list": "Beirut For Change",
+   "bloc": "Alliance for Change",
+   "party": "Khatt Ahmar",
+   "ordinal": 6,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-ahmad-rustom",
+   "name_en": "Ahmad Rustom",
+   "name_ar": "أحمد رستم",
+   "name_variants": [
+    "Ahmad Mohammed Rustom",
+    "أحمد محمد رستم"
+   ],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "alawite",
+   "votes": 324,
+   "list": "National Moderate List",
+   "bloc": "National Moderation",
+   "party": "Independent (former Future Movement)",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-asaad-dergham",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "greek_orthodox",
+   "votes": 5754,
+   "list": "Akkar First",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-jimmy-jabbour",
+   "name_en": "Jimmy Jabbour",
+   "name_ar": "جيمي جبور",
+   "name_variants": [
+    "Jimmy Georges Jabbour",
+    "جيمي جورج جبور"
+   ],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "maronite",
+   "votes": 8986,
+   "list": "Akkar First",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-mohammad-sleiman",
+   "name_en": "Mohammad Sleiman",
+   "name_ar": "محمد سليمان",
+   "name_variants": [
+    "Mohammed Moustafa Sleiman",
+    "محمد مصطفى سليمان"
+   ],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "sunni",
+   "votes": 11340,
+   "list": "National Moderate List",
+   "bloc": "National Moderation",
+   "party": "Independent (former Future Movement)",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-mohammad-yehia",
+   "name_en": "Mohammad Yehia",
+   "name_ar": "محمد يحيى",
+   "name_variants": [
+    "Mohammed Yehia Yehia",
+    "محمد يحيى يحيى"
+   ],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "sunni",
+   "votes": 15142,
+   "list": "Akkar First",
+   "bloc": "National Consensus",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-sajih-attieh",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "greek_orthodox",
+   "votes": 1948,
+   "list": "National Moderate List",
+   "bloc": "National Moderation",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-walid-baarini",
+   "name_en": "Walid Baarini",
+   "name_ar": "وليد البعريني",
+   "name_variants": [
+    "Walid Wajih El Baarini",
+    "وليد وجيه البعريني"
+   ],
+   "wikidata_qid": null,
+   "major": "north-1",
+   "minor": "akkar",
+   "confession": "sunni",
+   "votes": 11099,
+   "list": "National Moderate List",
+   "bloc": "National Moderation",
+   "party": "Independent (former Future Movement)",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-ahmad-al-khair",
+   "name_en": "Ahmad Al Khair",
+   "name_ar": "أحمد الخير",
+   "name_variants": [
+    "Ahmad Mahmoud Khair",
+    "أحمد محمود خير"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "minieh",
+   "confession": "sunni",
+   "votes": 10221,
+   "list": "Lebanon is ours",
+   "bloc": "National Moderation",
+   "party": "Independent (former Future Movement)",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-abdel-aziz-samad",
+   "name_en": "Abdel Aziz Samad",
+   "name_ar": "عبد العزيز الصمد",
+   "name_variants": [
+    "Abdelaziz Ibrahim Samad",
+    "عبد العزيز ابراهيم الصمد"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "denniyeh",
+   "confession": "sunni",
+   "votes": 10221,
+   "list": "Lebanon is ours",
+   "bloc": "National Moderation",
+   "party": "Independent (former Future Movement)",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-jihad-al-samad",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "denniyeh",
+   "confession": "sunni",
+   "votes": 7824,
+   "list": "Popular Will",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-abdel-karim-kabbara",
+   "name_en": "Abdel Karim Kabbara",
+   "name_ar": "عبد الكريم كبارة",
+   "name_variants": [
+    "Abdelkarim Mohammed Kabbara",
+    "عبد الكريم محمد كبارة"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "sunni",
+   "votes": 5023,
+   "list": "For the people",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 5,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-ashraf-rifi",
+   "name_en": "Ashraf Rifi",
+   "name_ar": "أشرف ريفي",
+   "name_variants": [
+    "Ashraf Ahmad Rifi",
+    "أشرف أحمد ريفي"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "sunni",
+   "votes": 11593,
+   "list": "Nation's Salvation",
+   "bloc": "Renewal Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-elias-khoury",
+   "name_en": "Elias Khoury",
+   "name_ar": "إيلي خوري",
+   "name_variants": [
+    "Elias Fouad El Khoury",
+    "إيلي خليل خوري"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "maronite",
+   "votes": 3426,
+   "list": "Nation's Salvation",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-faisal-karami",
+   "name_en": "Faisal Karami",
+   "name_ar": "فيصل كرامي",
+   "name_variants": [
+    "Faisal Omar Karami",
+    "فيصل عمر كرامي"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "sunni",
+   "votes": 6494,
+   "list": "Popular Will",
+   "bloc": "National Consensus",
+   "party": "Dignity Movement",
+   "ordinal": 4,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-haidar-nasser",
+   "name_en": "Haidar Nasser",
+   "name_ar": "حيدر ناصر",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "alawite",
+   "votes": 313,
+   "list": "Revolt...for Sovereignty and Justice",
+   "bloc": "New Lebanon",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ihab-matar",
+   "name_en": "Ihab Matar",
+   "name_ar": "إيهاب مطر",
+   "name_variants": [
+    "Ihab Mohammed Mattar",
+    "إيهاب محمد مطر"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "sunni",
+   "votes": 6518,
+   "list": "Real Change",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 3,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-jamil-abboud",
+   "name_en": "Jamil Abboud",
+   "name_ar": "جميل عبود",
+   "name_variants": [
+    "Jamil Abboud Abboud",
+    "جميل عبود عبود"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "greek_orthodox",
+   "votes": 79,
+   "list": "Nation's Salvation",
+   "bloc": "New Lebanon",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-taha-naji",
+   "name_en": "Taha Naji",
+   "name_ar": "طه ناجي",
+   "name_variants": [
+    "Taha Atfat Naji",
+    "طه عطفت ناجي"
+   ],
+   "wikidata_qid": null,
+   "major": "north-2",
+   "minor": "tripoli",
+   "confession": "sunni",
+   "votes": 7407,
+   "list": "Popular Will",
+   "bloc": "National Consensus",
+   "party": "Al-Ahbash",
+   "ordinal": 2,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-michel-douaihy",
+   "name_en": "Michel Douaihy",
+   "name_ar": "ميشال الدويهي",
+   "name_variants": [
+    "Michel Chawki El Doueihy",
+    "ميشال شوقي الدويهي"
+   ],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "zgharta",
+   "confession": "maronite",
+   "votes": 1768,
+   "list": "Our North",
+   "bloc": "Alliance for Change",
+   "party": "Independent",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-michel-moawad",
+   "name_en": "Michel Moawad",
+   "name_ar": "ميشال معوض",
+   "name_variants": [
+    "Michel Rene Mouawad",
+    "ميشال رينيه معوض"
+   ],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "zgharta",
+   "confession": "maronite",
+   "votes": 9261,
+   "list": "North of confrontation",
+   "bloc": "Renewal Bloc",
+   "party": "Independence Movement",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-tony-frangieh",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "zgharta",
+   "confession": "maronite",
+   "votes": 8945,
+   "list": "Unity of the North",
+   "bloc": "Independent National Bloc",
+   "party": "Marada",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-adib-abdel-massih",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "koura",
+   "confession": "greek_orthodox",
+   "votes": 1815,
+   "list": "North of confrontation",
+   "bloc": "Kataeb Representatives",
+   "party": "Independent",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-fadi-karam",
+   "name_en": "Fadi Karam",
+   "name_ar": "فادي كرم",
+   "name_variants": [
+    "Fadi Abdallah Karam",
+    "فادي عبدالله كرم"
+   ],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "koura",
+   "confession": "greek_orthodox",
+   "votes": 9226,
+   "list": "Strong Republic Pulse",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-george-atallah",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "koura",
+   "confession": "greek_orthodox",
+   "votes": 2698,
+   "list": "We will remain here",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-sethrida-geagea",
+   "name_en": "Sethrida Geagea",
+   "name_ar": "ستريدا جعجع",
+   "name_variants": [
+    "Sitrida Elias Tawk",
+    "ستريدا الياس طوق"
+   ],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "bcharre",
+   "confession": "maronite",
+   "votes": 7924,
+   "list": "Strong Republic Pulse",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-william-tawk",
+   "name_en": "William Tawk",
+   "name_ar": "وليام طوق",
+   "name_variants": [
+    "William Gebran Tawk",
+    "وليام جبران طوق"
+   ],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "bcharre",
+   "confession": "maronite",
+   "votes": 3566,
+   "list": "Unity of the North",
+   "bloc": "Independent National Bloc",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-gebran-bassil",
+   "name_en": "Gebran Bassil",
+   "name_ar": "جبران باسيل",
+   "name_variants": [
+    "Gebran Gergi Bassil",
+    "جبران جرجي باسيل"
+   ],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "batroun",
+   "confession": "maronite",
+   "votes": 8922,
+   "list": "We will remain here",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-ghayath-yazbeck",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "north-3",
+   "minor": "batroun",
+   "confession": "maronite",
+   "votes": 11094,
+   "list": "Strong Republic Pulse",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-simon-abi-ramia",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Simon Abi Ramia",
+    "سيمون أبي رميا"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "jbeil",
+   "confession": "maronite",
+   "votes": 6239,
+   "list": "We were and we remain",
+   "bloc": "Consultative Gathering",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-raed-berro",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "jbeil",
+   "confession": "shia",
+   "votes": 9508,
+   "list": "We were and we remain",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ziad-hawat",
+   "name_en": "Ziad Hawat",
+   "name_ar": "زياد الحواط",
+   "name_variants": [
+    "Ziad Halim Al Hawwat",
+    "زياد حليم الحوات",
+    "زياد حواط"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "jbeil",
+   "confession": "maronite",
+   "votes": 13078,
+   "list": "With you we can until the end",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-chawki-daccache",
+   "name_en": "Chawki Daccache",
+   "name_ar": "شوقي الدكاش",
+   "name_variants": [
+    "Chawki Gergi Daccache",
+    "شوقي جرجي دكاش"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "keserwan",
+   "confession": "maronite",
+   "votes": 9129,
+   "list": "With you we can until the end",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 3,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-farid-haykal-khazen",
+   "name_en": "Farid Haykal Khazen",
+   "name_ar": "فريد هيكل الخازن",
+   "name_variants": [
+    "Farid Haykal Al Khazen"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "keserwan",
+   "confession": "maronite",
+   "votes": 9056,
+   "list": "Heart of Independent Lebanon",
+   "bloc": "Independent National Bloc",
+   "party": "Independent",
+   "ordinal": 4,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-nada-boustani",
+   "name_en": "Nada Boustani",
+   "name_ar": "ندى البستاني",
+   "name_variants": [
+    "Nada Nohad Boustani",
+    "Nada Boustani Khoury",
+    "ندى نهاد بستاني",
+    "ندى بستاني خوري"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "keserwan",
+   "confession": "maronite",
+   "votes": 11338,
+   "list": "We were and we remain",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-neemat-frem",
+   "name_en": "Neemat Frem",
+   "name_ar": "نعمت افرام",
+   "name_variants": [
+    "Nehmat Georges Frem",
+    "نعمت جورج افرام"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "keserwan",
+   "confession": "maronite",
+   "votes": 10743,
+   "list": "Scream of a nation",
+   "bloc": "New Lebanon",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-salim-sayegh",
+   "name_en": "Salim Sayegh",
+   "name_ar": "سليم الصايغ",
+   "name_variants": [
+    "Salim Boutros Sayegh",
+    "سليم بطرس صايغ",
+    "سليم صايغ"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-1",
+   "minor": "keserwan",
+   "confession": "maronite",
+   "votes": 3477,
+   "list": "Scream of a nation",
+   "bloc": "Kataeb Representatives",
+   "party": "Kataeb",
+   "ordinal": 5,
+   "seats_in_group": 5
+  },
+  {
+   "person": "lb-elias-bou-saab",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Elias Bou Saab",
+    "الياس بو صعب"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "greek_orthodox",
+   "votes": 4050,
+   "list": "We were and we remain for Metn",
+   "bloc": "Consultative Gathering",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-elias-hankache",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Elias Hankash",
+    "الياس حنكش"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "maronite",
+   "votes": 6148,
+   "list": "On the way to change",
+   "bloc": "Kataeb Representatives",
+   "party": "Kataeb",
+   "ordinal": 2,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-hagop-pakradounian",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "armenian_orthodox",
+   "votes": 4973,
+   "list": "Stronger together",
+   "bloc": "Armenian Bloc of Representatives",
+   "party": "Tashnag",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ibrahim-kanaan",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Ibrahim Kanaan",
+    "إبراهيم كنعان"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "maronite",
+   "votes": 5513,
+   "list": "We were and we remain for Metn",
+   "bloc": "Consultative Gathering",
+   "party": "Independent",
+   "ordinal": 3,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-melhem-riachi",
+   "name_en": "Melhem Riachi",
+   "name_ar": "ملحم رياشي",
+   "name_variants": [
+    "Melhem Antoun Riachi",
+    "ملحم انطون رياشي"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "greek_catholic",
+   "votes": 15254,
+   "list": "On the way to Liberty",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-michel-murr",
+   "name_en": "Michel Murr",
+   "name_ar": "ميشال المر",
+   "name_variants": [
+    "Michel Elias El Murr",
+    "ميشال الياس المر"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "greek_orthodox",
+   "votes": 8607,
+   "list": "Stronger together",
+   "bloc": "Independent National Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-razi-el-hajj",
+   "name_en": "Razi El Hajj",
+   "name_ar": "راضي الحاج",
+   "name_variants": [
+    "Razi Wadih Hajj",
+    "راضي وديع الحاج"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "maronite",
+   "votes": 3459,
+   "list": "On the way to Liberty",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 4,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-sami-gemayel",
+   "name_en": "Sami Gemayel",
+   "name_ar": "سامي الجميل",
+   "name_variants": [
+    "Sami Amin Gemayel",
+    "سامي أمين الجميل"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-2",
+   "minor": "metn",
+   "confession": "maronite",
+   "votes": 10466,
+   "list": "On the way to change",
+   "bloc": "Kataeb Representatives",
+   "party": "Kataeb",
+   "ordinal": 1,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-alain-aoun",
+   "name_en": "Alain Aoun",
+   "name_ar": "آلان عون",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-3",
+   "minor": "baabda",
+   "confession": "maronite",
+   "votes": 8457,
+   "list": "National Accord",
+   "bloc": "Consultative Gathering",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-ali-ammar",
+   "name_en": "Ali Ammar",
+   "name_ar": "علي عمار",
+   "name_variants": [
+    "Ali Fadel Ammar",
+    "علي فاضل عمار"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-3",
+   "minor": "baabda",
+   "confession": "shia",
+   "votes": 14852,
+   "list": "National Accord",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-camille-dory-chamoun",
+   "name_en": "Camille Dory Chamoun",
+   "name_ar": "كميل دوري شمعون",
+   "name_variants": [
+    "Camille Michel Dory Chamoun",
+    "كميل ميشيل دوري شمعون"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-3",
+   "minor": "baabda",
+   "confession": "maronite",
+   "votes": 1876,
+   "list": "Baabda Sovereignty and Decision",
+   "bloc": "Strong Republic",
+   "party": "National Liberal Party",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-fadi-alameh",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-3",
+   "minor": "baabda",
+   "confession": "shia",
+   "votes": 4862,
+   "list": "National Accord",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-hadi-abou-el-hosn",
+   "name_en": "Hadi Abou El Hosn",
+   "name_ar": "هادي أبو الحسن",
+   "name_variants": [
+    "Hadi Mohammad Rafik Aboul Hosn",
+    "هادي محمد رفيق أبو الحسن"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-3",
+   "minor": "baabda",
+   "confession": "druze",
+   "votes": 10764,
+   "list": "Baabda Sovereignty and Decision",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-pierre-bou-assi",
+   "name_en": "Pierre Bou Assi",
+   "name_ar": "بيار بو عاصي",
+   "name_variants": [
+    "Pierre Rachid Bou Assi",
+    "بيار رشيد بو عاصي"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-3",
+   "minor": "baabda",
+   "confession": "maronite",
+   "votes": 14756,
+   "list": "Baabda Sovereignty and Decision",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-akram-chehayeb",
+   "name_en": "Akram Chehayeb",
+   "name_ar": "أكرم شهيب",
+   "name_variants": [
+    "Akram Hussein Chehayeb",
+    "أكرم حسين شهيب"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "aley",
+   "confession": "druze",
+   "votes": 11373,
+   "list": "Partnership and Desire",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-cesar-abi-khalil",
+   "name_en": "Cesar Abi Khalil",
+   "name_ar": "سيزار أبي خليل",
+   "name_variants": [
+    "Cezar Raymond Abi Khalil",
+    "سيزار ريمون أبي خليل"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "aley",
+   "confession": "maronite",
+   "votes": 5698,
+   "list": "List of the Mountain",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-mark-daou",
+   "name_en": "Mark Daou",
+   "name_ar": "مارك ضو",
+   "name_variants": [
+    "Mark Bahjat Daou",
+    "مارك بهجت ضو"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "aley",
+   "confession": "druze",
+   "votes": 11656,
+   "list": "United for Change",
+   "bloc": "Alliance for Change",
+   "party": "Taqaddom",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-nazih-matta",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "aley",
+   "confession": "greek_orthodox",
+   "votes": 9191,
+   "list": "Partnership and Desire",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-raji-saad",
+   "name_en": "Raji Saad",
+   "name_ar": "راجي السعد",
+   "name_variants": [
+    "راجي سعد"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "aley",
+   "confession": "maronite",
+   "votes": 8503,
+   "list": "Partnership and Desire",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-bilal-abdallah",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "sunni",
+   "votes": 8186,
+   "list": "Partnership and Desire",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-farid-boustany",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "maronite",
+   "votes": 4347,
+   "list": "List of the Mountain",
+   "bloc": "Strong Lebanon",
+   "party": "Independent",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-george-adwan",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Georges Adwan",
+    "جورج عدوان"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "maronite",
+   "votes": 11433,
+   "list": "Partnership and Desire",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-ghassan-atallah",
+   "name_en": "Ghassan Atallah",
+   "name_ar": "غسان عطالله",
+   "name_variants": [
+    "Ghassan Amal Attallah",
+    "غسان أمل عطا الله"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "greek_catholic",
+   "votes": 5149,
+   "list": "List of the Mountain",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-halima-kaakour",
+   "name_en": "Halima Kaakour",
+   "name_ar": "حليمة قعقور",
+   "name_variants": [
+    "Halima Ibrahim Kaakour",
+    "حليمة ابراهيم قعقور"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "sunni",
+   "votes": 6684,
+   "list": "United for Change",
+   "bloc": "Change Bloc",
+   "party": "Lana",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-marwan-hamadeh",
+   "name_en": "Marwan Hamadeh",
+   "name_ar": "مروان حمادة",
+   "name_variants": [
+    "Marwan Mohammad Hmadeh",
+    "مروان محمد حمادة"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "druze",
+   "votes": 11121,
+   "list": "Partnership and Desire",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-najat-saliba",
+   "name_en": "Najat Saliba",
+   "name_ar": "نجاة صليبا",
+   "name_variants": [
+    "Najat Khattar Aoun Saliba",
+    "Najat A. Saliba",
+    "نجاة خطار عون صليبا"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "maronite",
+   "votes": 9332,
+   "list": "United for Change",
+   "bloc": "Change Bloc",
+   "party": "Taqaddom",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-taymour-jumblatt",
+   "name_en": "Taymour Jumblatt",
+   "name_ar": "تيمور جنبلاط",
+   "name_variants": [
+    "Taymour Walid Joumblatt",
+    "Taymur Jumblatt",
+    "تيمور وليد جنبلاط"
+   ],
+   "wikidata_qid": null,
+   "major": "mount-lebanon-4",
+   "minor": "chouf",
+   "confession": "druze",
+   "votes": 12917,
+   "list": "Partnership and Desire",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-abdel-rahman-bizri",
+   "name_en": "Abdel Rahman Bizri",
+   "name_ar": "عبد الرحمن البزري",
+   "name_variants": [
+    "Abdelrahman Nazih Bizri",
+    "عبد الرحمن نزيه البزري"
+   ],
+   "wikidata_qid": null,
+   "major": "south-1",
+   "minor": "saida",
+   "confession": "sunni",
+   "votes": 8526,
+   "list": "We vote for change",
+   "bloc": "Saida-Jezzine Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-osama-saad",
+   "name_en": "Osama Saad",
+   "name_ar": "أسامة سعد",
+   "name_variants": [
+    "Oussama Maarouf Saad El Masri",
+    "أسامة معروف سعد المصري"
+   ],
+   "wikidata_qid": null,
+   "major": "south-1",
+   "minor": "saida",
+   "confession": "sunni",
+   "votes": 7341,
+   "list": "We vote for change",
+   "bloc": "Saida-Jezzine Bloc",
+   "party": "Popular Nasserist Organization",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-charbel-massaad",
+   "name_en": "Charbel Massaad",
+   "name_ar": "شربل مسعد",
+   "name_variants": [
+    "Charbel Maroun Massaad",
+    "شربل مارون مسعد"
+   ],
+   "wikidata_qid": null,
+   "major": "south-1",
+   "minor": "jezzine",
+   "confession": "maronite",
+   "votes": 984,
+   "list": "We vote for change",
+   "bloc": "Saida-Jezzine Bloc",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-ghada-ayoub",
+   "name_en": "Ghada Ayoub",
+   "name_ar": "غادة أيوب",
+   "name_variants": [
+    "Ghada Khalil Ayoub",
+    "غادة خليل أيوب"
+   ],
+   "wikidata_qid": null,
+   "major": "south-1",
+   "minor": "jezzine",
+   "confession": "greek_catholic",
+   "votes": 7953,
+   "list": "Our union in Saida and Jezzine",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-said-asmar",
+   "name_en": "Said Asmar",
+   "name_ar": "سعيد الأسمر",
+   "name_variants": [
+    "Saiid Sleiman Asmar",
+    "سعيد سليمان الأسمر"
+   ],
+   "wikidata_qid": null,
+   "major": "south-1",
+   "minor": "jezzine",
+   "confession": "maronite",
+   "votes": 1102,
+   "list": "Our union in Saida and Jezzine",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-ali-osseiran",
+   "name_en": "Ali Osseiran",
+   "name_ar": "علي عسيران",
+   "name_variants": [
+    "Ali Adel Ossairan",
+    "علي عادل عسيران"
+   ],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "zahrani",
+   "confession": "shia",
+   "votes": 2294,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-michel-moussa",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Michel Moussa",
+    "ميشال موسى"
+   ],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "zahrani",
+   "confession": "greek_catholic",
+   "votes": 1364,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-nabih-berri",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Nabih Berri",
+    "نبيه بري"
+   ],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "zahrani",
+   "confession": "shia",
+   "votes": 42091,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-ali-khreis",
+   "name_en": "Ali Khreis",
+   "name_ar": "علي خريس",
+   "name_variants": [
+    "Ali Youssef Khreiss",
+    "علي يوسف خريس"
+   ],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "tyre",
+   "confession": "shia",
+   "votes": 16964,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 3,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-hassan-ezzeddine",
+   "name_en": "Hassan Ezzeddine",
+   "name_ar": "حسن عز الدين",
+   "name_variants": [
+    "Hassan Mohammed Ali Ezzeddine",
+    "حسن محمد علي عز الدين"
+   ],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "tyre",
+   "confession": "shia",
+   "votes": 27927,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-hussein-jashi",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "tyre",
+   "confession": "shia",
+   "votes": 27416,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 2,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-inaya-ezzeddine",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Inaya Ezzeddine"
+   ],
+   "wikidata_qid": null,
+   "major": "south-2",
+   "minor": "tyre",
+   "confession": "shia",
+   "votes": 15266,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 4,
+   "seats_in_group": 4
+  },
+  {
+   "person": "lb-hani-kobeissi",
+   "name_en": "Hani Kobeissi",
+   "name_ar": "هاني قبيسي",
+   "name_variants": [
+    "Hani Hassan Kobaisi",
+    "هاني حسن الكبيسي"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "nabatieh",
+   "confession": "shia",
+   "votes": 20195,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-mohammad-raad",
+   "name_en": "Mohammad Raad",
+   "name_ar": "محمد رعد",
+   "name_variants": [
+    "Mohamad Hassan Raad",
+    "محمد حسن رعد"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "nabatieh",
+   "confession": "shia",
+   "votes": 48543,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-nasser-jaber",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "nabatieh",
+   "confession": "shia",
+   "votes": 6236,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-ali-fayyad",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Ali Fayyad",
+    "علي فياض"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "marjeyoun-hasbaya",
+   "confession": "shia",
+   "votes": 37047,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-ali-hassan-khalil",
+   "name_en": "Ali Hassan Khalil",
+   "name_ar": "علي حسن خليل",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "marjeyoun-hasbaya",
+   "confession": "shia",
+   "votes": 13155,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-elias-jradeh",
+   "name_en": "Elias Jradeh",
+   "name_ar": "الياس جرادة",
+   "name_variants": [
+    "Elias Fares Jradeh",
+    "الياس فارس جرادة"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "marjeyoun-hasbaya",
+   "confession": "greek_orthodox",
+   "votes": 9218,
+   "list": "Together towards change",
+   "bloc": "Change Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-firas-hamdan",
+   "name_en": "Firas Hamdan",
+   "name_ar": "فراس حمدان",
+   "name_variants": [
+    "Firas Ismail Hamdan",
+    "فراس إسماعيل حمدان"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "marjeyoun-hasbaya",
+   "confession": "druze",
+   "votes": 4859,
+   "list": "Together towards change",
+   "bloc": "Change Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-qassem-hashem",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Kassem Hachem",
+    "قاسم هاشم"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "marjeyoun-hasbaya",
+   "confession": "sunni",
+   "votes": 1215,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Arab Socialist Ba'ath Party – Lebanon Region",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ashraf-beydoun",
+   "name_en": "Ashraf Beydoun",
+   "name_ar": "أشرف بيضون",
+   "name_variants": [
+    "Ashraf Nazih Hachem Beydoun",
+    "أشرف نزيه هاشم بيضون"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "bint-jbeil",
+   "confession": "shia",
+   "votes": 10540,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-ayoub-hmayed",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Ayoub Hmayed",
+    "أيوب حميد"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "bint-jbeil",
+   "confession": "shia",
+   "votes": 6745,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 3,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-hassan-fadlallah",
+   "name_en": "Hassan Fadlallah",
+   "name_ar": "حسن فضل الله",
+   "name_variants": [
+    "Hassan Nizamddine Fadlallah",
+    "حسن نظام الدين فضل الله"
+   ],
+   "wikidata_qid": null,
+   "major": "south-3",
+   "minor": "bint-jbeil",
+   "confession": "shia",
+   "votes": 43324,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 3
+  },
+  {
+   "person": "lb-bilal-hshaimi",
+   "name_en": "Bilal Hshaimi",
+   "name_ar": "بلال الحشيمي",
+   "name_variants": [
+    "Bilal Melhem Hechaime",
+    "بلال ملحم هشيمة"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "sunni",
+   "votes": 2568,
+   "list": "Zahle Sovereignty",
+   "bloc": "New Lebanon",
+   "party": "Independent (former Future Movement)",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-elias-estephan",
+   "name_en": "Elias Estephan",
+   "name_ar": "الياس اسطفان",
+   "name_variants": [
+    "Elias André Estephan",
+    "إلياس أندريه إسطفان"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "greek_orthodox",
+   "votes": 6758,
+   "list": "Zahle Sovereignty",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-george-bouchikian",
+   "name_en": "George Bouchikian",
+   "name_ar": "جورج بوشيكيان",
+   "name_variants": [
+    "Georges Boujikian",
+    "جورج بوجيكيان"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "armenian_orthodox",
+   "votes": 2568,
+   "list": "Zahle the message",
+   "bloc": "Independent National Bloc",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-george-okais",
+   "name_en": "George Okais",
+   "name_ar": "جورج عقيص",
+   "name_variants": [
+    "Georges Elie Okais",
+    "جورج ايلي عقيس"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "greek_catholic",
+   "votes": 11921,
+   "list": "Zahle Sovereignty",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-michel-daher",
+   "name_en": "Michel Daher",
+   "name_ar": "ميشال ضاهر",
+   "name_variants": [
+    "Michel Georges Daher",
+    "ميشال جورج ضاهر"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "greek_catholic",
+   "votes": 9229,
+   "list": "Independent Sovereignists",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-rami-abou-hamdan",
+   "name_en": "Rami Abou Hamdan",
+   "name_ar": "رامي أبو حمدان",
+   "name_variants": [
+    "Rami Anis Abou Hamdan",
+    "رامي أنيس أبو حمدان"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "shia",
+   "votes": 15601,
+   "list": "Zahle the message",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-salim-aoun",
+   "name_en": "Salim Aoun",
+   "name_ar": "سليم عون",
+   "name_variants": [
+    "Salim Georges Aoun",
+    "سليم جورج عون"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-1",
+   "minor": "zahle",
+   "confession": "maronite",
+   "votes": 5554,
+   "list": "Zahle the message",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-charbel-maroun",
+   "name_en": "Charbel Maroun",
+   "name_ar": "شربل مارون",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "bekaa-2",
+   "minor": "west-bekaa-rashaya",
+   "confession": "maronite",
+   "votes": 3576,
+   "list": "Better Tomorrow",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ghassan-skaff",
+   "name_en": "Ghassan Skaff",
+   "name_ar": "غسان سكاف",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "bekaa-2",
+   "minor": "west-bekaa-rashaya",
+   "confession": "greek_orthodox",
+   "votes": 776,
+   "list": "Independent National Decision",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-hassan-mrad",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "bekaa-2",
+   "minor": "west-bekaa-rashaya",
+   "confession": "sunni",
+   "votes": 9157,
+   "list": "Better Tomorrow",
+   "bloc": "National Consensus",
+   "party": "Union Party",
+   "ordinal": 1,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-kabalan-kabalan",
+   "name_en": "Kabalan Kabalan",
+   "name_ar": "قبلان قبلان",
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "bekaa-2",
+   "minor": "west-bekaa-rashaya",
+   "confession": "shia",
+   "votes": 10143,
+   "list": "Better Tomorrow",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-yassine-yassine",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "bekaa-2",
+   "minor": "west-bekaa-rashaya",
+   "confession": "sunni",
+   "votes": 6004,
+   "list": "Our Valley and Mountain",
+   "bloc": "Change Bloc",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-wael-abou-faour",
+   "name_en": "Wael Abou Faour",
+   "name_ar": "وائل أبو فاعور",
+   "name_variants": [
+    "Wael Wehbe Abou Faour",
+    "وائل وهبي ابو فاعور",
+    "وائل ابو فاعور"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-2",
+   "minor": "west-bekaa-rashaya",
+   "confession": "druze",
+   "votes": 9202,
+   "list": "Future for W. Bekaa and Rashaya",
+   "bloc": "Democratic Gathering",
+   "party": "Progressive Socialist Party",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ali-mokdad",
+   "name_en": "Ali Mokdad",
+   "name_ar": "علي المقداد",
+   "name_variants": [
+    "Ali Mohamad Salman Bachir El Mokdad",
+    "علي محمد سلمان بشير المقداد"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "shia",
+   "votes": 20356,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 4,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-antoine-habchi",
+   "name_en": "Antoine Habchi",
+   "name_ar": "أنطوان حبشي",
+   "name_variants": [
+    "Antoine El Badaoui Habchi",
+    "أنطوان البدوي حبشي"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "maronite",
+   "votes": 17000,
+   "list": "Construction of the State",
+   "bloc": "Strong Republic",
+   "party": "Lebanese Forces",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-ghazi-zaiter",
+   "name_en": "Ghazi Zaiter",
+   "name_ar": "غازي زعيتر",
+   "name_variants": [
+    "Ghazy Mohamad Zaaiter",
+    "غازي محمد زعيتر"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "shia",
+   "votes": 22058,
+   "list": "Hope and Loyalty",
+   "bloc": "Development and Liberation",
+   "party": "Amal Movement",
+   "ordinal": 2,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-hussein-hajj-hassan",
+   "name_en": "Hussein Hajj Hassan",
+   "name_ar": "حسين الحاج حسن",
+   "name_variants": [
+    "Hussein Ali El Hajj Hassan",
+    "حسين علي الحاج حسن"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "shia",
+   "votes": 23120,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 1,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-ibrahim-moussawi",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [
+    "Ibrahim Mousawi",
+    "ابراهيم الموسوي"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "shia",
+   "votes": 19627,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 5,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-ihab-hamadeh",
+   "name_en": "Ihab Hamadeh",
+   "name_ar": "إيهاب حمادة",
+   "name_variants": [
+    "Ihab Arwa Hmade",
+    "إيهاب أروى حمادة"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "shia",
+   "votes": 20844,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Hezbollah",
+   "ordinal": 3,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-jamil-sayyed",
+   "name_en": "Jamil Sayyed",
+   "name_ar": "جميل السيد",
+   "name_variants": [
+    "Jamil Mohamad Amin Amin El Sayed",
+    "Jamil Al Sayyed",
+    "جميل محمد أمين أمين السيد"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "shia",
+   "votes": 11705,
+   "list": "Hope and Loyalty",
+   "bloc": null,
+   "party": "Independent",
+   "ordinal": 6,
+   "seats_in_group": 6
+  },
+  {
+   "person": "lb-melhem-hujairi",
+   "name_en": "Melhem Hujairi",
+   "name_ar": "ملحم الحجيري",
+   "name_variants": [
+    "Melhem Mohammed El Houjairi",
+    "ملحم محمد الحجيري"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "sunni",
+   "votes": 7125,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Independent",
+   "ordinal": 2,
+   "seats_in_group": 2
+  },
+  {
+   "person": "lb-samer-el-tom",
+   "name_en": null,
+   "name_ar": null,
+   "name_variants": [],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "greek_catholic",
+   "votes": 11343,
+   "list": "Hope and Loyalty",
+   "bloc": "Strong Lebanon",
+   "party": "Free Patriotic Movement",
+   "ordinal": 1,
+   "seats_in_group": 1
+  },
+  {
+   "person": "lb-yanal-solh",
+   "name_en": "Yanal Solh",
+   "name_ar": "ينال الصلح",
+   "name_variants": [
+    "Yanal Mohammed Solh",
+    "ينال محمد الصلح"
+   ],
+   "wikidata_qid": null,
+   "major": "bekaa-3",
+   "minor": "baalbek-hermel",
+   "confession": "sunni",
+   "votes": 8764,
+   "list": "Hope and Loyalty",
+   "bloc": "Loyalty to the Resistance",
+   "party": "Independent",
+   "ordinal": 1,
+   "seats_in_group": 2
+  }
+ ],
+ "history": {
+  "lb-faisal-karami": {
+   "predecessor": {
+    "person": "lb-rami-finge",
+    "name_en": "Rami Finge",
+    "name_ar": "رامي فنج",
+    "name_variants": [
+     "Rami Fanj",
+     "Ramy Finge"
+    ],
+    "party": "Independent",
+    "bloc": "Change Bloc",
+    "list": "Tripoli, the North and the Change",
+    "votes": null
+   }
+  },
+  "lb-haidar-nasser": {
+   "predecessor": {
+    "person": "lb-firas-salloum",
+    "name_en": "Firas Salloum",
+    "name_ar": "فراس سلوم",
+    "name_variants": [
+     "Firas al-Salloum"
+    ],
+    "party": "Independent",
+    "bloc": null,
+    "list": null,
+    "votes": null
+   }
+  },
+  "lb-ghassan-skaff": {
+   "died": "2025-12-13"
+  }
+ }
+}

@@ -27,6 +27,14 @@ export interface PersonRef {
   legalSource: LegalSource | null;
 }
 
+export interface SeatInfo {
+  majorDistrict: string | null;
+  minorDistrict: string | null;
+  ordinal: number | null;
+  majorName: Localized | null;
+  minorName: Localized | null;
+}
+
 export interface GraphNode {
   id: string;
   type: NodeType;
@@ -57,7 +65,7 @@ export interface GraphNode {
   confession?: string | null;
   confessionBasis?: string | null;
   confessionSourceUrl?: string | null;
-  seat?: { majorDistrict: string | null; minorDistrict: string | null; ordinal: number | null } | null;
+  seat?: SeatInfo | null;
   termYears?: number | null;
   people: PersonRef[];
   edges: string[];
@@ -80,7 +88,7 @@ export interface LayoutDescriptor {
   sectors: { id: Sector; label: { en: string; ar: string }; minAngleDeg: number }[];
   sectorGapDeg: number;
   rings: { bucket: string; spacing: number; label: string; sizeMetric: string }[];
-  pills: { id: string; label: { en: string; ar: string }; sector: Sector; bodyNodeId: string; memberNodeType: string; memberKinds?: string[]; spacing?: number; spanDeg?: number; thickness: number; labelSide?: "inside" | "outside" }[];
+  pills: { id: string; label: { en: string; ar: string }; sector: Sector; bodyNodeId: string; memberNodeType: string; memberKinds?: string[]; spacing?: number; mobileSpacing?: number; spanDeg?: number; thickness: number; labelSide?: "inside" | "outside"; groupOrder?: string[] }[];
   bands: { id: string; label: { en: string; ar: string }; sector: Sector; match: Record<string, unknown>; radius: number; outerEdgeWhen?: Record<string, unknown>; labelSide?: "inside" | "outside" }[];
   apexNodeIds?: string[];
   boundaryNodeIds?: Record<string, Sector[]>;
@@ -96,10 +104,20 @@ export interface GraphSnapshot {
   edges: Record<string, GraphEdge>;
 }
 
+export interface ConnectedRef {
+  id: string;
+  type: NodeType;
+  subtype: string | null;
+  sector: Sector | null;
+  name: Localized;
+  seat?: SeatInfo | null;
+  confession?: string | null;
+}
+
 export interface NodeDetail {
   node: GraphNode;
   edges: GraphEdge[];
-  connected: { id: string; type: NodeType; subtype: string | null; sector: Sector | null; name: Localized }[];
+  connected: ConnectedRef[];
 }
 
 export function localized(l: Localized | null | undefined, locale: string): string {

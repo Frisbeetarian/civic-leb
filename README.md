@@ -79,5 +79,6 @@ state; the API and the graph export read published rows only. See `docs/schema.m
 Milestone 1 (September 2026): schema, Filament review workflow, graph export, public
 API, and the constitutional core (97 nodes, 74 edges) rendered on the four-sector
 layout in Arabic and English. Screenshots in `docs/reference/milestone-1-*.png`.
-Next: the full executive inventory, Parliament's 128 seats, the judiciary and independent
-bodies, then the changes-feed sweep and deployment (Laravel Cloud + Cloudflare).
+Parliament's 128 seats with the 2022 chamber's members landed on 22 September 2026 (roster in
+`api/database/seeders/data/seats/`). Next: the full executive inventory, the judiciary and
+independent bodies, then the changes-feed sweep and deployment (Laravel Cloud + Cloudflare).

@@ -75,11 +75,28 @@
       "sector": "legislative",
       "bodyNodeId": "lb-parliament",
       "memberNodeType": "seat",
-      "spanDeg": 66,
       "thickness": 58,
-      "mobileThickness": 46,
-      "groupBy": "seat.majorDistrict",
-      "labelSide": "outside"
+      "mobileThickness": 40,
+      "labelSide": "outside",
+      "spacing": 2.1,
+      "mobileSpacing": 1.8,
+      "groupOrder": [
+        "north-1",
+        "north-2",
+        "north-3",
+        "mount-lebanon-1",
+        "mount-lebanon-2",
+        "beirut-1",
+        "beirut-2",
+        "mount-lebanon-3",
+        "mount-lebanon-4",
+        "south-1",
+        "south-2",
+        "south-3",
+        "bekaa-1",
+        "bekaa-2",
+        "bekaa-3"
+      ]
     },
     {
       "id": "cabinet",
@@ -110,8 +127,8 @@
       "sector": "legislative",
       "bodyNodeId": "lb-parliament",
       "memberNodeType": "commission",
-      "spacing": 2.7,
-      "mobileSpacing": 2.5,
+      "spacing": 2.95,
+      "mobileSpacing": 2.6,
       "thickness": 60,
       "mobileThickness": 50,
       "labelSide": "outside"

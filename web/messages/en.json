@@ -136,13 +136,16 @@
     "openPage": "Open page",
     "backToGraph": "Back to the graph",
     "aliases": "Also known as",
-    "seats": "{count} seats",
+    "seats": "{count, plural, one {# seat} other {# seats}}",
     "notInForce": "no longer in force",
     "statusNote": "Status",
     "parentVerb": "is part of",
     "hierarchyHelp": "An administrative attachment, not a legal relationship: the body sits inside the other's organisation chart.",
     "readMore": "Read more",
-    "updated": "Data last updated {date}"
+    "updated": "Data last updated {date}",
+    "district": "District",
+    "seatIn": "Seat in",
+    "seatsCard": "Seats by district"
   },
   "overview": {
     "title": "Overview",

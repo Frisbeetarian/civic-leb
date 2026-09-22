@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { familyColor, familyOrder, type EdgeFamily } from "@/lib/palette";
 import { Glyph } from "./Glyph";
 
-const kinds = ["elected", "department", "dept_head", "commission", "advisory", "court", "confessional_court", "security_service", "state_company", "regulator", "oversight"] as const;
+const kinds = ["elected", "seat", "department", "dept_head", "commission", "advisory", "court", "confessional_court", "security_service", "state_company", "regulator", "oversight"] as const;
 
 export function Legend({ hidden, onToggle, onReset, showAllEdges, onToggleEdges, forceOpen = false, onClose }: { hidden: Set<string>; onToggle: (kind: string) => void; onReset: () => void; showAllEdges: boolean; onToggleEdges: () => void; forceOpen?: boolean; onClose?: () => void }) {
   const t = useTranslations();

@@ -182,14 +182,14 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
               const isSel = selected === n.id;
               const dashed = n.status === "never_constituted" || n.status === "dormant" || n.status === "expired_continuing" || n.status === "dissolved";
               // growth waits for the turn to finish so the rotation stays a pure compositor animation
-              const grow = isSel && !turning ? (mobile ? 1.7 : n.type === "commission" || n.type === "advisory" ? 1.5 : 1.3) : 1;
+              const grow = isSel && !turning ? (n.type === "seat" ? 2 : mobile ? 1.7 : n.type === "commission" || n.type === "advisory" ? 1.5 : 1.3) : 1;
               const shown = headShown(n);
               return (
                 <g key={n.id} data-id={n.id} style={{ transform: `translate(${p.x}px, ${p.y}px) scale(${grow})`, opacity: shown ? nodeAlpha(n.id) : 0, pointerEvents: shown ? "auto" : "none", cursor: "pointer", transition: "transform 250ms, opacity 250ms" }}
                   onClick={(ev) => { ev.stopPropagation(); tapNode(n.id); }}
                   onMouseEnter={() => { if (mobile) return; const q = placed[n.id]; setHover(n.id); setTip({ kind: "node", id: n.id, x: cx + q.x, y: cy + q.y - q.r * grow - 2 }); onHoverNode?.(n.id); }}
                   onMouseLeave={() => { if (mobile) return; setHover(null); setTip(null); }}>
-                  {mobile && <circle r={14} fill="transparent" />}
+                  {mobile && <circle r={n.type === "seat" ? Math.max(p.r + 1, 4) : 14} fill="transparent" />}
                   <Glyph kind={glyphKind(n)} r={p.r} color={color} dashed={dashed} selected={isSel} />
                 </g>
               );
@@ -236,10 +236,11 @@ export function GraphView({ snapshot, selected, hidden, showAllEdges, onSelect, 
           {/* hierarchy fan: dotted lines from the focused body to its children and from its parent */}
           {selected && snapshot.nodes[selected] && (() => {
             const n = snapshot.nodes[selected];
-            const bodyId = n.type === "dept_head" ? n.headOf : n.id;
+            const bodyId = n.type === "dept_head" || n.type === "seat" ? n.headOf : n.id;
             const body = bodyId ? snapshot.nodes[bodyId] : null;
             if (!body || !placed[body.id]) return null;
-            const links = [...(body.children ?? []).map((c) => [body.id, c] as const), ...(body.parent ? [[body.parent, body.id] as const] : [])];
+            // a seat only ties back to its chamber; a body fans to its children and parent
+            const links = n.type === "seat" ? [[body.id, n.id] as const] : [...(body.children ?? []).map((c) => [body.id, c] as const), ...(body.parent ? [[body.parent, body.id] as const] : [])];
             return links.map(([a, b]) => placed[a] && placed[b] && (
               <g key={`fan-${a}-${b}`} style={{ opacity: turning ? 0 : tip?.kind === "fan" && tip.id === `${a}|${b}` ? 1 : 0.7, transition: "opacity 200ms" }}>
                 <line x1={placed[a].x} y1={placed[a].y} x2={placed[b].x} y2={placed[b].y} stroke={sectorVar(body.sector)} strokeWidth={tip?.kind === "fan" && tip.id === `${a}|${b}` ? 2 : 1} strokeDasharray="2 3" />
